@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 
 import { Navigate } from 'react-router-dom';
 
@@ -10,4 +10,4 @@ function ProtectedRoute({ component: Component, ...props }) {
   );
 }
 
-export default ProtectedRoute;
+export default ProtectedRoute; */
