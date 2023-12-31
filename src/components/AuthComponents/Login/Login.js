@@ -1,6 +1,7 @@
 import React from 'react';
 
-function Login() {
+function Login(props) {
+  const { onLogin } = props;
   return (
     <>
       <h2>Login</h2>;
