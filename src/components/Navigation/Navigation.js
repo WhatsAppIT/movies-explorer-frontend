@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import akkHeader from '../../images/akkHeader1280.svg';
+import akkHeaderLogo1280 from '../../images/akkHeaderLogo1280.svg';
 import './Navigation.css';
 
 function Navigation() {
@@ -32,11 +33,18 @@ function Navigation() {
         <Link to='/profile' className='navigation__profile_link'>
           Аккаунт
         </Link>
-        <img
-          src={akkHeader}
-          className='navigation__profile_img'
-          alt='переход в аккаунт'
-        />
+        <div className='navigation__profile_logo'>
+          <img
+            src={akkHeader}
+            className='navigation__profile_logo_img'
+            alt='переход в аккаунт'
+          />
+          <img
+            src={akkHeaderLogo1280}
+            className='navigation__profile_logo_akk'
+            alt='переход в аккаунт'
+          />
+        </div>
       </div>
     </section>
   );

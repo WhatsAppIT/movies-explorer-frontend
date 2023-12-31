@@ -1,10 +1,21 @@
 import React from 'react';
+import Promo from '../Main/Promo/Promo.js';
+import NavTab from '../Main/NavTab/NavTab.js';
+import AboutProject from '../Main/AboutProject/AboutProject.js';
+import Techs from '../Main/Techs/Techs.js';
+import AboutMe from '../Main/AboutMe/AboutMe.js';
+import Portfolio from '../Main/Portfolio/Portfolio.js';
 
 function Main() {
   return (
-    <>
-      <h2>Main</h2>;
-    </>
+    <section className='main'>
+      <Promo />
+      <NavTab />
+      <AboutProject />
+      <Techs />
+      <AboutMe />
+      <Portfolio />
+    </section>
   );
 }
 
