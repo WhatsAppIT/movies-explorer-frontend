@@ -75,7 +75,7 @@ function App() {
   }, []);
 
   return (
-    <div className='page'>
+    <div className='app'>
       <Header loggedIn={loggedIn} />
       <Navigation />
       <Routes>

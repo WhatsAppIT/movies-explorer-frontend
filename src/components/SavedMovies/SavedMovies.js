@@ -1,10 +1,13 @@
 import React from 'react';
+import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
+import MoviesCard from '../Movies/MoviesCard/MoviesCard';
 
 function SavedMovies() {
   return (
-    <>
-      <h2>SavedMovies</h2>;
-    </>
+    <section className='savedMovies'>
+      <MoviesCardList />
+      <MoviesCard />
+    </section>
   );
 }
 
