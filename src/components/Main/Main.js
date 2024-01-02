@@ -10,7 +10,7 @@ function Main() {
   return (
     <section className='main'>
       <Promo />
-      <NavTab />
+      {/* <NavTab /> */}
       <AboutProject />
       <Techs />
       <AboutMe />
