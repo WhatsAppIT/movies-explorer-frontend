@@ -109,14 +109,14 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   .techs {
     min-height: 625px;
   }
 
   .techs__title {
     padding: 100px 0 23px;
-    min-width: 600px;
+    min-width: 1140px;
   }
 
   .techs__subtitle {
@@ -126,6 +126,7 @@
 
   .techs__description {
     padding: 0;
+    min-width: 460px;
   }
 
   .techs__table {

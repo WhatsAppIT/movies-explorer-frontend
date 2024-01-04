@@ -1,0 +1,187 @@
+.about {
+  background-color: #202020;
+}
+
+.about__title {
+  padding: 70px 0 28px;
+  margin: 0 14px 0;
+  min-width: 292px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  text-align: left;
+  color: #ffffff;
+  border-bottom: 1px solid #dadada;
+}
+
+.about__info_user {
+  min-width: 292px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about__info_user_image {
+  padding: 60px 0 0;
+  margin: 0 auto;
+  min-width: 292px;
+  min-height: 352px;
+}
+
+.about__info_img {
+  display: flex;
+  justify-content: center;
+}
+
+.about__info_user_name {
+  padding: 40px 0 20px;
+  margin: 0 14px 0;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 36.31px;
+  color: #ffffff;
+}
+
+.about__info_user_job {
+  padding: 0 0 20px;
+  margin: 0 14px 0;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #ffffff;
+}
+
+.about__info_user_about {
+  padding: 0 0 40px;
+  margin: 0 14px 0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 16px;
+  color: #ffffff;
+}
+
+.about__info_user_git {
+  padding: 0;
+  margin: 0 14px 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.94px;
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .about__title {
+    padding: 90px 0 23px;
+    margin: 0 50px 0;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 26.63px;
+  }
+  .about__info {
+    padding: 66px 0 91px;
+    margin: 0 50px 0;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .about__info_user {
+    margin: 0 49px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .about__info_user_image {
+    padding: 0;
+    width: 255px;
+    height: 307px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .about__info_user_name {
+    padding: 0 0 16px;
+    margin: 0;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 58px;
+  }
+
+  .about__info_user_job {
+    padding: 0 0 20px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  .about__info_user_about {
+    padding: 0 0 87px;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+  }
+  .about__info_user_git {
+    margin: 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .about__title {
+    padding: 110px 0 23px;
+    margin: 0 70px 0;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 26.63px;
+  }
+  .about__info {
+    padding: 66px 0 101px;
+    margin: 0 70px 0;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .about__info_user {
+    margin: 0 270px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .about__info_user_image {
+    padding: 0;
+    width: 270px;
+    height: 327px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .about__info_user_name {
+    padding: 0 0 18px;
+    margin: 0;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 58px;
+  }
+
+  .about__info_user_job {
+    padding: 0 0 26px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  .about__info_user_about {
+    padding: 0 0 99px;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+  }
+}
