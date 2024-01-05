@@ -7,34 +7,52 @@ function Portfolio() {
     <section className='portfolio'>
       <h2 className='portfolio__title'>Портфолио</h2>
       <div className='portfolio__static'>
-        <a href='#' className='portfolio__link portfolio__link_static'>
-          Статичный сайт
+        <a
+          href='https://github.com/WhatsAppIT/russian-travel.git'
+          className='portfolio__link portfolio__link_static'
+          target='_blank'
+        >
+          <p className='portfolio__link portfolio__link_static'>
+            Статичный сайт
+          </p>
+          <button
+            src={logoPortfolio}
+            className='portfolio__logo portfolio__logo_static'
+            alt='ссылка'
+          />
         </a>
-        <img
-          src={logoPortfolio}
-          className='portfolio__logo portfolio__logo_static'
-          alt='ссылка'
-        />
       </div>
       <div className='portfolio__adaptiv'>
-        <a href='#' className='portfolio__link portfolio__link_adaptive'>
-          Адаптивный сайт
+        <a
+          href='https://github.com/WhatsAppIT/russian-travel.git'
+          className='portfolio__link portfolio__link_adaptive'
+          target='_blank'
+        >
+          <p className='portfolio__link portfolio__link_adaptive'>
+            Адаптивный сайт
+          </p>
+          <button
+            src={logoPortfolio}
+            className='portfolio__logo portfolio__logo_adaptive'
+            alt='ссылка'
+          />
         </a>
-        <img
-          src={logoPortfolio}
-          className='portfolio__logo portfolio__logo_adaptive'
-          alt='ссылка'
-        />
       </div>
       <div className='portfolio__spa'>
-        <a href='#' className='portfolio__link portfolio__link_spa'>
-          Одностраничное приложение
+        <a
+          href='https://github.com/WhatsAppIT/russian-travel.git'
+          className='portfolio__link portfolio__link_spa'
+          target='_blank'
+        >
+          <p className='portfolio__link portfolio__link_spa'>
+            Одностраничное приложение
+          </p>
+          <button
+            src={logoPortfolio}
+            className='portfolio__logo portfolio__logo_spa'
+            alt='ссылка'
+          />
         </a>
-        <img
-          src={logoPortfolio}
-          className='portfolio__logo portfolio__logo_spa'
-          alt='ссылка'
-        />
       </div>
     </section>
   );

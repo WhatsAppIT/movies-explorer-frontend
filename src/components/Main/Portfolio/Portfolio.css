@@ -16,38 +16,54 @@
 .portfolio__static {
   padding: 0 0 19px;
   margin: 0 14px 0;
-  display: flex;
-  justify-content: space-between;
   border-bottom: 1px solid #e6e6e6;
 }
 
 .portfolio__adaptiv {
   padding: 20px 0 19px;
   margin: 0 14px 0;
-  display: flex;
-  justify-content: space-between;
   border-bottom: 1px solid #e6e6e6;
 }
 
 .portfolio__spa {
   padding: 20px 0 70px;
   margin: 0 14px 0;
-  display: flex;
-  justify-content: space-between;
 }
 
 .portfolio__link {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
   font-size: 18px;
   font-weight: 400;
   line-height: 28px;
-  text-align: left;
   color: #ffffff;
   text-decoration: none;
+  transition: opacity 0.3s;
 }
 
 .portfolio__logo {
+  padding: 0;
+  margin: 0;
   width: 18px;
   height: 28px;
+  background-color: #202020;
+  background-image: url(../../../images/logoPortfolio.svg);
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 0.3s;
+}
+
+.portfolio__logo:hover {
+  opacity: 0.4;
+}
+
+.portfolio__link:hover {
+  opacity: 0.4;
 }
 
 @media (min-width: 768px) {
