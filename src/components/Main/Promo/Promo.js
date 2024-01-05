@@ -1,5 +1,5 @@
 import React from 'react';
-//import promoImg from '../../../images/promo1280.svg';
+import promoImg from '../../../images/promo1280.svg';
 import './Promo.css';
 
 function Promo() {
@@ -8,7 +8,7 @@ function Promo() {
       <h1 className='promo__title'>
         Учебный проект студента факультета Веб-разработки.
       </h1>
-      <img className='promo_img' alt='иображение' />
+      <img src={promoImg} className='promo__img' alt='иображение' />
     </section>
   );
 }

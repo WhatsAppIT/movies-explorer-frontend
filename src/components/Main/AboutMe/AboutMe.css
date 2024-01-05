@@ -14,23 +14,17 @@
   border-bottom: 1px solid #dadada;
 }
 
-.about__info_user {
-  min-width: 292px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.about__info {
+  padding: 60px 0 0;
+  margin: 0;
+  text-align: center;
 }
 
-.about__info_user_image {
-  padding: 60px 0 0;
-  margin: 0 auto;
+.about__info_image {
+  padding: 0;
+  margin: 0;
   min-width: 292px;
   min-height: 352px;
-}
-
-.about__info_img {
-  display: flex;
-  justify-content: center;
 }
 
 .about__info_user_name {
@@ -39,6 +33,7 @@
   font-size: 30px;
   font-weight: 400;
   line-height: 36.31px;
+  text-align: left;
   color: #ffffff;
 }
 
@@ -48,6 +43,7 @@
   font-size: 11px;
   font-weight: 500;
   line-height: 16px;
+  text-align: left;
   color: #ffffff;
 }
 
@@ -57,6 +53,7 @@
   font-size: 11px;
   font-weight: 400;
   line-height: 16px;
+  text-align: left;
   color: #ffffff;
 }
 
@@ -66,6 +63,7 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 16.94px;
+  text-align: left;
   color: #ffffff;
 }
 
@@ -93,36 +91,32 @@
     align-items: flex-start;
   }
 
-  .about__info_user_image {
-    padding: 0;
+  .about__info_image {
     width: 255px;
-    height: 307px;
-    object-fit: cover;
-    border-radius: 10px;
   }
 
   .about__info_user_name {
     padding: 0 0 16px;
     margin: 0;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 400;
-    line-height: 58px;
+    line-height: 40px;
   }
 
   .about__info_user_job {
     padding: 0 0 20px;
     margin: 0;
-    font-size: 18px;
+    font-size: 12px;
     font-weight: 500;
-    line-height: 20px;
+    line-height: 18px;
   }
 
   .about__info_user_about {
     padding: 0 0 87px;
     margin: 0;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
-    line-height: 22px;
+    line-height: 18px;
   }
   .about__info_user_git {
     margin: 0;
