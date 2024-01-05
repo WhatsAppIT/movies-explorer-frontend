@@ -5,18 +5,24 @@ import AboutProject from '../Main/AboutProject/AboutProject.js';
 import Techs from '../Main/Techs/Techs.js';
 import AboutMe from '../Main/AboutMe/AboutMe.js';
 import Portfolio from '../Main/Portfolio/Portfolio.js';
+import Footer from '../Footer/Footer.js';
+import Header from '../Header/Header.js';
 import './Main.css';
 
 function Main() {
   return (
-    <section className='main'>
-      <Promo />
-      {/* <NavTab /> */}
-      <AboutProject />
-      <Techs />
-      <AboutMe />
-      <Portfolio />
-    </section>
+    <>
+      <Header />
+      <section className='main'>
+        <Promo />
+        {/* <NavTab /> */}
+        <AboutProject />
+        <Techs />
+        <AboutMe />
+        <Portfolio />
+      </section>
+      <Footer />
+    </>
   );
 }
 
