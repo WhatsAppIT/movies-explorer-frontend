@@ -1,7 +1,7 @@
 import React from 'react';
 
-function Register(props) {
-  const { onRegister } = props;
+function Register() {
+  //const { onRegister } = props;
   return (
     <>
       <h2>Register</h2>;
