@@ -23,8 +23,8 @@ function Profile() {
           <h3 className='form__text form__text_type_email'>E-mail</h3>
           <input
             className='form__input form__input_type_profile-email'
-            type='text'
-            id='ProfileName'
+            type='email'
+            id='ProfileEmail'
             minLength='2'
             maxLength='30'
             required
