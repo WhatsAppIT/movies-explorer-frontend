@@ -11,7 +11,7 @@ function Header(props) {
   return (
     <section className='header'>
       <Link to='/' className='header__logo'>
-        <img src={logo} alt='логотип' />
+        <img src={logo} className='header__logo_img' alt='логотип' />
       </Link>
       {!loggedIn ? <HeaderAuthorization /> : <Navigation />}
     </section>
