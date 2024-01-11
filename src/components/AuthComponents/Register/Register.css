@@ -29,18 +29,17 @@
 
 .formregister {
   padding: 0;
-  margin: 0 0 87px;
+  margin: 0 30px 30px;
 }
 
 .form__register {
-  padding: 0 0 10px;
+  padding: 0;
   margin: 0;
-  border-bottom: 1px solid #424242;
 }
 
 .form__register_title {
   margin: 0;
-  padding: 0 0 3px;
+  padding: 0 0 7px;
   font-size: 10px;
   font-weight: 400;
   line-height: 12.1px;
@@ -50,22 +49,23 @@
 }
 
 .form__register_input {
-  padding: 0;
+  padding: 15px 15px 15px;
   margin: 0;
   font-size: 14px;
   font-weight: 400;
   line-height: 16.94px;
   color: #ffffff;
   text-align: left;
-  min-width: 260px;
-  background-color: #202020;
+  min-width: 230px;
+  background-color: #2f2f2f;
   border: none;
   outline: none;
+  border-radius: 8px;
 }
 
 .register__submit {
   padding: 0;
-  margin: 130px 30px 14px;
+  margin: 125px 30px 14px;
   min-width: 260px;
   min-height: 45px;
   background: #4285f4;
@@ -129,11 +129,22 @@
   opacity: 1;
 }
 
+.register__submit:hover {
+  opacity: 0.8;
+}
+
+.register__logout_link:hover {
+  opacity: 0.7;
+}
+
+.header__register_img:hover {
+  opacity: 0.7;
+}
+
 @media (min-width: 768px) {
   .header__register {
-    margin: 234px 186px 0;
+    margin: 234px 544px 0 186px;
     padding: 0;
-    min-width: 396px;
     display: flex;
     justify-content: flex-start;
   }
@@ -153,17 +164,17 @@
 
   .formregister {
     padding: 0;
-    margin: 0 0 87px;
+    margin: 0 0 50px;
   }
 
   .form__register {
-    padding: 0 0 10px;
+    padding: 0;
     margin: 0;
     min-width: 396px;
   }
 
   .form__register_title {
-    padding: 0 0 3px;
+    padding: 0 0 5px;
     font-size: 10px;
     font-weight: 400;
     line-height: 12.1px;
@@ -172,15 +183,17 @@
   }
 
   .form__register_input {
+    padding: 15px 15px 15px;
+    margin: 0;
     font-size: 14px;
     line-height: 16.94px;
     text-align: left;
-    min-width: 396px;
+    min-width: 366px;
   }
 
   .register__submit {
     padding: 0;
-    margin: 40px 30px 14px;
+    margin: 21px 30px 14px;
     min-width: 260px;
     min-height: 45px;
     border-radius: 3px;
@@ -191,7 +204,7 @@
   }
 
   .register__logout {
-    padding: 0 0 30px;
+    padding: 0 0 100px;
     margin: 0;
     gap: 6px;
     min-width: 396px;
@@ -207,11 +220,28 @@
     font-size: 14px;
     line-height: 16.94px;
   }
+
+  .form__error {
+    padding: 6px 0 2px;
+    margin: 0;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12.1px;
+    color: #ee3465;
+    visibility: visible;
+    opacity: 1;
+    visibility: hidden;
+    opacity: 0;
+    min-height: 12px;
+    display: flex;
+    justify-content: flex-start;
+  }
 }
 
 @media (min-width: 1280px) {
   .header__register {
-    margin: 70px 442px 0;
+    margin: 70px 800px 0 442px;
+    padding: 0;
   }
 
   .formregister {
@@ -219,16 +249,9 @@
     margin: 0 0 70px;
   }
 
-  .form__register {
-    padding: 0 0 10px;
-    margin: 0;
-    border-bottom: 1px solid #424242;
-    min-width: 396px;
-  }
-
   .form__register_title {
     margin: 0;
-    padding: 0 0 3px;
+    padding: 0 0 6px;
     font-size: 10px;
     font-weight: 400;
     line-height: 12.1px;
@@ -238,22 +261,17 @@
   }
 
   .form__register_input {
-    padding: 0;
+    padding: 15px 15px 15px;
     margin: 0;
     font-size: 14px;
-    font-weight: 400;
     line-height: 16.94px;
-    color: #ffffff;
     text-align: left;
-    background-color: #202020;
-    border: none;
-    outline: none;
-    min-width: 396px;
+    min-width: 366px;
   }
 
   .register__submit {
     padding: 0;
-    margin: 60px 442px 16px;
+    margin: 0 442px 16px;
     min-width: 396px;
     min-height: 45px;
     background: #4285f4;
@@ -269,7 +287,7 @@
 
   .register__logout {
     padding: 0;
-    margin: 0;
+    margin: 0 0 70px;
     display: flex;
     justify-content: center;
     align-items: center;

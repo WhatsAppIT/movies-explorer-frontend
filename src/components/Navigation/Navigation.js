@@ -1,19 +1,17 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import akkHeader from '../../images/akkHeader1280.svg';
-import akkHeaderLogo1280 from '../../images/akkHeaderLogo1280.svg';
+//import profileMenu from '../../images/profileMenu.svg';
 import './Navigation.css';
+import logo320 from '../../images/icon320logo.svg';
 
 function Navigation() {
   return (
     <section className='navigation'>
-      <nav className='navigation__list'>
+      <nav className='navigation__links'>
         <NavLink
           to='/movies'
           className={({ isActive }) =>
-            `navigation__list_link ${
-              isActive ? 'navigation__list_link_active' : ''
-            }`
+            `navigation__link ${isActive ? 'navigation__link_active' : ''}`
           }
         >
           Фильмы
@@ -21,9 +19,7 @@ function Navigation() {
         <NavLink
           to='/saved-movies'
           className={({ isActive }) =>
-            `navigation__list_link ${
-              isActive ? 'navigation__list_link_active' : ''
-            }`
+            `navigation__link ${isActive ? 'navigation__link_active' : ''}`
           }
         >
           Сохранённые фильмы
@@ -31,20 +27,11 @@ function Navigation() {
       </nav>
       <div className='navigation__profile'>
         <Link to='/profile' className='navigation__profile_link'>
-          Аккаунт
+          <button type='button' className='navigation__button_320'>
+            <img src={logo320} className='' />
+          </button>
+          <h3 className='navigation__button_1280'>Аккаунт</h3>
         </Link>
-        <div className='navigation__profile_logo'>
-          <img
-            src={akkHeader}
-            className='navigation__profile_logo_img'
-            alt='переход в аккаунт'
-          />
-          <img
-            src={akkHeaderLogo1280}
-            className='navigation__profile_logo_akk'
-            alt='переход в аккаунт'
-          />
-        </div>
       </div>
     </section>
   );

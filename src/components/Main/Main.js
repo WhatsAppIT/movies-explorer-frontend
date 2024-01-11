@@ -1,6 +1,6 @@
 import React from 'react';
 import Promo from '../Main/Promo/Promo.js';
-import NavTab from '../Main/NavTab/NavTab.js';
+//import NavTab from '../Main/NavTab/NavTab.js';
 import AboutProject from '../Main/AboutProject/AboutProject.js';
 import Techs from '../Main/Techs/Techs.js';
 import AboutMe from '../Main/AboutMe/AboutMe.js';

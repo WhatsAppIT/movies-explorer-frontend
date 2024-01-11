@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css';
-import logo from '../../../images/logoHeader1280.svg';
+import logo from '../../../images/logo.svg';
 
 function Login() {
   //const { onRegister } = props;

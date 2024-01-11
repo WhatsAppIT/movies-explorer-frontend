@@ -4,7 +4,7 @@ import userFoto from '../../../images/aboutfoto.svg';
 
 function AboutMe() {
   return (
-    <section className='about'>
+    <section className='about' id='about-me'>
       <h2 className='about__title'>Студент</h2>
       <div className='about__info'>
         <img src={userFoto} className='about__info_image' />

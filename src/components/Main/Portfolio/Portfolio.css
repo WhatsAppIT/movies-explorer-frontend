@@ -1,5 +1,6 @@
 .portfolio {
   background-color: #202020;
+  border-radius: 10px;
 }
 
 .portfolio__title {
@@ -59,11 +60,11 @@
 }
 
 .portfolio__logo:hover {
-  opacity: 0.4;
+  opacity: 0.7;
 }
 
 .portfolio__link:hover {
-  opacity: 0.4;
+  opacity: 0.7;
 }
 
 @media (min-width: 768px) {

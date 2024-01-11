@@ -62,7 +62,7 @@
 
 .profile__submit {
   padding: 0;
-  margin: 200px 30px 14px;
+  margin: 200px 30px 40px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -236,7 +236,7 @@
 
 @media (min-width: 1280px) {
   .profile__title {
-    padding: 110px 0 123px;
+    padding: 70px 0 123px;
     margin: 0 537px 0;
     color: #ffffff;
   }

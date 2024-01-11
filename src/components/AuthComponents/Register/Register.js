@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Register.css';
-import logo from '../../../images/logoHeader1280.svg';
+import logo from '../../../images/logo.svg';
 
 function Register() {
   //const { onRegister } = props;
@@ -20,7 +20,7 @@ function Register() {
           </h3>
           <input
             className='form__register_input form__register_name_input'
-            type='password'
+            type='text'
             id='registerName'
             required
             autoComplete='off'
@@ -68,7 +68,7 @@ function Register() {
       </button>
       <div className='register__logout'>
         <h3 className='register__logout_title'>Уже зарегистрированы?</h3>
-        <Link to='/signup' className='register__logout_link'>
+        <Link to='/signin' className='register__logout_link'>
           Войти
         </Link>
       </div>
