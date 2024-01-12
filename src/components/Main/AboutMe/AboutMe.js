@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './AboutMe.css';
 import userFoto from '../../../images/aboutfoto.svg';
 
@@ -18,7 +19,9 @@ function AboutMe() {
             Контур». После того, как прошёл курс по веб-разработке, начал
             заниматься фриланс-заказами и ушёл с постоянной работы.
           </p>
-          <p className='about__info_user_git'>Github</p>
+          <a href='https://github.com/WhatsAppIT' className='' target='_blank'>
+            <p className='about__info_user_git'>Github</p>
+          </a>
         </div>
       </div>
     </section>

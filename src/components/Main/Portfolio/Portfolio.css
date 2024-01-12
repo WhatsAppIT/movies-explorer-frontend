@@ -1,13 +1,12 @@
 .portfolio {
   background-color: #202020;
-  border-radius: 10px;
 }
 
 .portfolio__title {
   padding: 70px 0 40px;
   margin: 0 14px 0;
   min-width: 292px;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 20px;
   text-align: left;
@@ -15,6 +14,9 @@
 }
 
 .portfolio__static {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
   padding: 0 0 19px;
   margin: 0 14px 0;
   border-bottom: 1px solid #e6e6e6;
@@ -47,8 +49,8 @@
 .portfolio__logo {
   padding: 0;
   margin: 0;
-  width: 18px;
-  height: 28px;
+  width: 13px;
+  height: 25px;
   background-color: #202020;
   background-image: url(../../../images/logoPortfolio.svg);
   background-size: contain;
@@ -69,25 +71,25 @@
 
 @media (min-width: 768px) {
   .portfolio__title {
-    padding: 91px 0 50px;
+    padding: 91px 0 48px;
     margin: 0 50px 0;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 400;
-    line-height: 26.63px;
+    line-height: 20px;
   }
 
   .portfolio__static {
-    padding: 0 0 19px;
+    padding: 0 0 10px;
     margin: 0 50px 0;
   }
 
   .portfolio__adaptiv {
-    padding: 20px 0 19px;
+    padding: 18px 0 10px;
     margin: 0 50px 0;
   }
 
   .portfolio__spa {
-    padding: 20px 0 90px;
+    padding: 19px 0 90px;
     margin: 0 50px 0;
   }
 
@@ -98,29 +100,29 @@
   }
 
   .portfolio__logo {
-    width: 27px;
+    width: 20px;
     height: 60px;
   }
 }
 
 @media (min-width: 1268px) {
   .portfolio__title {
-    padding: 110px 0 23px;
+    padding: 0 0 23px;
     margin: 0 70px 0;
   }
 
   .portfolio__static {
-    padding: 0 0 19px;
-    margin: 0 70px 0;
-  }
-
-  .portfolio__adaptiv {
     padding: 20px 0 19px;
     margin: 0 70px 0;
   }
 
+  .portfolio__adaptiv {
+    padding: 14px 0 19px;
+    margin: 0 70px 0;
+  }
+
   .portfolio__spa {
-    padding: 20px 0 125px;
+    padding: 12px 0 125px;
     margin: 0 70px 0;
   }
 

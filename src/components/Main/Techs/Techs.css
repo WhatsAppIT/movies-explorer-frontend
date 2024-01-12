@@ -112,11 +112,12 @@
   }
 
   .techs__description {
-    padding: 0;
+    padding: 0 0 10px;
     margin: 0 410px 0;
   }
 
   .techs__table {
     padding: 100px 0 100px;
+    gap: 15px;
   }
 }
