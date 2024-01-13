@@ -13,14 +13,14 @@ function Main() {
   return (
     <>
       <Header />
-      <section className='main'>
+      <main className='main'>
         <Promo />
         {/* <NavTab /> */}
         <AboutProject />
         <Techs />
         <AboutMe />
         <Portfolio />
-      </section>
+      </main>
       <Footer />
     </>
   );

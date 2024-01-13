@@ -1,17 +1,24 @@
 import React from 'react';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
 import SearchForm from './SearchForm/SearchForm';
-import Preloader from './Preloader/Preloader';
+//import Preloader from './Preloader/Preloader';
 import MoviesCardList from './MoviesCardList/MoviesCardList';
-import MoviesCard from './MoviesCard/MoviesCard';
+//import MoviesCard from './MoviesCard/MoviesCard';
+import './Movies.css';
 
 function Movies() {
   return (
-    <section className='movies'>
-      <SearchForm />
-      <Preloader />
-      <MoviesCardList />
-      <MoviesCard />
-    </section>
+    <>
+      <Header />
+      <section className='movies'>
+        <SearchForm />
+        {/*         <Preloader /> */}
+        <MoviesCardList />
+        {/*         <MoviesCard /> */}
+      </section>
+      <Footer />
+    </>
   );
 }
 
