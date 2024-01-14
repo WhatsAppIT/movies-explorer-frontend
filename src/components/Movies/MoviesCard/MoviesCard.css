@@ -1,0 +1,23 @@
+.card__image_save_true {
+  background-size: contain;
+  background-color: transparent;
+  background-image: url(../../../images/save3.svg);
+  border: none;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 21px;
+  height: 21px;
+}
+.card__image_save_false {
+  background-image: url(../../../images/save3d.svg);
+  background-color: transparent;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 72px;
+  height: 21px;
+  border-radius: 30px;
+}
