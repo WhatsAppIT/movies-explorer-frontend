@@ -1,0 +1,13 @@
+.cards {
+}
+
+.cards__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 39px;
+}
+
+.cards__else {
+}
