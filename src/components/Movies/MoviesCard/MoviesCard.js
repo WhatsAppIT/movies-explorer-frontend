@@ -1,12 +1,9 @@
 import React from 'react';
-//import img1 from '../../../images/pic__COLOR_pic.svg';
-//import save from '../../../images/save.svg';
 import './MoviesCard.css';
 
 function MoviesCard(props) {
   const {
     card: { nameRU, duration, image },
-    save,
   } = props;
 
   const [isSaved, setIsSaved] = React.useState(false);
