@@ -9,10 +9,11 @@ import Footer from '../Footer/Footer.js';
 import Header from '../Header/Header.js';
 import './Main.css';
 
-function Main() {
+function Main(props) {
+  const { isOpened } = props;
   return (
     <>
-      <Header />
+      <Header onClick={isOpened} />
       <main className='main'>
         <Promo />
         {/* <NavTab /> */}

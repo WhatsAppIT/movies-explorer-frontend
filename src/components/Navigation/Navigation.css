@@ -6,11 +6,15 @@
   display: none;
 }
 
-.navigation__button_320 {
+.navigation__button_popup {
   display: block;
   border: none;
   cursor: pointer;
   background-color: #202020;
+}
+
+.navigation__button_320 {
+  display: none;
 }
 
 .navigation__link:hover {
@@ -18,6 +22,10 @@
 }
 
 .navigation__button:hover {
+  opacity: 0.7;
+}
+
+.navigation__button_popup:hover {
   opacity: 0.7;
 }
 
@@ -52,10 +60,14 @@
   .navigation__link_active {
     text-decoration: solid;
     border: 2px;
-    color: #000000;
+    color: #ffffff;
   }
 
-  .navigation__button_1280 {
+  .navigation__button_popup {
+    display: none;
+  }
+
+  .navigation__button_320 {
     padding: 8px 20px 8px;
     border-radius: 20px;
     background-color: #313131;
@@ -67,8 +79,20 @@
     color: #ffffff;
     display: block;
   }
-  .navigation__button_320 {
-    display: none;
+  .navigation__button_320:hover {
+    opacity: 0.7;
+  }
+
+  .navigation__button_1280 {
+    margin: 0;
+    background-color: #313131;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    color: #ffffff;
+    display: block;
   }
 
   .navigation__profile_link {

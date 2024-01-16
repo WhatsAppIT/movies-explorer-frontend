@@ -8,7 +8,7 @@ function MoviesCard(props) {
 
   const [isSaved, setIsSaved] = React.useState(false);
 
-  function handleSave() {
+  function handleLikeMovie() {
     setIsSaved((saved) => !saved);
   }
 
@@ -34,7 +34,7 @@ function MoviesCard(props) {
           className={`card__image_save ${
             isSaved ? 'card__image_save_true' : 'card__image_save_false'
           }`}
-          onClick={handleSave}
+          onClick={handleLikeMovie}
         ></button>
       </div>
       <div className='card__info'>

@@ -10,6 +10,7 @@ import Register from '../AuthComponents/Register/Register.js';
 import Movies from '../Movies/Movies.js';
 import SavedMovies from '../SavedMovies/SavedMovies.js';
 import Profile from '../AuthComponents/Profile/Profile.js';
+import PopupHeaderButton from '../PopupHeaderButton/PopupHeaderButton.js';
 import NotFound from '../NotFound/NotFound.js';
 import './App.css';
 import { api } from '../../utils/api.js';
@@ -20,15 +21,23 @@ function App() {
   const [IsRegistrate, setIsRegistrate] = React.useState(false);
   const [userEmail, setUserEmail] = React.useState('');
   const [currentUser, setCurrentUser] = React.useState({});
+  const [headerPopupOpen, setHeaderPopupOpen] = React.useState(false);
 
   const navigate = useNavigate();
 
-  function handleLogin(username, password) {
+  function handleHeaderButtonClick() {
+    setHeaderPopupOpen(true);
+  }
+  function closeAllPopups() {
+    setHeaderPopupOpen(false);
+  }
+
+  function handleLogin(email, password) {
     auth
-      .authorization(username, password)
+      .authorization(email, password)
       .then((res) => {
         setIsRegistrate(false);
-        setUserEmail(username);
+        setUserEmail(email);
         localStorage.setItem('jwt', res.token);
         setLoggedIn(true);
         navigate('/', { replace: true });
@@ -40,12 +49,12 @@ function App() {
       });
   }
 
-  function handleRegister(email, password) {
+  function handleRegister(username, email, password) {
     auth
-      .registration(email, password)
+      .registration(username, email, password)
       .then(() => {
         setIsRegistrate(true);
-        navigate('/signin', { replace: true });
+        navigate('/', { replace: true });
       })
       .catch((err) => {
         console.log(err);
@@ -83,12 +92,16 @@ function App() {
           path='/signup'
           element={<Register onRegister={handleRegister} />}
         />
-        <Route path='/' element={<Main />} />
+        <Route path='/' element={<Main isOpened={headerPopupOpen} />} />
         <Route path='/movies' element={<Movies />} />
         <Route path='/saved-movies' element={<SavedMovies />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
+      <PopupHeaderButton
+        isOpen={handleHeaderButtonClick}
+        onClose={closeAllPopups}
+      />
     </div>
   );
 }

@@ -3,8 +3,17 @@ import { Link } from 'react-router-dom';
 import './Login.css';
 import logo from '../../../images/logo.svg';
 
-function Login() {
-  //const { onRegister } = props;
+function Login(props) {
+  const { onLogin } = props;
+
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  function handleSubmitLogin(e) {
+    e.preventDefault();
+    onLogin(email, password);
+  }
+
   return (
     <section className='login'>
       <Link to='/' className='header__login'>
@@ -22,6 +31,8 @@ function Login() {
             id='loginEmail'
             required
             autoComplete='off'
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
           />
         </div>
         <span id='error-login-email' className='form__error'>
@@ -37,7 +48,9 @@ function Login() {
             type='password'
             id='loginPassword'
             required
-            autoComplete='off'
+            autoComplete='new-password'
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
           />
         </div>
         <span id='error-login-password' className='form__error'>

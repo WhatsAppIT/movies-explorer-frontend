@@ -3,8 +3,18 @@ import { Link } from 'react-router-dom';
 import './Register.css';
 import logo from '../../../images/logo.svg';
 
-function Register() {
-  //const { onRegister } = props;
+function Register(props) {
+  const { onRegister } = props;
+
+  const [userName, setUserName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  function handleSubmitLogin(e) {
+    e.preventDefault();
+    onRegister(userName, email, password);
+  }
+
   return (
     <section className='register'>
       <Link to='/' className='header__register'>
@@ -24,6 +34,8 @@ function Register() {
             id='registerName'
             required
             autoComplete='off'
+            onChange={(e) => setUserName(e.target.value)}
+            value={userName}
           />
         </div>
         <span id='error-register-name' className='form__error'>
@@ -40,6 +52,8 @@ function Register() {
             id='registerEmail'
             required
             autoComplete='off'
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
           />
         </div>
         <span id='error-register-email' className='form__error'>
@@ -55,7 +69,9 @@ function Register() {
             type='password'
             id='registerPassword'
             required
-            autoComplete='off'
+            autoComplete='new-password'
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
           />
         </div>
         <span id='error-register-password' className='form__error'>

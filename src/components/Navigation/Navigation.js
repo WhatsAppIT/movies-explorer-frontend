@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 //import profileMenu from '../../images/profileMenu.svg';
+//import PopupHeaderButton from '../../components/PopupHeaderButton/PopupHeaderButton';
 import './Navigation.css';
 import logo320 from '../../images/icon320logo.svg';
 
-function Navigation() {
+function Navigation(props) {
+  const { headerPopupOpen } = props;
+  console.log(props);
   return (
     <section className='navigation'>
       <nav className='navigation__links'>
@@ -28,10 +31,16 @@ function Navigation() {
       <div className='navigation__profile'>
         <Link to='/profile' className='navigation__profile_link'>
           <button type='button' className='navigation__button_320'>
-            <img src={logo320} className='' />
+            <h3 className='navigation__button_1280'>Аккаунт</h3>
           </button>
-          <h3 className='navigation__button_1280'>Аккаунт</h3>
         </Link>
+        <button
+          type='button'
+          onClick={headerPopupOpen}
+          /*           className='navigation__button_popup' */
+        >
+          <img src={logo320} className='' />
+        </button>
       </div>
     </section>
   );
