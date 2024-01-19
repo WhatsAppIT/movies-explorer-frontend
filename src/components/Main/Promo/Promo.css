@@ -29,7 +29,7 @@
   }
 
   .promo__title {
-    padding: 350px 0 314px;
+    padding: 360px 0 314px;
     margin: 0;
     font-weight: 400;
     font-size: 40px;
@@ -51,13 +51,13 @@
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   .promo {
     background-color: #202020;
   }
 
   .promo__title {
-    padding: 150px 0 151px;
+    padding: 170px 0 151px;
     margin: 0;
     font-weight: 400;
     font-size: 50px;

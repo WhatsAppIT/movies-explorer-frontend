@@ -14,6 +14,7 @@ import NotFound from '../NotFound/NotFound.js';
 import './App.css';
 import { api } from '../../utils/api.js';
 import { auth } from '../../utils/auth.js';
+import CurrentUserContext from '../../contexts/CurrentUserContext.js';
 
 function App() {
   const [IsRegistrate, setIsRegistrate] = React.useState(false);
@@ -21,6 +22,7 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [headerPopupOpen, setHeaderPopupOpen] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   function handleHeaderPopupOpen() {
     setHeaderPopupOpen(true);
@@ -52,7 +54,7 @@ function App() {
       .registration(username, email, password)
       .then(() => {
         setIsRegistrate(true);
-        navigate('/', { replace: true });
+        navigate('/movies', { replace: true });
       })
       .catch((err) => {
         console.log(err);
@@ -82,47 +84,62 @@ function App() {
     checkToken();
   }, []);
 
+  function handleUpdateUser(data) { 
+    api.editProfile(data) 
+        .then((res) => { 
+            setCurrentUser(res); 
+            closeAllPopups(); 
+        }) 
+        .catch(console.error) 
+        .finally(() => { 
+            setIsLoading(false); 
+        }); 
+} 
+
+
   return (
     <div className='app'>
-      <Routes>
-        <Route path='/signin' element={<Login onLogin={handleLogin} />} />
-        <Route
-          path='/signup'
-          element={<Register onRegister={handleRegister} />}
+      <CurrentUserContext.Provider value={currentUser}>
+        <Routes>
+          <Route path='/signin' element={<Login onLogin={handleLogin} />} />
+          <Route
+            path='/signup'
+            element={<Register onRegister={handleRegister} />}
+          />
+          <Route
+            path='/'
+            element={
+              <Main
+                loggedIn={loggedIn}
+                isOpen={handleHeaderPopupOpen}
+                onClose={closeAllPopups}
+              />
+            }
+          />
+          <Route
+            path='/movies'
+            element={
+              <Movies loggedIn={loggedIn} isOpen={handleHeaderPopupOpen} />
+            }
+          />
+          <Route
+            path='/saved-movies'
+            element={<SavedMovies loggedIn={loggedIn} isOpen={handleHeaderPopupOpen} />}
+          />
+          <Route
+            path='/profile'
+            element={
+              <Profile loggedIn={loggedIn} isOpen={handleHeaderPopupOpen} onUpdateUser={handleUpdateUser} />
+            }
+          />
+          <Route path='*' element={<NotFound />} />
+        </Routes>
+        <PopupHeaderButton
+          loggedIn={loggedIn}
+          isOpen={headerPopupOpen}
+          onClose={closeAllPopups}
         />
-        <Route
-          path='/'
-          element={
-            <Main
-              loggedIn={loggedIn}
-              isOpen={handleHeaderPopupOpen}
-              onClose={closeAllPopups}
-            />
-          }
-        />
-        <Route
-          path='/movies'
-          element={
-            <Movies loggedIn={loggedIn} isOpen={handleHeaderPopupOpen} />
-          }
-        />
-        <Route
-          path='/saved-movies'
-          element={<SavedMovies loggedIn={loggedIn} isOpen={handleHeaderPopupOpen} />}
-        />
-        <Route
-          path='/profile'
-          element={
-            <Profile loggedIn={loggedIn} isOpen={handleHeaderPopupOpen} />
-          }
-        />
-        <Route path='*' element={<NotFound />} />
-      </Routes>
-      <PopupHeaderButton
-        loggedIn={loggedIn}
-        isOpen={headerPopupOpen}
-        onClose={closeAllPopups}
-      />
+      </CurrentUserContext.Provider>
     </div>
   );
 }

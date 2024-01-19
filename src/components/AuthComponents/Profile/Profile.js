@@ -2,9 +2,40 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Profile.css';
 import Header from '../../Header/Header';
+import CurrentUserContext from "../../../contexts/CurrentUserContext";
+ 
 
 function Profile(props) {
-  const { loggedIn, isOpen } = props;
+  const { loggedIn, isOpen, onUpdateUser } = props;
+
+
+  const [userName, setUserName] = React.useState("");
+  const [userEmail, setUserEmail] = React.useState("");
+  const currentUser = React.useContext(CurrentUserContext);
+
+  React.useEffect(() => {
+    if (isOpen) {
+      setUserName(currentUser.userName);
+      setUserEmail(currentUser.userEmail);
+    }
+ 
+  }, [currentUser, isOpen])
+ 
+  function handleChangeEmail(e) {
+    setUserEmail(e.target.value);
+  }
+ 
+  function handleSubmit(e) {
+    e.preventDefault();
+    onUpdateUser({
+      userName: userName,
+      userEmail: userEmail,
+    });
+ 
+  }
+ 
+
+
   return (
     <>
       <Header loggedIn={loggedIn} isOpen={isOpen} />
@@ -22,7 +53,9 @@ function Profile(props) {
               minLength='2'
               maxLength='30'
               required
-            />
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+              />
           </div>
           <span id='error-profile-name' className='form__error'></span>
           <div className='form__profile form__profile_email'>
@@ -36,7 +69,9 @@ function Profile(props) {
               minLength='2'
               maxLength='30'
               required
-            />
+              value={userEmail}
+              onChange={(e) => setUserEmail(e.target.value)}
+              />
           </div>
           <span id='error-profile-email' className='form__error'></span>
         </form>
@@ -45,6 +80,10 @@ function Profile(props) {
           <Link to='/' className='profile__logout_link'>
             Выйти из аккаунта
           </Link>
+        </div>
+        <div className='profile__save'>
+          <p className='profile__save_error profile__save_error_active'>При обновлении профиля произошла ошибка.</p>
+          <button type='submit' className='profile__save_button'>Сохранить</button>
         </div>
       </section>
     </>
