@@ -1,13 +1,27 @@
 import React from 'react';
+import Header from '../Header/Header';
+import Footer from '../Footer/Footer';
+import SearchForm from '../Movies/SearchForm/SearchForm';
+//import Preloader from './Preloader/Preloader';
 import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
-import MoviesCard from '../Movies/MoviesCard/MoviesCard';
+//import MoviesCard from './MoviesCard/MoviesCard';
+import './SavedMovies.css';
 
-function SavedMovies() {
+function SavedMovies(props) {
+  const { loggedIn, isOpen, savedMovie, handleLikeMovie } = props;
+
   return (
-    <section className='savedMovies'>
-      <MoviesCardList />
-      <MoviesCard />
-    </section>
+    <>
+      <Header loggedIn={loggedIn} isOpen={isOpen} />
+      <section className='movies'>
+        <SearchForm />
+        <MoviesCardList
+          savedMovie={savedMovie}
+          handleLikeMovie={handleLikeMovie}
+        />
+      </section>
+      <Footer />
+    </>
   );
 }
 

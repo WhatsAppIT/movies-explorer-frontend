@@ -10,13 +10,13 @@ import Header from '../Header/Header.js';
 import './Main.css';
 
 function Main(props) {
-  const { isOpened } = props;
+  const { isOpen, loggedIn, onClose } = props;
+  console.log(isOpen);
   return (
     <>
-      <Header onClick={isOpened} />
+      <Header loggedIn={loggedIn} isOpen={isOpen} onClose={onClose} />
       <main className='main'>
         <Promo />
-        {/* <NavTab /> */}
         <AboutProject />
         <Techs />
         <AboutMe />

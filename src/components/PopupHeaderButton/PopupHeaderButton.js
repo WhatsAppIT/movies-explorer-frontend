@@ -1,21 +1,17 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import Navigation from '../Navigation/Navigation';
 import './PopupHeaderButton.css';
-import logo320 from '../../images/icon320logo.svg';
 import closeButton from '../../images/closeButton.svg';
 
 function PopupHeaderButton(props) {
-  const { isOpen, onClose } = props;
-
+  const { isOpen, loggedIn, onClose } = props;
+console.log(isOpen)
   return (
-    <div className={isOpen ? 'headerPopup headerPopup_opened' : 'headerPopup'}>
+    <div className={`headerPopup ${isOpen ? 'headerPopup_opened' : ''}`}>
       <div
-        className={
-          isOpen
-            ? 'headerPopup__container headerPopup__container_opened'
-            : 'headerPopup__container'
-        }
+        className={`headerPopup__container ${
+          isOpen ? 'headerPopup__container_opened' : ''
+        }`}
       >
         <button
           className='headerPopup__close-button'
@@ -30,6 +26,7 @@ function PopupHeaderButton(props) {
             className={({ isActive }) =>
               `headerPopup__link ${isActive ? 'headerPopup__link_active' : ''}`
             }
+            onClick={onClose}
           >
             Главная
           </NavLink>
@@ -38,6 +35,7 @@ function PopupHeaderButton(props) {
             className={({ isActive }) =>
               `headerPopup__link ${isActive ? 'headerPopup__link_active' : ''}`
             }
+            onClick={onClose}
           >
             Фильмы
           </NavLink>
@@ -46,11 +44,12 @@ function PopupHeaderButton(props) {
             className={({ isActive }) =>
               `headerPopup__link ${isActive ? 'headerPopup__link_active' : ''}`
             }
+            onClick={onClose}
           >
             Сохраненные фильмы
           </NavLink>
         </nav>
-        <Link to='/profile' className='headerPopup__profile_link'>
+        <Link to='/profile' className='headerPopup__profile_link' onClick={onClose}>
           <button type='button' className='headerPopup__button_320'>
             <h3 className='headerPopup__button_1280'>Аккаунт</h3>
           </button>

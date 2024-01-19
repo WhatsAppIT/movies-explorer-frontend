@@ -6,10 +6,10 @@ function MoviesCard(props) {
     card: { nameRU, duration, image },
   } = props;
 
-  const [isSaved, setIsSaved] = React.useState(false);
+  const [savedMovie, setSavedMovie] = React.useState(false);
 
-  function handleLikeMovie() {
-    setIsSaved((saved) => !saved);
+  function handleSaveMovie() {
+    setSavedMovie((saved) => !saved);
   }
 
   function durationMovie(duration) {
@@ -32,9 +32,9 @@ function MoviesCard(props) {
         <button
           type='button'
           className={`card__image_save ${
-            isSaved ? 'card__image_save_true' : 'card__image_save_false'
+            savedMovie ? 'card__image_save_true' : 'card__image_save_false'
           }`}
-          onClick={handleLikeMovie}
+          onClick={handleSaveMovie}
         ></button>
       </div>
       <div className='card__info'>

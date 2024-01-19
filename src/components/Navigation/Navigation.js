@@ -6,8 +6,8 @@ import './Navigation.css';
 import logo320 from '../../images/icon320logo.svg';
 
 function Navigation(props) {
-  const { headerPopupOpen } = props;
-  console.log(props);
+  const { isOpen, loggedIn, onClose } = props;
+
   return (
     <section className='navigation'>
       <nav className='navigation__links'>
@@ -36,8 +36,8 @@ function Navigation(props) {
         </Link>
         <button
           type='button'
-          onClick={headerPopupOpen}
-          /*           className='navigation__button_popup' */
+          onClick={isOpen}
+          className='navigation__button_popup'
         >
           <img src={logo320} className='' />
         </button>

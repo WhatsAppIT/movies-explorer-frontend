@@ -6,18 +6,20 @@ import HeaderAuthorization from '../AuthComponents/HeaderAuthorization/HeaderAut
 import './Header.css';
 
 function Header(props) {
-  const { loggedIn, onClick } = props;
+  const { isOpen, loggedIn, onClose } = props;
 
   return (
     <section className='header'>
       <Link to='/' className='header__logo'>
         <img src={logo} className='header__logo_img' alt='логотип' />
       </Link>
-      {loggedIn ? (
-        <HeaderAuthorization />
-      ) : (
-        <Navigation headerPopupOpen={onClick} />
-      )}
+      <div>
+        {!loggedIn ? (
+          <Navigation isOpen={isOpen} onClose={onClose} />
+        ) : (
+          <HeaderAuthorization />
+        )}
+      </div>
     </section>
   );
 }

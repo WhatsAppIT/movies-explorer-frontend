@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './HeaderAuthorization.css';
 
 function HeaderAuthorization() {
+  return(
+
   <div className='headerAuthorization'>
     <Link
       to='/signup'
@@ -18,7 +20,8 @@ function HeaderAuthorization() {
         Войти
       </button>
     </Link>
-  </div>;
+  </div>
+  )
 }
 
 export default HeaderAuthorization;

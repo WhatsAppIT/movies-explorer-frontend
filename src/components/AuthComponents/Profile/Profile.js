@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import './Profile.css';
 import Header from '../../Header/Header';
 
-function Profile() {
+function Profile(props) {
+  const { loggedIn, isOpen } = props;
   return (
     <>
-      <Header />
+      <Header loggedIn={loggedIn} isOpen={isOpen} />
       <section className='profile'>
         <h2 className='profile__title'>Привет, Виталий!</h2>
         <form className='formProfile'>

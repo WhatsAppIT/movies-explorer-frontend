@@ -7,15 +7,15 @@ import MoviesCardList from './MoviesCardList/MoviesCardList';
 //import MoviesCard from './MoviesCard/MoviesCard';
 import './Movies.css';
 
-function Movies() {
+function Movies(props) {
+  const { loggedIn, isOpen } = props;
+
   return (
     <>
-      <Header />
+      <Header loggedIn={loggedIn} isOpen={isOpen} />
       <section className='movies'>
         <SearchForm />
-        {/*         <Preloader /> */}
         <MoviesCardList />
-        {/*         <MoviesCard /> */}
       </section>
       <Footer />
     </>
