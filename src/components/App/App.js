@@ -23,6 +23,7 @@ function App() {
   const [headerPopupOpen, setHeaderPopupOpen] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [savedMovie, setSavedMovie] = React.useState(false);
 
   function handleHeaderPopupOpen() {
     setHeaderPopupOpen(true);
@@ -119,12 +120,12 @@ function App() {
           <Route
             path='/movies'
             element={
-              <Movies loggedIn={loggedIn} isOpen={handleHeaderPopupOpen} />
+              <Movies savedMovie={savedMovie} loggedIn={loggedIn} isOpen={handleHeaderPopupOpen} />
             }
           />
           <Route
             path='/saved-movies'
-            element={<SavedMovies loggedIn={loggedIn} isOpen={handleHeaderPopupOpen} />}
+            element={<SavedMovies savedMovie={savedMovie} loggedIn={loggedIn} isOpen={handleHeaderPopupOpen} />}
           />
           <Route
             path='/profile'

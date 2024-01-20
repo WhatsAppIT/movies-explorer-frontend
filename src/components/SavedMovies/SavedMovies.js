@@ -8,7 +8,7 @@ import MoviesCardList from '../Movies/MoviesCardList/MoviesCardList';
 import './SavedMovies.css';
 
 function SavedMovies(props) {
-  const { loggedIn, isOpen, savedMovie, handleLikeMovie } = props;
+  const { loggedIn, isOpen, savedMovie } = props;
 
   return (
     <>
@@ -17,7 +17,6 @@ function SavedMovies(props) {
         <SearchForm />
         <MoviesCardList
           savedMovie={savedMovie}
-          handleLikeMovie={handleLikeMovie}
         />
       </section>
       <Footer />

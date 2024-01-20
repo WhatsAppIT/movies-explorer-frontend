@@ -8,7 +8,7 @@ import MoviesCardList from './MoviesCardList/MoviesCardList';
 import './Movies.css';
 
 function Movies(props) {
-  const { loggedIn, isOpen } = props;
+  const { loggedIn, isOpen, savedMovie } = props;
 
   return (
     <>

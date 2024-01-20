@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import './MoviesCard.css';
 
 function MoviesCard(props) {
@@ -7,9 +8,10 @@ function MoviesCard(props) {
   } = props;
 
   const [savedMovie, setSavedMovie] = React.useState(false);
+  const location = useLocation();
 
   function handleSaveMovie() {
-    setSavedMovie((saved) => !saved);
+    setSavedMovie((savedMovie) => !savedMovie);
   }
 
   function durationMovie(duration) {
@@ -17,32 +19,57 @@ function MoviesCard(props) {
     const minutes = duration % 60;
 
     if (hours < 1) {
-      return `${minutes} м`;
+      return `${minutes}м`;
     } else if (minutes === 0) {
-      return `${hours} ч`;
+      return `${hours}ч`;
     } else {
-      return `${hours} ч ${minutes} м`;
+      return `${hours}ч ${minutes}м`;
     }
   }
 
-  return (
-    <div className='card'>
-      <div className='card__image'>
-        <img className='card__image_foto' src={image} alt={nameRU} />
-        <button
-          type='button'
-          className={`card__image_save ${
-            savedMovie ? 'card__image_save_true' : 'card__image_save_false'
-          }`}
-          onClick={handleSaveMovie}
-        ></button>
+  if(location.pathname === ('/movies')) {
+    return ( 
+      <div className='card'>
+        <div className='card__image'>
+          <img className='card__image_foto' src={image} alt={nameRU} />
+          <button
+            type='button'
+            className={`card__image_save ${
+              savedMovie ? 'card__image_save_true' : 'card__image_save_false'
+            }`}
+            onClick={handleSaveMovie}
+          ></button>
+        </div>
+        <div className='card__info'>
+          <h2 className='card__info_title'>{nameRU}</h2>
+          <div className='card__info_time'>{durationMovie(duration)}</div>
+        </div>
       </div>
-      <div className='card__info'>
-        <h2 className='card__info_title'>{nameRU}</h2>
-        <div className='card__info_time'>{durationMovie(duration)}</div>
+    );
+  }
+
+  if(location.pathname === ('/saved-movies')) {
+    return ( 
+      savedMovie ?
+      ""
+      :
+      <div className='card'>
+        <div className='card__image'>
+          <img className='card__image_foto' src={image} alt={nameRU} />
+          <button
+            type='button'
+            className={'card__image_save card__image_movies-save'}
+            onClick={handleSaveMovie}
+          ></button>
+        </div>
+        <div className='card__info'>
+          <h2 className='card__info_title'>{nameRU}</h2>
+          <div className='card__info_time'>{durationMovie(duration)}</div>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+
 }
 
 export default MoviesCard;

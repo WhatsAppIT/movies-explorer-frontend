@@ -3,7 +3,9 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 import cards from '../../../utils/constants';
 
-function MoviesCardList() {
+function MoviesCardList(props) {
+const { loggedIn, isOpen, savedMovie } = props;
+
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   const [showMovies, setShowMovies] = React.useState([]);
 

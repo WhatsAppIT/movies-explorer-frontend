@@ -10,7 +10,7 @@ function SearchForm() {
         <input
           className='form__search_input'
           type='search'
-          placeholder='Фильмы'
+          placeholder='Фильм'
           id='search'
           autoComplete='off'
         />

@@ -19,7 +19,7 @@ function AboutMe() {
             Контур». После того, как прошёл курс по веб-разработке, начал
             заниматься фриланс-заказами и ушёл с постоянной работы.
           </p>
-          <a href='https://github.com/WhatsAppIT' className='' target='_blank'>
+          <a href='https://github.com/WhatsAppIT' className='about__info_user_git_link' target='_blank'>
             <p className='about__info_user_git'>Github</p>
           </a>
         </div>
