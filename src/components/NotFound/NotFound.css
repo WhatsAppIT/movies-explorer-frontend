@@ -1,6 +1,9 @@
 .notfound {
   background-color: #202020;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .notfound__title {
@@ -22,12 +25,16 @@
 }
 
 .notfound__link {
-  padding: 0 0 30px;
-  margin: 0 142px 0;
+  padding: 0;
+  margin: 0;
   font-size: 12px;
   font-weight: 400;
   line-height: 14.52px;
   color: #4285f4;
+}
+
+.notfound__link:hover {
+  opacity: 0.7;
 }
 
 @media (min-width: 768px) {
@@ -48,8 +55,8 @@
   }
 
   .notfound__link {
-    padding: 0 0 222px;
-    margin: 0 363px 0;
+    padding: 0;
+    margin: 0;
     font-size: 14px;
     font-weight: 400;
     line-height: 16.94px;
@@ -68,7 +75,7 @@
   }
 
   .notfound__link {
-    padding: 0 0 60px;
-    margin: 0 619px 0;
+    padding: 0;
+    margin: 0;
   }
 }

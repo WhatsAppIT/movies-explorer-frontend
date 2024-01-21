@@ -63,6 +63,14 @@
   border-radius: 8px;
 }
 
+.form__register_input:focus {
+  border: 1px solid #ffffff;
+}
+
+.form__register_input:focus:hover {
+  opacity: 0.8;
+}
+
 .register__submit {
   padding: 0;
   margin: 125px 30px 14px;

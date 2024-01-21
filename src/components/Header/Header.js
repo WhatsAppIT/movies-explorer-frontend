@@ -9,7 +9,7 @@ function Header(props) {
   const { isOpen, loggedIn, onClose } = props;
 
   return (
-    <section className='header'>
+    <header className='header'>
       <Link to='/' className='header__logo'>
         <img src={logo} className='header__logo_img' alt='логотип' />
       </Link>
@@ -20,7 +20,7 @@ function Header(props) {
           <HeaderAuthorization />
         )}
       </div>
-    </section>
+    </header>
   );
 }
 

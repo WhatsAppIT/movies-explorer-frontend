@@ -11,6 +11,7 @@
   text-align: left;
   color: #ffffff;
   border-bottom: 1px solid #000000;
+  letter-spacing: -0.04em;
 }
 
 .techs__subtitle {
@@ -21,6 +22,7 @@
   line-height: 36.31px;
   text-align: center;
   color: #ffffff;
+  letter-spacing: -0.04em;
 }
 
 .techs__description {
@@ -31,6 +33,7 @@
   line-height: 16px;
   text-align: center;
   color: #ffffff;
+  letter-spacing: -0.04em;
 }
 
 .techs__table {
@@ -43,6 +46,7 @@
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
+  list-style-type: none;
 }
 
 .techs__table_icon {
@@ -59,10 +63,13 @@
   background-image: url(../../../images/techsIcon320.svg);
   height: 57px;
   width: 84px;
+  letter-spacing: -0.04em;
 }
 
-.techs__table_icon_mongo {
-  display: flex;
+@media (min-width: 340px) {
+  .techs__table {
+    justify-content: center;
+  }
 }
 
 @media (min-width: 768px) {
@@ -118,13 +125,22 @@
   }
 
   .techs__description {
-    padding: 0 0 10px;
+    padding: 0;
     margin: 0 410px 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
   }
 
   .techs__table {
     padding: 100px 0 100px;
     margin: 0 295px 0;
     gap: 15px;
+  }
+
+  .techs__table_icon {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
   }
 }

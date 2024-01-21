@@ -1,5 +1,5 @@
-import React from 'react';
-import './Techs.css';
+import React from "react";
+import "./Techs.css";
 
 function Techs() {
   return (
@@ -10,17 +10,17 @@ function Techs() {
         На курсе веб-разработки мы освоили технологии, которые применили в
         дипломном проекте.
       </p>
-      <div className='techs__table'>
-        <div className='techs__table_icon techs__table_icon_html'>HTML</div>
-        <div className='techs__table_icon techs__table_icon_css'>CSS</div>
-        <div className='techs__table_icon techs__table_icon_js'>JS</div>
-        <div className='techs__table_icon techs__table_icon_react'>React</div>
-        <div className='techs__table_icon techs__table_icon_git'>Git</div>
-        <div className='techs__table_icon techs__table_icon_express'>
+      <ul className='techs__table'>
+        <li className='techs__table_icon techs__table_icon_html'>HTML</li>
+        <li className='techs__table_icon techs__table_icon_css'>CSS</li>
+        <li className='techs__table_icon techs__table_icon_js'>JS</li>
+        <li className='techs__table_icon techs__table_icon_react'>React</li>
+        <li className='techs__table_icon techs__table_icon_git'>Git</li>
+        <li className='techs__table_icon techs__table_icon_express'>
           Express.js
-        </div>
-        <div className='techs__table_icon techs__table_icon_mongo'>mongoDB</div>
-      </div>
+        </li>
+        <li className='techs__table_icon techs__table_icon_mongo'>mongoDB</li>
+      </ul>
     </section>
   );
 }

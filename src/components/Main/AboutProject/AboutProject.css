@@ -11,6 +11,7 @@
   text-align: left;
   color: #ffffff;
   border-bottom: 1px solid #dadada;
+  letter-spacing: -0.04em;
 }
 
 .aboutproject__stage {
@@ -22,6 +23,7 @@
   line-height: 21.78px;
   text-align: left;
   color: #ffffff;
+  letter-spacing: -0.04em;
 }
 
 .aboutproject__text {
@@ -42,6 +44,7 @@
   line-height: 21.78px;
   text-align: left;
   color: #ffffff;
+  letter-spacing: -0.04em;
 }
 
 .aboutproject__paragraph {
@@ -59,6 +62,7 @@
   margin: 0;
   display: flex;
   justify-content: center;
+  list-style-type: none;
 }
 
 .aboutproject__time_one {
@@ -89,6 +93,7 @@
   min-width: 284px;
   display: flex;
   justify-content: center;
+  list-style-type: none;
 }
 
 .aboutproject__tech_back {
@@ -188,7 +193,7 @@
   .aboutproject__time_one {
     padding: 9px 0 9px;
     width: 140px;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 16.94px;
   }
@@ -196,7 +201,7 @@
   .aboutproject__time_four {
     padding: 11px 0 11px;
     min-width: 528px;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 16.94px;
   }

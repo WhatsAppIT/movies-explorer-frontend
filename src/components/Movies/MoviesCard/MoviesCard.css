@@ -61,8 +61,6 @@
   left: 269px;
 }
 
-
-
 .card__info {
   padding: 13px 0 0;
   display: flex;
@@ -92,30 +90,31 @@
   border: 1px solid #2f2f2f;
   background-color: #2f2f2f;
   border-radius: 3px;
+  min-width: 45px;
 }
 
-@media(min-width: 768px) {
+@media (min-width: 768px) {
   .card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  
+
   .card__image {
     position: relative;
   }
-  
+
   .card__image_foto {
     width: 339px;
     height: 190px;
   }
-  
+
   .card__image_save {
     position: absolute;
     top: 14px;
   }
-  
+
   .card__image_save_true {
     background-size: contain;
     background-color: transparent;
@@ -148,7 +147,7 @@
     border-radius: 30px;
     left: 253px;
   }
-  
+
   .card__info {
     padding: 21px 0 0;
     display: flex;
@@ -156,7 +155,7 @@
     align-items: center;
     min-width: 335px;
   }
-  
+
   .card__info_title {
     padding: 0;
     margin: 0;
@@ -166,7 +165,7 @@
     text-align: center;
     color: #ffffff;
   }
-  
+
   .card__info_time {
     margin: 0;
     padding: 3px 4px 3px;
@@ -181,28 +180,28 @@
   }
 }
 
-@media(min-width: 1280px) {
+@media (min-width: 1280px) {
   .card {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-  
+
   .card__image {
     position: relative;
   }
-  
+
   .card__image_foto {
     width: 360px;
     height: 201px;
   }
-  
+
   .card__image_save {
     position: absolute;
     top: 14px;
   }
-  
+
   .card__image_save_true {
     background-size: contain;
     background-color: transparent;
@@ -235,7 +234,7 @@
     border-radius: 30px;
     left: 270px;
   }
-  
+
   .card__info {
     padding: 10px 0 0;
     display: flex;
@@ -243,7 +242,7 @@
     align-items: center;
     min-width: 360px;
   }
-  
+
   .card__info_title {
     padding: 0 15px 0;
     margin: 0;
@@ -253,7 +252,7 @@
     text-align: center;
     color: #ffffff;
   }
-  
+
   .card__info_time {
     margin: 0 15px 0;
     padding: 3px 4px 3px;

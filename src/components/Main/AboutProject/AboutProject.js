@@ -1,5 +1,5 @@
-import React from 'react';
-import './AboutProject.css';
+import React from "react";
+import "./AboutProject.css";
 
 function AboutProject() {
   return (
@@ -20,19 +20,19 @@ function AboutProject() {
             На выполнение диплома ушло 5 недель
           </h3>
           <p className='aboutproject__paragraph'>
-            Составление плана, работу над бэкендом, вёрстку, добавление
-            функциональности и финальные доработки.
+            У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было
+            соблюдать, чтобы успешно защититься.
           </p>
         </div>
       </div>
-      <div className='aboutproject__time'>
-        <div className='aboutproject__time_one'>1 неделя</div>
-        <div className='aboutproject__time_four'>4 недели</div>
-      </div>
-      <div className='aboutproject__tech'>
-        <div className='aboutproject__tech_back'>Back-end</div>
-        <div className='aboutproject__tech_front'>Front-end</div>
-      </div>
+      <ul className='aboutproject__time'>
+        <li className='aboutproject__time_one'>1 неделя</li>
+        <li className='aboutproject__time_four'>4 недели</li>
+      </ul>
+      <ul className='aboutproject__tech'>
+        <li className='aboutproject__tech_back'>Back-end</li>
+        <li className='aboutproject__tech_front'>Front-end</li>
+      </ul>
     </section>
   );
 }

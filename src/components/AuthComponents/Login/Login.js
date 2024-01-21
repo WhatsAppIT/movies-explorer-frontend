@@ -1,13 +1,13 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Login.css';
-import logo from '../../../images/logo.svg';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Login.css";
+import logo from "../../../images/logo.svg";
 
 function Login(props) {
   const { onLogin } = props;
 
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   function handleSubmitLogin(e) {
     e.preventDefault();
@@ -15,16 +15,18 @@ function Login(props) {
   }
 
   return (
-    <section className='login'>
+    <main className='login'>
       <Link to='/' className='header__login'>
         <img src={logo} className='header__login_img' alt='логотип' />
       </Link>
 
-      <h2 className='login__title'>Рады видеть!</h2>
+      <h1 className='login__title'>Рады видеть!</h1>
 
       <form className='formLogin'>
         <div className='form__login form__login_email'>
-          <h3 className='form__login_title form__login_email_title'>E-mail</h3>
+          <label className='form__login_title form__login_email_title'>
+            E-mail
+          </label>
           <input
             className='form__login_input form__login_email_input'
             type='email'
@@ -33,6 +35,7 @@ function Login(props) {
             autoComplete='off'
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            placeholder='Электронная почта'
           />
         </div>
         <span id='error-login-email' className='form__error'>
@@ -40,9 +43,9 @@ function Login(props) {
         </span>
 
         <div className='form__login form__login_password'>
-          <h3 className='form__login_title form__login_password_title'>
+          <label className='form__login_title form__login_password_title'>
             Пароль
-          </h3>
+          </label>
           <input
             className='form__login_input form__login_password_input'
             type='password'
@@ -51,6 +54,9 @@ function Login(props) {
             autoComplete='new-password'
             onChange={(e) => setPassword(e.target.value)}
             value={password}
+            placeholder='Пароль'
+            minLength='2'
+            maxLength='30'
           />
         </div>
         <span id='error-login-password' className='form__error'>
@@ -67,7 +73,7 @@ function Login(props) {
           Регистрация
         </Link>
       </div>
-    </section>
+    </main>
   );
 }
 

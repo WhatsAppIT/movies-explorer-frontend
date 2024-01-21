@@ -1,5 +1,5 @@
-import React from 'react';
-import './FilterCheckbox.css';
+import React from "react";
+import "./FilterCheckbox.css";
 
 function FilterCheckbox() {
   return (
@@ -7,7 +7,7 @@ function FilterCheckbox() {
       <div className='form__filter_input'>
         <input className='form__checkbox_input' type='checkbox'></input>
       </div>
-      <h3 className='form__filter_title'>Короткометражки</h3>
+      <label className='form__filter_title'>Короткометражки</label>
     </form>
   );
 }

@@ -1,16 +1,24 @@
 .search {
   margin: 0 14px 20px;
-  min-width: 292px;
+  width: 80%;
   border-bottom: 1px solid #424242;
 }
 
 .formSearch {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form__search {
   padding: 0;
   margin: 73px 0 46px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
+  width: 100%;
 }
 
 .form__search_input {
@@ -26,6 +34,14 @@
   outline: none;
   border-radius: 8px;
   width: 100%;
+}
+
+.form__search_input:focus {
+  border: 1px solid #ffffff;
+}
+
+.form__search_input:focus:hover {
+  opacity: 0.8;
 }
 
 .form__search_submit {
@@ -53,14 +69,14 @@
   opacity: 0.7;
 }
 
-@media(min-width: 768px) {
+@media (min-width: 768px) {
   .search {
-    margin: 0 14px 10px;
+    margin: 0 14px 8px;
     min-width: 705px;
     border-bottom: 1px solid #424242;
   }
-  
-  .formSearch {
+
+  .form__search {
     padding: 0;
     margin: 70px 0 46px;
     display: flex;
@@ -68,7 +84,7 @@
     align-items: center;
     gap: 10px;
   }
-  
+
   .form__search_input {
     padding: 16px 15px 16px;
     margin: 0;
@@ -83,7 +99,7 @@
     border-radius: 8px;
     width: 100%;
   }
-  
+
   .form__search_submit {
     padding: 0;
     margin: 0;
@@ -93,7 +109,7 @@
     justify-content: center;
     align-items: center;
   }
-  
+
   .form__search_submit_img {
     background-size: contain;
     border: none;
@@ -104,28 +120,28 @@
     width: 44px;
     height: 44px;
   }
-  
+
   .form__search_submit:hover {
     opacity: 0.7;
   }
 }
 
-@media(min-width: 1280px) {
+@media (min-width: 1280px) {
   .search {
-    margin: 0 70px 15px;
+    margin: 5px 70px 19px;
     min-width: 1140px;
     border-bottom: 1px solid #424242;
   }
-  
-  .formSearch {
+
+  .form__search {
     padding: 0;
-    margin: 70px 0 38px;
+    margin: 70px 0 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px;
   }
-  
+
   .form__search_input {
     padding: 17px 19px 17px;
     margin: 0;
@@ -140,7 +156,7 @@
     border-radius: 8px;
     width: 100%;
   }
-  
+
   .form__search_submit {
     padding: 0;
     margin: 0;
@@ -150,7 +166,7 @@
     justify-content: center;
     align-items: center;
   }
-  
+
   .form__search_submit_img {
     background-size: contain;
     border: none;
@@ -161,7 +177,7 @@
     width: 44px;
     height: 44px;
   }
-  
+
   .form__search_submit:hover {
     opacity: 0.7;
   }
