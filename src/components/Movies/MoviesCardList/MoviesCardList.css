@@ -13,7 +13,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 35px;
+  gap: 36px;
   min-width: 300px;
   list-style-type: none;
 }
@@ -29,7 +29,7 @@
   background: #202020;
   border: solid 1px #424242;
   border-radius: 6px;
-  margin: 61px 0 80px;
+  margin: 61px 0 78px;
   padding: 0;
   cursor: pointer;
 }
@@ -94,7 +94,7 @@
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    row-gap: 60px;
+    row-gap: 58px;
     min-width: 1140px;
     column-gap: 30px;
   }
@@ -110,7 +110,7 @@
     background: #202020;
     border: solid 1px #424242;
     border-radius: 6px;
-    margin: 75px 0 87px;
+    margin: 75px 0 93px;
     padding: 0;
     cursor: pointer;
   }

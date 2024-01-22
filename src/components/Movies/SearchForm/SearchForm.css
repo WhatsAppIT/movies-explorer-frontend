@@ -1,6 +1,6 @@
 .search {
   margin: 0 14px 20px;
-  width: 80%;
+  width: 91%;
   border-bottom: 1px solid #424242;
 }
 
@@ -13,7 +13,7 @@
 
 .form__search {
   padding: 0;
-  margin: 73px 0 46px;
+  margin: 76px 0 47px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,7 +22,7 @@
 }
 
 .form__search_input {
-  padding: 13px 15px 13px;
+  padding: 13px 14px 13px;
   margin: 0;
   font-size: 14px;
   font-weight: 400;
@@ -73,12 +73,13 @@
   .search {
     margin: 0 14px 8px;
     min-width: 705px;
+    width: 88%;
     border-bottom: 1px solid #424242;
   }
 
   .form__search {
     padding: 0;
-    margin: 70px 0 46px;
+    margin: 75px 0 42px;
     display: flex;
     justify-content: center;
     align-items: center;

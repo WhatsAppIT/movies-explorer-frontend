@@ -41,7 +41,7 @@ function Register(props) {
             maxLength='30'
           />
         </div>
-        <span id='error-register-name' className='form__error'>
+        <span id='error-register-name' className='form__error-register'>
           Что-то пошло не так...
         </span>
 
@@ -60,7 +60,7 @@ function Register(props) {
             placeholder='Электронная почта'
           />
         </div>
-        <span id='error-register-email' className='form__error'>
+        <span id='error-register-email' className='form__error-register'>
           Что-то пошло не так...
         </span>
 
@@ -81,7 +81,7 @@ function Register(props) {
             maxLength='30'
           />
         </div>
-        <span id='error-register-password' className='form__error'>
+        <span id='error-register-password' className='form__error-register'>
           Что-то пошло не так...
         </span>
       </form>

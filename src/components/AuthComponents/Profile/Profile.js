@@ -49,6 +49,7 @@ function Profile(props) {
               required
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
+              placeholder='Имя'
             />
           </div>
           <span id='error-profile-name' className='form__error'></span>
@@ -65,6 +66,7 @@ function Profile(props) {
               required
               value={userEmail}
               onChange={(e) => setUserEmail(e.target.value)}
+              placeholder='Почта'
             />
           </div>
           <span id='error-profile-email' className='form__error'></span>

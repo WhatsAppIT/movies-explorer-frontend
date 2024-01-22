@@ -28,7 +28,7 @@ function MoviesCardList(props) {
             .slice(0, 12)}
         </ul>
         <button type='button' className='cards__else'>
-          Еще
+          Ещё
         </button>
       </section>
     );
@@ -43,7 +43,7 @@ function MoviesCardList(props) {
             .slice(0, 5)}
         </ul>
         <button type='button' className='cards__else' on>
-          Еще
+          Ещё
         </button>
       </section>
     );
@@ -58,7 +58,7 @@ function MoviesCardList(props) {
             .slice(0, 8)}
         </ul>
         <button type='button' className='cards__else' on>
-          Еще
+          Ещё
         </button>
       </section>
     );

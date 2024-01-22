@@ -7,7 +7,7 @@
 }
 
 .profile__title {
-  padding: 63px 0 80px;
+  padding: 67px 0 80px;
   margin: 0 30px 0;
   font-size: 24px;
   font-weight: 500;
@@ -44,6 +44,7 @@
   color: #ffffff;
   min-width: 130px;
   text-align: left;
+  background-color: #202020;
 }
 
 .form__profile_input {
@@ -58,6 +59,15 @@
   background-color: #202020;
   border: none;
   outline: none;
+}
+
+.form__profile_input:focus {
+  border: 1px solid #ffffff;
+  border-radius: 3px;
+}
+
+.form__profile_input:focus:hover {
+  opacity: 0.8;
 }
 
 .profile__submit {
@@ -98,11 +108,11 @@
 }
 
 .profile__save {
-display: none;
-visibility: hidden;
-display: flex;
-flex-direction: column;
-justify-content: center;
+  display: none;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .profile__save_error {
@@ -112,13 +122,13 @@ justify-content: center;
   font-size: 11px;
   font-weight: 400;
   line-height: 13.31px;
-  color: #FF004C;
+  color: #ff004c;
   text-decoration: none;
   text-align: center;
 }
 
 .profile__save_error_active {
-  color:#FF004C;
+  color: #ff004c;
 }
 
 .profile__save_button {
@@ -180,7 +190,7 @@ justify-content: center;
   }
 
   .profile__title {
-    padding: 236px 0 96px;
+    padding: 230px 0 96px;
     margin: 0 281px 0;
     color: #ffffff;
   }
@@ -202,12 +212,15 @@ justify-content: center;
   }
 
   .form__profile_email {
+    margin: 0;
+    padding: 0;
+    min-width: 141px;
     border: none;
   }
 
   .form__profile_title {
     margin: 0;
-    padding: 0 0 3px;
+    padding: 0 0 7px;
     min-width: 141px;
   }
 
@@ -219,7 +232,7 @@ justify-content: center;
 
   .profile__submit {
     padding: 0;
-    margin: 70px 30px 269px;
+    margin: 80px 30px 269px;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -255,47 +268,45 @@ justify-content: center;
     font-weight: 500;
     line-height: 15.73px;
   }
-    
-    .profile__save_error {
-      padding: 0;
-      margin: 0;
-      min-width: 410px;
-      font-size: 11px;
-      font-weight: 400;
-      line-height: 13.31px;
-      color: #FF004C;
-      text-decoration: none;
-      text-align: center;
-    }
-    
-    .profile__save_error_active {
-      color:#FF004C;
-    }
-    
-    .profile__save_button {
-      padding: 0;
-      margin: 20px 30px 14px;
-      min-width: 410px;
-      min-height: 45px;
-      background: #4285f4;
-      border-radius: 3px;
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 14.52px;
-      text-align: center;
-      color: #ffffff;
-      border: none;
-      cursor: pointer;
-    }
-    
-    .profile__save_button:hover {
-      opacity: 0.8;
-    }
 
+  .profile__save_error {
+    padding: 0;
+    margin: 0;
+    min-width: 410px;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12.1px;
+    color: #ff004c;
+    text-decoration: none;
+    text-align: center;
+  }
 
+  .profile__save_error_active {
+    color: #ff004c;
+  }
+
+  .profile__save_button {
+    padding: 0;
+    margin: 20px 30px 14px;
+    min-width: 410px;
+    min-height: 45px;
+    background: #4285f4;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14.52px;
+    text-align: center;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+  }
+
+  .profile__save_button:hover {
+    opacity: 0.8;
+  }
 
   .form__error {
-    padding: 6px 0 6px;
+    padding: 2px 0 6px;
     margin: 0;
     font-weight: 400;
     font-size: 10px;
@@ -334,7 +345,7 @@ justify-content: center;
 
   .profile__submit {
     padding: 0;
-    margin: 0 435px 70px;
+    margin: 12px 435px 70px;
   }
 
   /* .profile__logout {
@@ -352,7 +363,7 @@ justify-content: center;
   }
 
   .form__error {
-    padding: 6px 0 6px;
+    padding: 2px 0 6px;
     margin: 0;
     font-weight: 400;
     font-size: 10px;

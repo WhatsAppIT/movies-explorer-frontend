@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
 //import profileMenu from '../../images/profileMenu.svg';
 //import PopupHeaderButton from '../../components/PopupHeaderButton/PopupHeaderButton';
-import './Navigation.css';
-import logo320 from '../../images/icon320logo.svg';
+import "./Navigation.css";
+//import logo320 from '../../images/icon320logo.svg';
 
 function Navigation(props) {
   const { isOpen, loggedIn, onClose } = props;
@@ -14,7 +14,7 @@ function Navigation(props) {
         <NavLink
           to='/movies'
           className={({ isActive }) =>
-            `navigation__link ${isActive ? 'navigation__link_active' : ''}`
+            `navigation__link ${isActive ? "navigation__link_active" : ""}`
           }
         >
           Фильмы
@@ -22,7 +22,7 @@ function Navigation(props) {
         <NavLink
           to='/saved-movies'
           className={({ isActive }) =>
-            `navigation__link ${isActive ? 'navigation__link_active' : ''}`
+            `navigation__link ${isActive ? "navigation__link_active" : ""}`
           }
         >
           Сохранённые фильмы
@@ -38,9 +38,7 @@ function Navigation(props) {
           type='button'
           onClick={isOpen}
           className='navigation__button_popup'
-        >
-          <img src={logo320} className='' />
-        </button>
+        ></button>
       </div>
     </section>
   );

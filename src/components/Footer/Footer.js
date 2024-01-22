@@ -9,8 +9,24 @@ function Footer() {
       </h2>
       <div className='footer__info'>
         <ul className='footer__info_author'>
-          <li className='footer__info_author_name'>Яндекс.Практикум</li>
-          <li className='footer__info_author_github'>Github</li>
+          <li className='footer__info_author_name'>
+            <a
+              className='footer__link'
+              target='_blank'
+              href='https://practicum.yandex.ru/'
+            >
+              Яндекс.Практикум
+            </a>
+          </li>
+          <li className='footer__info_author_github'>
+            <a
+              className='footer__link'
+              target='_blank'
+              href='https://github.com/WhatsAppIT'
+            >
+              Github
+            </a>
+          </li>
         </ul>
         <h3 className='footer__info_year'>&copy; 2023</h3>
       </div>

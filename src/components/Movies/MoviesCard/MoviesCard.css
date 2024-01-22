@@ -93,6 +93,10 @@
   min-width: 45px;
 }
 
+.card__image_save:hover {
+  opacity: 0.7;
+}
+
 @media (min-width: 768px) {
   .card {
     display: flex;
@@ -159,9 +163,9 @@
   .card__info_title {
     padding: 0;
     margin: 0;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
-    line-height: 14.52px;
+    line-height: 15.73px;
     text-align: center;
     color: #ffffff;
   }
@@ -246,9 +250,9 @@
   .card__info_title {
     padding: 0 15px 0;
     margin: 0;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 500;
-    line-height: 14.52px;
+    line-height: 15.73px;
     text-align: center;
     color: #ffffff;
   }

@@ -12,6 +12,10 @@
   border: none;
   cursor: pointer;
   background-color: #202020;
+  background-image: url(../../images/icon__COLOR_icon-main320.svg);
+  width: 40px;
+  height: 41px;
+  background-size: contain;
 }
 
 .navigation__button_320 {
@@ -35,6 +39,15 @@
 }
 
 @media (min-width: 768px) {
+  .navigation__button_popup {
+    background-image: url(../../images/icon__COLOR_icon-main768.svg);
+    width: 44px;
+    height: 44px;
+    background-size: contain;
+  }
+}
+
+@media (min-width: 769px) {
   .navigation {
     display: flex;
     justify-content: center;
