@@ -1,24 +1,25 @@
-import React from 'react'
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import React from "react";
+import { Routes, Route, useNavigate } from "react-router-dom";
 //import CurrentUserContext from '../contexts/CurrentUserContext.js';
 
-import Main from '../Main/Main.js';
-import Navigation from '../Navigation/Navigation.js';
-import Login from '../AuthComponents/Login/Login.js';
-import Register from '../AuthComponents/Register/Register.js';
-import Movies from '../Movies/Movies.js';
-import SavedMovies from '../SavedMovies/SavedMovies.js';
-import Profile from '../AuthComponents/Profile/Profile.js';
-import PopupHeaderButton from '../PopupHeaderButton/PopupHeaderButton.js';
-import NotFound from '../NotFound/NotFound.js';
-import './App.css';
-import { api } from '../../utils/api.js';
-import { auth } from '../../utils/auth.js';
-import CurrentUserContext from '../../contexts/CurrentUserContext.js';
+import Main from "../Main/Main.js";
+import Navigation from "../Navigation/Navigation.js";
+import Login from "../AuthComponents/Login/Login.js";
+import Register from "../AuthComponents/Register/Register.js";
+import Movies from "../Movies/Movies.js";
+import SavedMovies from "../SavedMovies/SavedMovies.js";
+import Profile from "../AuthComponents/Profile/Profile.js";
+import PopupHeaderButton from "../PopupHeaderButton/PopupHeaderButton.js";
+import NotFound from "../NotFound/NotFound.js";
+import "./App.css";
+import { MainApi } from "../../utils/MainApi.js";
+import { MoviesApi } from "../../utils/MoviesApi.js";
+import { auth } from "../../utils/auth.js";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 function App() {
   const [IsRegistrate, setIsRegistrate] = React.useState(false);
-  const [userEmail, setUserEmail] = React.useState('');
+  const [userEmail, setUserEmail] = React.useState("");
   const [currentUser, setCurrentUser] = React.useState({});
   const [headerPopupOpen, setHeaderPopupOpen] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
@@ -39,9 +40,9 @@ function App() {
       .then((res) => {
         setIsRegistrate(false);
         setUserEmail(email);
-        localStorage.setItem('jwt', res.token);
+        localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
-        navigate('/', { replace: true });
+        navigate("/", { replace: true });
       })
       .catch((err) => {
         console.log(err);
@@ -55,7 +56,7 @@ function App() {
       .registration(username, email, password)
       .then(() => {
         setIsRegistrate(true);
-        navigate('/movies', { replace: true });
+        navigate("/movies", { replace: true });
       })
       .catch((err) => {
         console.log(err);
@@ -64,15 +65,15 @@ function App() {
   }
 
   function checkToken() {
-    if (localStorage.getItem('jwt')) {
-      const token = localStorage.getItem('jwt');
+    if (localStorage.getItem("jwt")) {
+      const token = localStorage.getItem("jwt");
       auth
         .getInformation(token)
         .then((res) => {
           if (res && res.data) {
             setLoggedIn(true);
             setUserEmail(res.data.email);
-            navigate('/', { replace: true });
+            navigate("/", { replace: true });
           }
         })
         .catch(console.error);
@@ -85,18 +86,18 @@ function App() {
     checkToken();
   }, []);
 
-  function handleUpdateUser(data) { 
-    api.editProfile(data) 
-        .then((res) => { 
-            setCurrentUser(res); 
-            closeAllPopups(); 
-        }) 
-        .catch(console.error) 
-        .finally(() => { 
-            setIsLoading(false); 
-        }); 
-} 
-
+  function handleUpdateUser(data) {
+    api
+      .editProfile(data)
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch(console.error)
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
 
   return (
     <div className='app'>
@@ -120,17 +121,31 @@ function App() {
           <Route
             path='/movies'
             element={
-              <Movies savedMovie={savedMovie} loggedIn={loggedIn} isOpen={handleHeaderPopupOpen} />
+              <Movies
+                savedMovie={savedMovie}
+                loggedIn={loggedIn}
+                isOpen={handleHeaderPopupOpen}
+              />
             }
           />
           <Route
             path='/saved-movies'
-            element={<SavedMovies savedMovie={savedMovie} loggedIn={loggedIn} isOpen={handleHeaderPopupOpen} />}
+            element={
+              <SavedMovies
+                savedMovie={savedMovie}
+                loggedIn={loggedIn}
+                isOpen={handleHeaderPopupOpen}
+              />
+            }
           />
           <Route
             path='/profile'
             element={
-              <Profile loggedIn={loggedIn} isOpen={handleHeaderPopupOpen} onUpdateUser={handleUpdateUser} />
+              <Profile
+                loggedIn={loggedIn}
+                isOpen={handleHeaderPopupOpen}
+                onUpdateUser={handleUpdateUser}
+              />
             }
           />
           <Route path='*' element={<NotFound />} />
