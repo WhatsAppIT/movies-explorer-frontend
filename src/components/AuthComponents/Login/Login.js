@@ -64,7 +64,11 @@ function Login(props) {
         </span>
       </form>
 
-      <button type='submit' className='login__submit'>
+      <button
+        type='submit'
+        onClick={handleSubmitLogin}
+        className='login__submit'
+      >
         Войти
       </button>
       <div className='login__logout'>

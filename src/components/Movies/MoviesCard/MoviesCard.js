@@ -5,6 +5,7 @@ import "./MoviesCard.css";
 function MoviesCard(props) {
   const { movie } = props;
   console.log(movie);
+
   const [savedMovie, setSavedMovie] = React.useState(false);
   const location = useLocation();
 
@@ -31,7 +32,7 @@ function MoviesCard(props) {
         <div className='card__image'>
           <img
             className='card__image_foto'
-            src={movie.image.url}
+            src={`${"https://api.nomoreparties.co/"}${movie.image.url}`}
             alt={movie.nameRU}
           />
           <button

@@ -5,7 +5,7 @@ import Header from "../../Header/Header";
 import CurrentUserContext from "../../../contexts/CurrentUserContext";
 
 function Profile(props) {
-  const { loggedIn, isOpen, onUpdateUser } = props;
+  const { loggedIn, isOpen, onUpdateUser, logOut } = props;
 
   const [userName, setUserName] = React.useState("");
   const [userEmail, setUserEmail] = React.useState("");
@@ -73,7 +73,7 @@ function Profile(props) {
         </form>
         <div className='profile__submit'>
           <button className='profile__button_edit'>Редактировать</button>
-          <Link to='/' className='profile__logout_link'>
+          <Link to='/' className='profile__logout_link' onClick={logOut}>
             Выйти из аккаунта
           </Link>
         </div>

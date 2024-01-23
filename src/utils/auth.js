@@ -1,14 +1,15 @@
 class Auth {
   constructor(options) {
     this._url = options.url;
-
-    this._headers = options.headers;
   }
 
   authorization(email, password) {
     return fetch(`${this._url}/signin`, {
-      method: 'POST',
-      headers: this._headers,
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
       body: JSON.stringify({
         email: email,
         password: password,
@@ -18,8 +19,11 @@ class Auth {
 
   registration(name, email, password) {
     return fetch(`${this._url}/signup`, {
-      method: 'POST',
-      headers: this._headers,
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-type": "application/json",
+      },
       body: JSON.stringify({
         name: name,
         email: email,
@@ -30,9 +34,10 @@ class Auth {
 
   getInformation(token) {
     return fetch(`${this._url}/users/me`, {
-      metod: 'GET',
+      metod: "GET",
       headers: {
-        ...this._headers,
+        Accept: "application/json",
+        "Content-type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     }).then(this._handleResponseAuth);
@@ -48,11 +53,8 @@ class Auth {
 }
 
 const auth = new Auth({
-  url: 'http://localhost:3000',
-  headers: {
-    Accept: 'application/json',
-    'Content-type': 'application/json',
-  },
+  url: "http://api.krivolapov.nomoredomainsmonster.ru",
 });
+console.log(auth);
 
 export { auth };

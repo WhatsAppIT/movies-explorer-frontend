@@ -13,10 +13,10 @@ import PopupHeaderButton from "../PopupHeaderButton/PopupHeaderButton.js";
 import NotFound from "../NotFound/NotFound.js";
 import "./App.css";
 import { MainApi } from "../../utils/MainApi.js";
-import { MoviesApi } from "../../utils/MoviesApi.js";
+//import { MoviesApi } from "../../utils/MoviesApi.js";
 import { auth } from "../../utils/auth.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
-
+console.log(auth.registration);
 function App() {
   const [IsRegistrate, setIsRegistrate] = React.useState(false);
   const [userEmail, setUserEmail] = React.useState("");
@@ -27,10 +27,12 @@ function App() {
   const [savedMovie, setSavedMovie] = React.useState(false);
   const [movies, setMovies] = React.useState([]);
   const [error, setError] = React.useState("");
-  //console.log(MoviesApi.getMoviesFromBeatfilmApi());
+  const navigate = useNavigate();
+
+  const beatfilmUrl = "https://api.nomoreparties.co/beatfilm-movies";
 
   React.useEffect(() => {
-    fetch("https://api.nomoreparties.co/beatfilm-movies")
+    fetch(beatfilmUrl)
       .then((res) => res.json())
       .then((movies) => {
         setMovies(movies);
@@ -44,7 +46,6 @@ function App() {
   function closeAllPopups() {
     setHeaderPopupOpen(false);
   }
-  const navigate = useNavigate();
 
   function handleLogin(email, password) {
     auth
@@ -54,7 +55,7 @@ function App() {
         setUserEmail(email);
         localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
-        navigate("/", { replace: true });
+        navigate("/movies", { replace: true });
       })
       .catch((err) => {
         console.log(err);
@@ -63,17 +64,27 @@ function App() {
       });
   }
 
-  function handleRegister(username, email, password) {
+  function handleRegister(name, email, password) {
     auth
-      .registration(username, email, password)
-      .then(() => {
-        setIsRegistrate(true);
+      .registration(name, email, password)
+      .then((res) => {
+        setIsRegistrate(false);
+        setUserEmail(email);
+        localStorage.setItem("jwt", res.token);
+        setLoggedIn(true);
         navigate("/movies", { replace: true });
       })
       .catch((err) => {
         console.log(err);
         setIsRegistrate(false);
+        setLoggedIn(false);
       });
+  }
+
+  function handleLogOut() {
+    setLoggedIn(false);
+    localStorage.removeItem("jwt");
+    navigate("/signin");
   }
 
   function checkToken() {
@@ -81,11 +92,10 @@ function App() {
       const token = localStorage.getItem("jwt");
       auth
         .getInformation(token)
-        .then((res) => {
-          if (res && res.data) {
+        .then((data) => {
+          if (data) {
             setLoggedIn(true);
-            setUserEmail(res.data.email);
-            navigate("/", { replace: true });
+            setCurrentUser(data);
           }
         })
         .catch(console.error);
@@ -157,6 +167,7 @@ function App() {
                 loggedIn={loggedIn}
                 isOpen={handleHeaderPopupOpen}
                 onUpdateUser={handleUpdateUser}
+                logOut={handleLogOut}
               />
             }
           />

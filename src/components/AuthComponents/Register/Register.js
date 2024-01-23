@@ -10,7 +10,7 @@ function Register(props) {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  function handleSubmitLogin(e) {
+  function handleSubmitRegister(e) {
     e.preventDefault();
     onRegister(userName, email, password);
   }
@@ -86,7 +86,11 @@ function Register(props) {
         </span>
       </form>
 
-      <button type='submit' className='register__submit'>
+      <button
+        type='submit'
+        onClick={handleSubmitRegister}
+        className='register__submit'
+      >
         Зарегистрироваться
       </button>
       <div className='register__logout'>
