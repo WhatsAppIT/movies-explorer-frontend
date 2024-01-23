@@ -3,10 +3,8 @@ import { useLocation } from "react-router-dom";
 import "./MoviesCard.css";
 
 function MoviesCard(props) {
-  const {
-    card: { nameRU, duration, image },
-  } = props;
-
+  const { movie } = props;
+  console.log(movie);
   const [savedMovie, setSavedMovie] = React.useState(false);
   const location = useLocation();
 
@@ -31,7 +29,11 @@ function MoviesCard(props) {
     return (
       <li className='card'>
         <div className='card__image'>
-          <img className='card__image_foto' src={image} alt={nameRU} />
+          <img
+            className='card__image_foto'
+            src={movie.image.url}
+            alt={movie.nameRU}
+          />
           <button
             type='button'
             className={`card__image_save ${
@@ -41,8 +43,8 @@ function MoviesCard(props) {
           ></button>
         </div>
         <div className='card__info'>
-          <h2 className='card__info_title'>{nameRU}</h2>
-          <div className='card__info_time'>{durationMovie(duration)}</div>
+          <h2 className='card__info_title'>{movie.nameRU}</h2>
+          <div className='card__info_time'>{durationMovie(movie.duration)}</div>
         </div>
       </li>
     );
@@ -54,7 +56,11 @@ function MoviesCard(props) {
     ) : (
       <li className='card'>
         <div className='card__image'>
-          <img className='card__image_foto' src={image} alt={nameRU} />
+          <img
+            className='card__image_foto'
+            src={movie.image}
+            alt={movie.nameRU}
+          />
           <button
             type='button'
             className={"card__image_save card__image_movies-save"}
@@ -62,8 +68,8 @@ function MoviesCard(props) {
           ></button>
         </div>
         <div className='card__info'>
-          <h2 className='card__info_title'>{nameRU}</h2>
-          <div className='card__info_time'>{durationMovie(duration)}</div>
+          <h2 className='card__info_title'>{movie.nameRU}</h2>
+          <div className='card__info_time'>{durationMovie(movie.duration)}</div>
         </div>
       </li>
     );

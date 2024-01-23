@@ -1,4 +1,4 @@
-class MainApi {
+class MyApi {
   constructor(options) {
     this._url = options.url;
   }
@@ -74,7 +74,7 @@ class MainApi {
     }).then(this._handleResponse);
   }
 
-  deleteMovie(cardId) {
+  deleteMovie(movieId) {
     return fetch(`${this._url}/movies/${movieId}`, {
       method: "DELETE",
       headers: {
@@ -127,7 +127,7 @@ class MainApi {
     } */
 }
 
-const MainApi = new MainApi({
+const MainApi = new MyApi({
   url: "https://api.krivolapov.nomoredomainsmonster.ru",
 });
 

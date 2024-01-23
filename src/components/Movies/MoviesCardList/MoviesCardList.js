@@ -4,10 +4,11 @@ import "./MoviesCardList.css";
 import cards from "../../../utils/constants";
 
 function MoviesCardList(props) {
-  const { loggedIn, isOpen, savedMovie } = props;
+  const { loggedIn, isOpen, savedMovie, movies } = props;
+
+  console.log(movies);
 
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
-  const [showMovies, setShowMovies] = React.useState([]);
 
   /*   React.useEffect(() => {
     if (windowWidth >= 320) {
@@ -23,8 +24,8 @@ function MoviesCardList(props) {
     return (
       <section className='cards'>
         <ul className='cards__list'>
-          {cards
-            .map((card) => <MoviesCard key={card.movieId} card={card} />)
+          {movies
+            .map((movie) => <MoviesCard key={movie.movieId} movie={movie} />)
             .slice(0, 12)}
         </ul>
         <button type='button' className='cards__else'>
@@ -38,8 +39,8 @@ function MoviesCardList(props) {
     return (
       <section className='cards'>
         <ul className='cards__list'>
-          {cards
-            .map((card) => <MoviesCard key={card.movieId} card={card} />)
+          {movies
+            .map((movie) => <MoviesCard key={movie.movieId} movie={movie} />)
             .slice(0, 5)}
         </ul>
         <button type='button' className='cards__else' on>
@@ -53,8 +54,8 @@ function MoviesCardList(props) {
     return (
       <section className='cards'>
         <ul className='cards__list'>
-          {cards
-            .map((card) => <MoviesCard key={card.movieId} card={card} />)
+          {movies
+            .map((movie) => <MoviesCard key={movie.movieId} movie={movie} />)
             .slice(0, 8)}
         </ul>
         <button type='button' className='cards__else' on>

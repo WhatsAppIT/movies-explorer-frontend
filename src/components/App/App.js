@@ -25,6 +25,18 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [savedMovie, setSavedMovie] = React.useState(false);
+  const [movies, setMovies] = React.useState([]);
+  const [error, setError] = React.useState("");
+  //console.log(MoviesApi.getMoviesFromBeatfilmApi());
+
+  React.useEffect(() => {
+    fetch("https://api.nomoreparties.co/beatfilm-movies")
+      .then((res) => res.json())
+      .then((movies) => {
+        setMovies(movies);
+      })
+      .catch((error) => setError(error.message));
+  }, []);
 
   function handleHeaderPopupOpen() {
     setHeaderPopupOpen(true);
@@ -87,8 +99,7 @@ function App() {
   }, []);
 
   function handleUpdateUser(data) {
-    api
-      .editProfile(data)
+    MainApi.editProfile(data)
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
@@ -125,6 +136,7 @@ function App() {
                 savedMovie={savedMovie}
                 loggedIn={loggedIn}
                 isOpen={handleHeaderPopupOpen}
+                movies={movies}
               />
             }
           />

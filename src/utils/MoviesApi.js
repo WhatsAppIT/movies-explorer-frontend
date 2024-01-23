@@ -1,4 +1,4 @@
-class BeatfilmApi {
+/* class BeatfilmApi {
   constructor(options) {
     this._url = options.url;
   }
@@ -26,3 +26,4 @@ const MoviesApi = new BeatfilmApi({
 });
 
 export { MoviesApi };
+ */

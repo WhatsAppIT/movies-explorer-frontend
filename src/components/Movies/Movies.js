@@ -8,14 +8,14 @@ import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import "./Movies.css";
 
 function Movies(props) {
-  const { loggedIn, isOpen, savedMovie } = props;
+  const { loggedIn, isOpen, savedMovie, movies } = props;
 
   return (
     <>
       <Header loggedIn={loggedIn} isOpen={isOpen} />
       <main className='movies'>
         <SearchForm />
-        <MoviesCardList />
+        <MoviesCardList movies={movies} />
       </main>
       <Footer />
     </>
