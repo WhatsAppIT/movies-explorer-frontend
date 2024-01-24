@@ -37,7 +37,7 @@ function App() {
       .then((movies) => {
         setMovies(movies);
       })
-      .catch((error) => setError(error.message));
+      .catch((err) => setError(err.message));
   }, []);
 
   function handleHeaderPopupOpen() {
@@ -52,7 +52,6 @@ function App() {
       .authorization(email, password)
       .then((res) => {
         setIsRegistrate(false);
-        setUserEmail(email);
         localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
         navigate("/movies", { replace: true });
@@ -61,6 +60,7 @@ function App() {
         console.log(err);
         setIsRegistrate(false);
         setLoggedIn(false);
+        setError(err);
       });
   }
 
@@ -69,15 +69,15 @@ function App() {
       .registration(name, email, password)
       .then((res) => {
         setIsRegistrate(false);
-        setUserEmail(email);
         localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
-        navigate("/movies", { replace: true });
+        navigate("/signin", { replace: true });
       })
       .catch((err) => {
         console.log(err);
         setIsRegistrate(false);
         setLoggedIn(false);
+        setError(err);
       });
   }
 
@@ -124,10 +124,13 @@ function App() {
     <div className='app'>
       <CurrentUserContext.Provider value={currentUser}>
         <Routes>
-          <Route path='/signin' element={<Login onLogin={handleLogin} />} />
+          <Route
+            path='/signin'
+            element={<Login onLogin={handleLogin} error={error} />}
+          />
           <Route
             path='/signup'
-            element={<Register onRegister={handleRegister} />}
+            element={<Register onRegister={handleRegister} error={error} />}
           />
           <Route
             path='/'

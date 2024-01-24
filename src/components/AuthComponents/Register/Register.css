@@ -67,6 +67,10 @@
   border-radius: 8px;
 }
 
+.form__register_password_input {
+  color: #ee3465;
+}
+
 .form__register_input:focus {
   border: 1px solid #ffffff;
 }
@@ -89,6 +93,12 @@
   color: #ffffff;
   border: none;
   cursor: pointer;
+}
+
+.register__submit_false {
+  background-color: #f8f8f8;
+  color: #c2c2c2;
+  cursor: not-allowed !important;
 }
 
 .register__logout {
