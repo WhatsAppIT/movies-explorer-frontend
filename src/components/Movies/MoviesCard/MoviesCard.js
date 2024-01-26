@@ -4,7 +4,6 @@ import "./MoviesCard.css";
 
 function MoviesCard(props) {
   const { movie } = props;
-  console.log(movie);
 
   const [savedMovie, setSavedMovie] = React.useState(false);
   const location = useLocation();

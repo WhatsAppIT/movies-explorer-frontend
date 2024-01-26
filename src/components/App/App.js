@@ -12,11 +12,11 @@ import Profile from "../AuthComponents/Profile/Profile.js";
 import PopupHeaderButton from "../PopupHeaderButton/PopupHeaderButton.js";
 import NotFound from "../NotFound/NotFound.js";
 import "./App.css";
-import { MainApi } from "../../utils/MainApi.js";
+import { mainApi } from "../../utils/MainApi.js";
 //import { MoviesApi } from "../../utils/MoviesApi.js";
 import { auth } from "../../utils/auth.js";
 import CurrentUserContext from "../../contexts/CurrentUserContext.js";
-console.log(auth.registration);
+
 function App() {
   const [IsRegistrate, setIsRegistrate] = React.useState(false);
   const [userEmail, setUserEmail] = React.useState("");
@@ -37,7 +37,7 @@ function App() {
       .then((movies) => {
         setMovies(movies);
       })
-      .catch((err) => setError(err.message));
+      .catch((err) => setError(err));
   }, []);
 
   function handleHeaderPopupOpen() {
@@ -81,7 +81,7 @@ function App() {
       });
   }
 
-  function handleLogOut() {
+  function handleLogOut(e) {
     setLoggedIn(false);
     localStorage.removeItem("jwt");
     navigate("/signin");
@@ -106,19 +106,38 @@ function App() {
 
   React.useEffect(() => {
     checkToken();
+    handleGetUser();
   }, []);
 
   function handleUpdateUser(data) {
-    MainApi.editProfile(data)
+    mainApi
+      .editProfile(data)
       .then((res) => {
         setCurrentUser(res);
-        closeAllPopups();
+        console.log(res);
       })
-      .catch(console.error)
+      .catch((err) => setError(err))
       .finally(() => {
         setIsLoading(false);
       });
   }
+
+  function handleGetUser() {
+    mainApi
+      .getUserInfo()
+      .then((res) => {
+        setCurrentUser(res);
+        setLoggedIn(true);
+      })
+      .catch((err) => setError(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
+  React.useEffect(() => {
+    handleGetUser();
+  }, []);
 
   return (
     <div className='app'>
@@ -171,6 +190,7 @@ function App() {
                 isOpen={handleHeaderPopupOpen}
                 onUpdateUser={handleUpdateUser}
                 logOut={handleLogOut}
+                error={error}
               />
             }
           />

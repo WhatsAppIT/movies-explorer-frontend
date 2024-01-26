@@ -6,8 +6,6 @@ import cards from "../../../utils/constants";
 function MoviesCardList(props) {
   const { loggedIn, isOpen, savedMovie, movies } = props;
 
-  console.log(movies);
-
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
 
   /*   React.useEffect(() => {

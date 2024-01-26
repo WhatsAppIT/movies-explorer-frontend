@@ -3,8 +3,8 @@ import FilterCheckbox from "../../FilterCheckbox/FilterCheckbox";
 import "./SearchForm.css";
 import search from "../../../images/find-3.svg";
 
-function SearchForm() {
-  const [searchForm, setSearchForm] = React.useState("");
+function SearchForm(props) {
+  const { searchForm, setSearchForm } = props;
 
   function handleSubmitSearchClick(e) {
     e.preventDefault();

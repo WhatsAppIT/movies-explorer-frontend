@@ -127,8 +127,6 @@ class MyApi {
     } */
 }
 
-const MainApi = new MyApi({
-  url: "https://api.krivolapov.nomoredomainsmonster.ru",
+export const mainApi = new MyApi({
+  url: "https://api.bitfilm.nomoredomainsmonster.ru",
 });
-
-export { MainApi };

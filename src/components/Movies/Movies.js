@@ -10,11 +10,13 @@ import "./Movies.css";
 function Movies(props) {
   const { loggedIn, isOpen, savedMovie, movies } = props;
 
+  const [searchForm, setSearchForm] = React.useState("");
+
   return (
     <>
       <Header loggedIn={loggedIn} isOpen={isOpen} />
       <main className='movies'>
-        <SearchForm />
+        <SearchForm searchForm={searchForm} setSearchForm={setSearchForm} />
         <MoviesCardList movies={movies} />
       </main>
       <Footer />

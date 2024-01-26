@@ -53,8 +53,7 @@ class Auth {
 }
 
 const auth = new Auth({
-  url: "http://api.krivolapov.nomoredomainsmonster.ru",
+  url: "https://api.bitfilm.nomoredomainsmonster.ru",
 });
-console.log(auth);
 
 export { auth };

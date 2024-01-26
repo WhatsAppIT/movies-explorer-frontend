@@ -1,45 +1,50 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Profile.css";
 import Header from "../../Header/Header";
 import CurrentUserContext from "../../../contexts/CurrentUserContext";
 
 function Profile(props) {
-  const { loggedIn, isOpen, onUpdateUser, logOut } = props;
+  const { loggedIn, onUpdateUser, logOut, error, setError, isOpen } = props;
 
-  const [userName, setUserName] = React.useState("");
-  const [userEmail, setUserEmail] = React.useState("");
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [edit, setEdit] = React.useState(false);
+  const [formValid, setFormValid] = React.useState(false);
   const currentUser = React.useContext(CurrentUserContext);
+  const location = useLocation();
+
+  function handleEditClick() {
+    setEdit(true);
+  }
 
   React.useEffect(() => {
-    if (isOpen) {
-      setUserName(currentUser.userName);
-      setUserEmail(currentUser.userEmail);
+    if (location.pathname === "/profile") {
+      setName(currentUser.name);
+      setEmail(currentUser.email);
     }
-  }, [currentUser, isOpen]);
-
-  function handleChangeEmail(e) {
-    setUserEmail(e.target.value);
-  }
+  }, [currentUser]);
 
   function handleSubmit(e) {
     e.preventDefault();
+
     onUpdateUser({
-      userName: userName,
-      userEmail: userEmail,
+      name,
+      email,
     });
+    setEdit(false);
   }
 
   return (
     <>
       <Header loggedIn={loggedIn} isOpen={isOpen} />
       <main className='profile'>
-        <h1 className='profile__title'>Привет, Виталий!</h1>
+        <h1 className='profile__title'>{`Привет ${currentUser.name}`}</h1>
         <form className='formProfile'>
           <div className='form__profile form__profile_name'>
-            <label className='form__profile_title form__profile_name_title'>
+            <h3 className='form__profile_title form__profile_name_title'>
               Имя
-            </label>
+            </h3>
             <input
               className='form__profile_input form__profile_name_input'
               type='text'
@@ -47,16 +52,16 @@ function Profile(props) {
               minLength='2'
               maxLength='30'
               required
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-              placeholder='Имя'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              disabled={!edit}
             />
           </div>
           <span id='error-profile-name' className='form__error'></span>
           <div className='form__profile form__profile_email'>
-            <label className='form__profile_title form__profile_email_title'>
+            <h3 className='form__profile_title form__profile_email_title'>
               E-mail
-            </label>
+            </h3>
             <input
               className='form__profile_input form__profile_email_input'
               type='text'
@@ -64,24 +69,44 @@ function Profile(props) {
               minLength='2'
               maxLength='30'
               required
-              value={userEmail}
-              onChange={(e) => setUserEmail(e.target.value)}
-              placeholder='Почта'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={!edit}
             />
           </div>
           <span id='error-profile-email' className='form__error'></span>
         </form>
-        <div className='profile__submit'>
-          <button className='profile__button_edit'>Редактировать</button>
+
+        {error > 0 ? (
+          <p className='profile__save_error profile__save_error_active'>
+            {error}
+          </p>
+        ) : (
+          <p className='profile__save_error'></p>
+        )}
+
+        <div className={`profile__conteiner ${!edit && "profile__submit"}`}>
+          <button
+            type='button'
+            className='profile__button_edit'
+            onClick={handleEditClick}
+          >
+            Редактировать
+          </button>
           <Link to='/' className='profile__logout_link' onClick={logOut}>
             Выйти из аккаунта
           </Link>
         </div>
-        <div className='profile__save'>
-          <p className='profile__save_error profile__save_error_active'>
-            При обновлении профиля произошла ошибка.
-          </p>
-          <button type='submit' className='profile__save_button'>
+        <div
+          className={`profile__conteiner ${
+            edit && "profile__save profile__save_active"
+          }`}
+        >
+          <button
+            type='submit'
+            onClick={handleSubmit}
+            className={`login__submit`}
+          >
             Сохранить
           </button>
         </div>
@@ -91,3 +116,13 @@ function Profile(props) {
 }
 
 export default Profile;
+
+{
+  /*           {error > 0 ? (
+            "profile__save_error"
+          ) : (
+            <p className='profile__save_error profile__save_error_active'>
+              {error}
+            </p>
+          )} */
+}

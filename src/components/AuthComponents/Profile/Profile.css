@@ -70,6 +70,10 @@
   opacity: 0.8;
 }
 
+.profile__conteiner {
+  display: none;
+}
+
 .profile__submit {
   padding: 0;
   margin: 200px 30px 40px;
@@ -113,6 +117,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.profile__save_active {
+  display: block;
+  visibility: visible;
 }
 
 .profile__save_error {
