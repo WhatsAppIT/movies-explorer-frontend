@@ -1,27 +1,43 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useFormWithValidation } from "../../../utils/validation";
 import "./Profile.css";
 import Header from "../../Header/Header";
 import CurrentUserContext from "../../../contexts/CurrentUserContext";
 
 function Profile(props) {
-  const { loggedIn, onUpdateUser, logOut, error, setError, isOpen } = props;
+  const {
+    loggedIn,
+    onUpdateUser,
+    logOut,
+    error,
+    setError,
+    isOpen,
+    setUpdateSuccessMessage,
+    updateSuccessMessage,
+    isLoading,
+  } = props;
 
-  const [name, setName] = React.useState("");
-  const [email, setEmail] = React.useState("");
+  const formWithValidation = useFormWithValidation();
+  const { name, email } = formWithValidation.values;
+  const { values, setValues, handleChange, errors, isValid } =
+    formWithValidation;
   const [edit, setEdit] = React.useState(false);
   const [formValid, setFormValid] = React.useState(false);
   const currentUser = React.useContext(CurrentUserContext);
   const location = useLocation();
 
+  let isChanged =
+    currentUser.name !== values.name || currentUser.email !== values.email;
+
   function handleEditClick() {
+    setUpdateSuccessMessage(false);
     setEdit(true);
   }
 
   React.useEffect(() => {
     if (location.pathname === "/profile") {
-      setName(currentUser.name);
-      setEmail(currentUser.email);
+      setValues(currentUser);
     }
   }, [currentUser]);
 
@@ -32,7 +48,9 @@ function Profile(props) {
       name,
       email,
     });
+
     setEdit(false);
+    console.log("handleSubmit");
   }
 
   return (
@@ -48,13 +66,14 @@ function Profile(props) {
             <input
               className='form__profile_input form__profile_name_input'
               type='text'
+              name='name'
               id='ProfileName'
               minLength='2'
               maxLength='30'
               required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              disabled={!edit}
+              value={values.name || ""}
+              onChange={handleChange}
+              disabled={!edit || isLoading}
             />
           </div>
           <span id='error-profile-name' className='form__error'></span>
@@ -64,25 +83,26 @@ function Profile(props) {
             </h3>
             <input
               className='form__profile_input form__profile_email_input'
-              type='text'
+              type='email'
+              name='email'
               id='ProfileEmail'
               minLength='2'
               maxLength='30'
               required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              disabled={!edit}
+              value={values.email || ""}
+              onChange={handleChange}
+              disabled={!edit || isLoading}
             />
           </div>
           <span id='error-profile-email' className='form__error'></span>
         </form>
 
-        {error > 0 ? (
+        {updateSuccessMessage ? (
           <p className='profile__save_error profile__save_error_active'>
-            {error}
+            Данные успешно изменены
           </p>
         ) : (
-          <p className='profile__save_error'></p>
+          <p className='profile__save_error'>{error}</p>
         )}
 
         <div className={`profile__conteiner ${!edit && "profile__submit"}`}>
@@ -105,7 +125,10 @@ function Profile(props) {
           <button
             type='submit'
             onClick={handleSubmit}
-            className={`login__submit`}
+            className={`login__submit ${
+              (formValid || !isChanged) && "login__submit_false"
+            }`}
+            disabled={!isChanged}
           >
             Сохранить
           </button>

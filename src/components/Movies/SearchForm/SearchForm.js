@@ -33,6 +33,7 @@ function SearchForm(props) {
             type='submit'
             className='form__search_submit'
             onClick={handleSubmitSearchForm}
+            disabled={searchForm === ""}
           >
             <img src={search} className='form__search_submit_img' />
           </button>

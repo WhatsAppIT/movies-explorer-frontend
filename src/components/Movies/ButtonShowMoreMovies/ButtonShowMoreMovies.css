@@ -1,0 +1,18 @@
+.cards__else {
+  width: 240px;
+  height: 36px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14.52px;
+  color: #ffffff;
+  text-align: center;
+  background: #202020;
+  border: solid 1px #424242;
+  border-radius: 6px;
+  margin: 61px 0 78px;
+  padding: 0;
+  cursor: pointer;
+}
+.cards__else:hover {
+  opacity: 0.7;
+}

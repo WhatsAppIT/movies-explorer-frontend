@@ -28,6 +28,7 @@ function App() {
   const [movies, setMovies] = React.useState([]);
   const [error, setError] = React.useState("");
   const [beatFilmMovies, setBeatFilmMovies] = React.useState([]);
+  const [updateSuccessMessage, setUpdateSuccessMessage] = React.useState(false);
 
   const [searchResultSavedMovies, setSearchResultSavedMovies] = React.useState(
     []
@@ -47,10 +48,11 @@ function App() {
     auth
       .authorization(email, password)
       .then((res) => {
-        setIsRegistrate(false);
         localStorage.setItem("jwt", res.token);
         setLoggedIn(true);
+        handleGetUser();
         navigate("/movies", { replace: true });
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -63,11 +65,8 @@ function App() {
   function handleRegister(name, email, password) {
     auth
       .registration(name, email, password)
-      .then((res) => {
-        setIsRegistrate(false);
-        localStorage.setItem("jwt", res.token);
-        setLoggedIn(true);
-        navigate("/signin", { replace: true });
+      .then(() => {
+        handleLogin(email, password);
       })
       .catch((err) => {
         console.log(err);
@@ -79,7 +78,7 @@ function App() {
 
   function handleLogOut(e) {
     setLoggedIn(false);
-    localStorage.removeItem("jwt");
+    localStorage.clear();
     navigate("/signin");
   }
 
@@ -92,6 +91,7 @@ function App() {
           if (data) {
             setLoggedIn(true);
             setCurrentUser(data);
+            handleGetMoviesFromApi();
           }
         })
         .catch(console.error);
@@ -110,7 +110,7 @@ function App() {
       .editProfile(data)
       .then((res) => {
         setCurrentUser(res);
-        console.log(res);
+        setUpdateSuccessMessage(true);
       })
       .catch((err) => setError(err))
       .finally(() => {
@@ -143,6 +143,10 @@ function App() {
     fetch(beatfilmUrl)
       .then((res) => res.json())
       .then((movies) => {
+        localStorage.setItem(
+          "movies from BeatFilm API",
+          JSON.stringify(movies)
+        );
         setMovies(movies);
       })
       .catch((err) => setError(err));
@@ -182,7 +186,6 @@ function App() {
             path='/movies'
             element={
               <Movies
-                savedMovie={savedMovie}
                 loggedIn={loggedIn}
                 isOpen={handleHeaderPopupOpen}
                 movies={movies}
@@ -212,6 +215,9 @@ function App() {
                 onUpdateUser={handleUpdateUser}
                 logOut={handleLogOut}
                 error={error}
+                updateSuccessMessage={updateSuccessMessage}
+                setUpdateSuccessMessage={setUpdateSuccessMessage}
+                isLoading={isLoading}
               />
             }
           />
