@@ -4,19 +4,20 @@ import "./SearchForm.css";
 import search from "../../../images/find-3.svg";
 
 function SearchForm(props) {
-  const { searchForm, setSearchForm } = props;
-
-  function handleSubmitSearchClick(e) {
-    e.preventDefault();
-  }
-
-  function handleCheckBoxClick(e) {
-    e.preventDefault();
-  }
+  const {
+    searchForm,
+    setSearchForm,
+    searchMovies,
+    isLoading,
+    filteredMovies,
+    handleSubmitSearchForm,
+    setFilterSearchMovies,
+    filterSearchMovies,
+  } = props;
 
   return (
     <div className='search'>
-      <form className='formSearch' onSubmit={handleSubmitSearchClick}>
+      <form className='formSearch' onSubmit={handleSubmitSearchForm}>
         <div className='form__search'>
           <input
             className='form__search_input'
@@ -28,7 +29,11 @@ function SearchForm(props) {
             value={searchForm}
             onChange={(e) => setSearchForm(e.target.value)}
           />
-          <button type='submit' className='form__search_submit'>
+          <button
+            type='submit'
+            className='form__search_submit'
+            onClick={handleSubmitSearchForm}
+          >
             <img src={search} className='form__search_submit_img' />
           </button>
         </div>

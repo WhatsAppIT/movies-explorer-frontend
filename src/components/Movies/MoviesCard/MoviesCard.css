@@ -75,8 +75,12 @@
   font-size: 12px;
   font-weight: 500;
   line-height: 14.52px;
-  text-align: center;
+  text-align: left;
   color: #ffffff;
+  width: 240px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .card__info_time {

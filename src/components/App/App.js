@@ -27,18 +27,14 @@ function App() {
   const [savedMovie, setSavedMovie] = React.useState(false);
   const [movies, setMovies] = React.useState([]);
   const [error, setError] = React.useState("");
+  const [beatFilmMovies, setBeatFilmMovies] = React.useState([]);
+
+  const [searchResultSavedMovies, setSearchResultSavedMovies] = React.useState(
+    []
+  );
   const navigate = useNavigate();
 
   const beatfilmUrl = "https://api.nomoreparties.co/beatfilm-movies";
-
-  React.useEffect(() => {
-    fetch(beatfilmUrl)
-      .then((res) => res.json())
-      .then((movies) => {
-        setMovies(movies);
-      })
-      .catch((err) => setError(err));
-  }, []);
 
   function handleHeaderPopupOpen() {
     setHeaderPopupOpen(true);
@@ -139,6 +135,27 @@ function App() {
     handleGetUser();
   }, []);
 
+  React.useEffect(() => {
+    handleGetMoviesFromApi();
+  }, []);
+
+  function handleGetMoviesFromApi() {
+    fetch(beatfilmUrl)
+      .then((res) => res.json())
+      .then((movies) => {
+        setMovies(movies);
+      })
+      .catch((err) => setError(err));
+  }
+
+  function setIntoLocalStorage(key, value) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  function getFromLocalStorage(key) {
+    return JSON.parse(localStorage.getItem(key));
+  }
+
   return (
     <div className='app'>
       <CurrentUserContext.Provider value={currentUser}>
@@ -169,6 +186,10 @@ function App() {
                 loggedIn={loggedIn}
                 isOpen={handleHeaderPopupOpen}
                 movies={movies}
+                setMovies={setMovies}
+                isLoading={isLoading}
+                setIntoLocalStorage={setIntoLocalStorage}
+                getFromLocalStorage={getFromLocalStorage}
               />
             }
           />

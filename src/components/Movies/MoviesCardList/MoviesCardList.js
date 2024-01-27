@@ -1,67 +1,59 @@
 import React from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import "./MoviesCardList.css";
-import cards from "../../../utils/constants";
+import Preloader from "../Preloader/Preloader";
 
 function MoviesCardList(props) {
-  const { loggedIn, isOpen, savedMovie, movies } = props;
+  const {
+    loggedIn,
+    isOpen,
+    savedMovie,
+    movies,
+    filterMovies,
+    clearMovies,
+    searchForm,
+    isLoading,
+    buttonSubmit,
+  } = props;
 
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+  const [visibleSearchMovies, setVisibleSearchMovies] = React.useState(0);
 
-  /*   React.useEffect(() => {
-    if (windowWidth >= 320) {
-      setShowMovies(cards.slice(0, 1));
-    } else if (windowWidth >= 768) {
-      setShowMovies(cards.slice(0, 3));
-    } else if (windowWidth >= 1280) {
-      setShowMovies(cards.slice(0, 5));
+  React.useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    if (windowWidth < 635) {
+      setVisibleSearchMovies(5);
     }
-  }); */
 
-  if (windowWidth >= 1280) {
-    return (
-      <section className='cards'>
-        <ul className='cards__list'>
-          {movies
-            .map((movie) => <MoviesCard key={movie.movieId} movie={movie} />)
-            .slice(0, 12)}
-        </ul>
-        <button type='button' className='cards__else'>
-          Ещё
-        </button>
-      </section>
-    );
-  }
+    if (windowWidth >= 635) {
+      setVisibleSearchMovies(8);
+    }
 
-  if (windowWidth < 768) {
-    return (
-      <section className='cards'>
-        <ul className='cards__list'>
-          {movies
-            .map((movie) => <MoviesCard key={movie.movieId} movie={movie} />)
-            .slice(0, 5)}
-        </ul>
-        <button type='button' className='cards__else' on>
-          Ещё
-        </button>
-      </section>
-    );
-  }
+    if (windowWidth >= 1077) {
+      setVisibleSearchMovies(12);
+    }
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, [windowWidth]);
 
-  if (768 <= windowWidth) {
-    return (
-      <section className='cards'>
-        <ul className='cards__list'>
-          {movies
-            .map((movie) => <MoviesCard key={movie.movieId} movie={movie} />)
-            .slice(0, 8)}
-        </ul>
-        <button type='button' className='cards__else' on>
-          Ещё
-        </button>
-      </section>
-    );
-  }
+  return (
+    <section className='cards'>
+      <ul className='cards__list'>
+        {searchForm === ""
+          ? []
+          : filterMovies
+              .slice(0, visibleSearchMovies)
+              .map((movie) => <MoviesCard key={movie.id} movie={movie} />)}
+      </ul>
+      <button type='button' className='cards__else'>
+        Ещё
+      </button>
+    </section>
+  );
 }
 
 export default MoviesCardList;
