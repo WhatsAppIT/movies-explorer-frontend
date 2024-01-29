@@ -24,7 +24,7 @@ function App() {
   const [headerPopupOpen, setHeaderPopupOpen] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [savedMovie, setSavedMovie] = React.useState(false);
+  const [savedMovie, setSavedMovie] = React.useState([]);
   const [movies, setMovies] = React.useState([]);
   const [error, setError] = React.useState("");
   const [beatFilmMovies, setBeatFilmMovies] = React.useState([]);
@@ -100,11 +100,6 @@ function App() {
     }
   }
 
-  React.useEffect(() => {
-    checkToken();
-    handleGetUser();
-  }, []);
-
   function handleUpdateUser(data) {
     mainApi
       .editProfile(data)
@@ -132,22 +127,68 @@ function App() {
   }
 
   React.useEffect(() => {
+    checkToken();
     handleGetUser();
-  }, []);
-
-  React.useEffect(() => {
-    handleGetMoviesFromApi();
+    handleGetSavedMovies();
   }, []);
 
   function handleGetMoviesFromApi() {
     fetch(beatfilmUrl)
       .then((res) => res.json())
-      .then((movies) => {
-        localStorage.setItem(
-          "movies from BeatFilm API",
-          JSON.stringify(movies)
-        );
+      .then((res) => {
+        const movies = res.map((data) => {
+          const imageUrl = "https://api.nomoreparties.co/" + data.image.url;
+          const thumbnailUrl = beatfilmUrl + data.image.formats.thumbnail.url;
+
+          return {
+            country: data.country,
+            director: data.director,
+            duration: data.duration,
+            year: data.year,
+            description: data.description,
+            image: "https://api.nomoreparties.co/" + data.image.url,
+            trailerLink: data.trailerLink,
+            nameRU: data.nameRU,
+            nameEN: data.nameEN,
+            thumbnail:
+              "https://api.nomoreparties.co/" +
+              data.image.formats.thumbnail.url,
+            movieId: data.id,
+          };
+        });
+        setIntoLocalStorage("movies from BeatFilm API", movies);
         setMovies(movies);
+      })
+      .catch((err) => setError(err));
+  }
+
+  function handleSaveMovie(movie) {
+    mainApi
+      .saveMovie(movie)
+      .then((res) => {
+        setSavedMovie([res, ...savedMovie]);
+        console.log(res);
+      })
+      .catch((err) => setError(err));
+  }
+
+  function handleGetSavedMovies() {
+    mainApi
+      .getSavedMovies()
+      .then((res) => {
+        setSavedMovie(res);
+      })
+      .catch((err) => setError(err))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
+  function handleDeleteMovie(_id) {
+    mainApi
+      .deleteMovie(_id)
+      .then(() => {
+        setSavedMovie(savedMovie.filter((movie) => movie._id !== _id));
       })
       .catch((err) => setError(err));
   }
@@ -193,6 +234,9 @@ function App() {
                 isLoading={isLoading}
                 setIntoLocalStorage={setIntoLocalStorage}
                 getFromLocalStorage={getFromLocalStorage}
+                handleSaveMovie={handleSaveMovie}
+                handleDeleteMovie={handleDeleteMovie}
+                savedMovie={savedMovie}
               />
             }
           />
@@ -203,6 +247,8 @@ function App() {
                 savedMovie={savedMovie}
                 loggedIn={loggedIn}
                 isOpen={handleHeaderPopupOpen}
+                handleGetSavedMovies={handleGetSavedMovies}
+                handleDeleteMovie={handleDeleteMovie}
               />
             }
           />

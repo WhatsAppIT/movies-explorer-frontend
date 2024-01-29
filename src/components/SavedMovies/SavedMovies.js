@@ -8,7 +8,13 @@ import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
 import "./SavedMovies.css";
 
 function SavedMovies(props) {
-  const { loggedIn, isOpen, savedMovie } = props;
+  const {
+    loggedIn,
+    isOpen,
+    savedMovie,
+    handleGetSavedMovies,
+    handleDeleteMovie,
+  } = props;
 
   return (
     <>

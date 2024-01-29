@@ -16,22 +16,39 @@ function Movies(props) {
     setMovies,
     getFromLocalStorage,
     setIntoLocalStorage,
+    handleSaveMovie,
+    handleDeleteMovie,
+    savedMovie,
   } = props;
 
   const [searchForm, setSearchForm] = React.useState("");
+  const [searchFormMovies, setSearchFormMovies] = React.useState([]);
   const [filterSearchMovies, setFilterSearchMovies] = React.useState([]);
   const [buttonSubmit, setButtonSubmit] = React.useState(false);
+  const [findMovies, setFindMovies] = React.useState([]);
+
+  const [checkBoxButton, setCheckBoxButton] = React.useState(false);
+  const [checkSearh, setChecksearh] = React.useState([]);
 
   const filterMovies = movies.filter((movie) => {
-    return movie.nameRU.toLowerCase().includes(searchForm.toLowerCase());
+    return movie.nameRU.toLowerCase().includes(searchForm);
   });
-
   const filterMoviesByDuration = movies.filter((movie) => {
     return movie.duration < 40;
   });
 
   function filteredMovies() {
     setFilterSearchMovies(filterMovies);
+    setIntoLocalStorage("Search", filterMovies);
+  }
+
+  function filteredMoviesByDuration() {
+    setFilterSearchMovies(filterMoviesByDuration);
+    setIntoLocalStorage("Search By Duration", filterMovies);
+  }
+
+  function saveSearchForm() {
+    setSearchFormMovies(getFromLocalStorage("Search"));
   }
 
   function changeButtonSubmit() {
@@ -42,9 +59,30 @@ function Movies(props) {
     e.preventDefault();
     filteredMovies();
     changeButtonSubmit();
-
+    setSearchFormMovies(filterMovies);
     console.log("handleSubmitSearchForm");
   }
+
+  function search() {
+    if (searchFormMovies.length > 0) {
+      setIntoLocalStorage("Search", searchFormMovies);
+      setFindMovies(filterMovies);
+    }
+  }
+  function searchCheckBox() {
+    setFilterSearchMovies(filterMoviesByDuration);
+  }
+
+  React.useEffect(
+    () => {
+      saveSearchForm();
+      search();
+      searchCheckBox();
+    },
+    [
+      /* searchFormMovies, filterSearchMovies, checkBoxButton */
+    ]
+  );
 
   return (
     <>
@@ -70,6 +108,9 @@ function Movies(props) {
             buttonSubmit={buttonSubmit}
             setButtonSubmit={setButtonSubmit}
             changeButtonSubmit={changeButtonSubmit}
+            savedMovie={savedMovie}
+            handleSaveMovie={handleSaveMovie}
+            handleDeleteMovie={handleDeleteMovie}
           />
         )}
       </main>

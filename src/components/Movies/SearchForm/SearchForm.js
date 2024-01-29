@@ -11,8 +11,10 @@ function SearchForm(props) {
     isLoading,
     filteredMovies,
     handleSubmitSearchForm,
+    handleCheckBoxForm,
     setFilterSearchMovies,
     filterSearchMovies,
+    setChecksearh,
   } = props;
 
   return (
@@ -32,8 +34,7 @@ function SearchForm(props) {
           <button
             type='submit'
             className='form__search_submit'
-            onClick={handleSubmitSearchForm}
-            disabled={searchForm === ""}
+            onSubmit={handleSubmitSearchForm}
           >
             <img src={search} className='form__search_submit_img' />
           </button>

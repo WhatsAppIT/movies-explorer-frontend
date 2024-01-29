@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import ButtonShowMoreMovies from "../ButtonShowMoreMovies/ButtonShowMoreMovies.js";
 import "./MoviesCardList.css";
@@ -16,6 +17,9 @@ function MoviesCardList(props) {
     buttonSubmit,
     setButtonSubmit,
     changeButtonSubmit,
+    savedMovie,
+    handleSaveMovie,
+    handleDeleteMovie,
   } = props;
 
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
@@ -24,6 +28,7 @@ function MoviesCardList(props) {
 
   const [elseButtonClick, setElseButtonClick] = React.useState(false);
   const [activeButton, setActiveButton] = React.useState(false);
+  const location = useLocation();
 
   React.useEffect(() => {
     function handleWindowResize() {
@@ -71,12 +76,37 @@ function MoviesCardList(props) {
   return (
     <section className='cards'>
       <ul className='cards__list'>
-        {searchForm === ""
+        {location.pathname === "/movies" && searchForm === ""
+          ? []
+          : !buttonSubmit &&
+            filterMovies
+              .slice(0, visibleSearchMovies)
+              .map((movie) => (
+                <MoviesCard
+                  key={movie.movieId}
+                  movie={movie}
+                  savedMovie={savedMovie}
+                  handleSaveMovie={handleSaveMovie}
+                  handleDeleteMovie={handleDeleteMovie}
+                />
+              ))}
+
+        {location.pathname === "/saved-movies" &&
+        savedMovie &&
+        searchForm === ""
           ? []
           : buttonSubmit &&
             filterMovies
               .slice(0, visibleSearchMovies)
-              .map((movie) => <MoviesCard key={movie.id} movie={movie} />)}
+              .map((movie) => (
+                <MoviesCard
+                  key={movie.movieId}
+                  movie={movie}
+                  savedMovie={savedMovie}
+                  handleSaveMovie={handleSaveMovie}
+                  handleDeleteMovie={handleDeleteMovie}
+                />
+              ))}
       </ul>
       {filterMovies &&
         visibleSearchMovies < filterMovies.length &&

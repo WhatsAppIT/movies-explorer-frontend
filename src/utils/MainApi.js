@@ -65,7 +65,7 @@ class MyApi {
   }
 
   getSavedMovies() {
-    return fetch(`${this._url}/saved-movies`, {
+    return fetch(`${this._url}/movies`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -83,15 +83,30 @@ class MyApi {
       },
     }).then(this._handleResponse);
   }
+
+  saveMovie(data) {
+    return fetch(`${this._url}/movies`, {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("jwt")}`,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        country: data.country,
+        director: data.director,
+        duration: data.duration,
+        year: data.year,
+        description: data.description,
+        image: data.image,
+        trailerLink: data.trailerLink,
+        nameRU: data.nameRU,
+        nameEN: data.nameEN,
+        thumbnail: data.thumbnail,
+        movieId: data.movieId,
+      }),
+    }).then(this._handleResponse);
+  }
   /* 
-    like(cardId) {
-      return fetch(`${this._url}/cards/${cardId}/likes`, {
-        method: 'PUT',
-  
-        headers: this._headers,
-      }).then(this._handleResponse);
-    }
-  
     removeLike(cardId) {
       return fetch(`${this._url}/cards/${cardId}/likes`, {
         method: 'DELETE',
