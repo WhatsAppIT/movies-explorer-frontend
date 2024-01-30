@@ -9,11 +9,11 @@ import "./Movies.css";
 
 function Movies(props) {
   const {
+    movies,
+    setMovies,
     loggedIn,
     isLoading,
     isOpen,
-    movies,
-    setMovies,
     getFromLocalStorage,
     setIntoLocalStorage,
     handleSaveMovie,
@@ -21,34 +21,96 @@ function Movies(props) {
     savedMovie,
   } = props;
 
-  const [searchForm, setSearchForm] = React.useState("");
-  const [searchFormMovies, setSearchFormMovies] = React.useState([]);
-  const [filterSearchMovies, setFilterSearchMovies] = React.useState([]);
+  //ОТОБРАЖЕНИЕ ФИЛЬМОВ В ЗАВИСИМОСТИ ОТ РАЗРЕШЕНИЯ И КНОПКА "ЕЩЕ"
+  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
+  const [visibleSearchMovies, setVisibleSearchMovies] = React.useState(0);
+  const [addMovies, setAddMovies] = React.useState(0);
+  //const [searchForm, setSearchForm] = React.useState("");
+
+  //АКТИВНАЯ ИЛИ НЕАКТИВНАЯ КНОПКА ПОИСКА
   const [buttonSubmit, setButtonSubmit] = React.useState(false);
-  const [findMovies, setFindMovies] = React.useState([]);
 
-  const [checkBoxButton, setCheckBoxButton] = React.useState(false);
-  const [checkSearh, setChecksearh] = React.useState([]);
+  //"LOCALsTORAGE!!!!!" ПОСЛЕ ПОИСКА ФИЛЬМОВ - ТЕКСТ ЗАПРОСА, СОСТОЯНИЕ ЧЕКБОКСА, НАЙДЕННЫЕ ФИЛЬМЫ
+  const [searchForm, setSearchForm] = React.useState(""); //ТЕКСТ ЗАПРОСА
+  const [checkBox, setCheckBox] = React.useState(false); //СОСТОЯНИЕ ЧЕКБОКСА
+  const [searchArray, setSearchArray] = React.useState(
+    JSON.parse(localStorage.getItem("Массив Найденых Фильмов")) || []
+  ); //НАЙДЕННЫЕ ФИЛЬМЫ
 
-  const filterMovies = movies.filter((movie) => {
+  console.log(searchArray);
+
+  //ПОКАЗЫВАЕТ МАССИВ КОРОТКОМЕТРАЖЕК ПРИ НАЖАТИИ НА ЧЕКБОКС
+  const [filterArray, setFilterArray] = React.useState([]);
+  //СОХРАНЕНИЕ ДАННЫХ В LOCALSTORAGE
+  /*   React.useEffect(() => {
+    setIntoLocalStorage("Текст Из Поиска", searchForm);
+    setIntoLocalStorage("Положение Чекбокса", checkBox); //+
+    setIntoLocalStorage("Массив Найденых Фильмов", searchArray);
+    setIntoLocalStorage("Поиск По Чекбоксу", filterArray);
+  }, [checkBox, searchForm, searchArray, filterArray]); */
+
+  //ПОИСК ФИЛЬМОВ
+  const searchAllMovies = movies.filter((movie) => {
     return movie.nameRU.toLowerCase().includes(searchForm);
   });
-  const filterMoviesByDuration = movies.filter((movie) => {
+  const searchByDurationMovies = movies.filter((movie) => {
     return movie.duration < 40;
   });
 
-  function filteredMovies() {
-    setFilterSearchMovies(filterMovies);
-    setIntoLocalStorage("Search", filterMovies);
+  /*   React.useEffect(() => {
+    saveSearch();
+  }, []);
+
+  console.log(localStorage.getItem("Массив Найденых Фильмов"));
+
+  function saveSearch() {
+    const displaySearc = localStorage.getItem("Массив Найденых Фильмов");
+    if (displaySearc) {
+      setSearchArray(getFromLocalStorage("Массив Найденых Фильмов"));
+    }
+  } */
+
+  React.useEffect(() => {
+    function handleWindowResize() {
+      setWindowWidth(window.innerWidth);
+    }
+
+    visibleMovies();
+    addSearchMovies();
+
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, [windowWidth]);
+
+  function visibleMovies() {
+    if (windowWidth < 635) {
+      setVisibleSearchMovies(5);
+    }
+    if (windowWidth >= 635) {
+      setVisibleSearchMovies(8);
+    }
+    if (windowWidth >= 1077) {
+      setVisibleSearchMovies(12);
+    }
   }
 
-  function filteredMoviesByDuration() {
-    setFilterSearchMovies(filterMoviesByDuration);
-    setIntoLocalStorage("Search By Duration", filterMovies);
+  function addSearchMovies() {
+    if (windowWidth < 635) {
+      setAddMovies(2);
+    }
+    if (windowWidth >= 635) {
+      setAddMovies(2);
+    }
+    if (windowWidth >= 1077) {
+      setAddMovies(3);
+    }
   }
 
-  function saveSearchForm() {
-    setSearchFormMovies(getFromLocalStorage("Search"));
+  function addMoreMovies() {
+    setVisibleSearchMovies(visibleSearchMovies + addMovies);
+    console.log("addMoreMovies");
   }
 
   function changeButtonSubmit() {
@@ -57,32 +119,15 @@ function Movies(props) {
 
   function handleSubmitSearchForm(e) {
     e.preventDefault();
-    filteredMovies();
     changeButtonSubmit();
-    setSearchFormMovies(filterMovies);
+    setSearchArray(searchAllMovies);
     console.log("handleSubmitSearchForm");
   }
 
-  function search() {
-    if (searchFormMovies.length > 0) {
-      setIntoLocalStorage("Search", searchFormMovies);
-      setFindMovies(filterMovies);
-    }
-  }
-  function searchCheckBox() {
-    setFilterSearchMovies(filterMoviesByDuration);
-  }
-
-  React.useEffect(
-    () => {
-      saveSearchForm();
-      search();
-      searchCheckBox();
-    },
-    [
-      /* searchFormMovies, filterSearchMovies, checkBoxButton */
-    ]
-  );
+  /*   let searchDisplay = localStorage.setItem(
+    "Массив Найденых Фильмов",
+    JSON.stringify(searchAllMovies)
+  ); */
 
   return (
     <>
@@ -91,26 +136,22 @@ function Movies(props) {
         <SearchForm
           searchForm={searchForm}
           setSearchForm={setSearchForm}
-          filterMovies={filterMovies}
           handleSubmitSearchForm={handleSubmitSearchForm}
-          setFilterSearchMovies={setFilterSearchMovies}
-          filterSearchMovies={filterSearchMovies}
+          checkBox={checkBox}
+          setCheckBox={setCheckBox}
         />
         {isLoading ? (
           <Preloader />
         ) : (
           <MoviesCardList
-            searchForm={searchForm}
-            movies={movies}
-            filterMovies={filterMovies}
-            filterSearchMovies={filterSearchMovies}
-            isLoading={isLoading}
+            searchAllMovies={searchAllMovies}
             buttonSubmit={buttonSubmit}
-            setButtonSubmit={setButtonSubmit}
-            changeButtonSubmit={changeButtonSubmit}
             savedMovie={savedMovie}
             handleSaveMovie={handleSaveMovie}
             handleDeleteMovie={handleDeleteMovie}
+            visibleSearchMovies={visibleSearchMovies}
+            addMoreMovies={addMoreMovies}
+            searchArray={searchArray}
           />
         )}
       </main>
@@ -120,3 +161,23 @@ function Movies(props) {
 }
 
 export default Movies;
+/* 
+function searchMovies() {
+  setSearchArray(searchAllMovies);
+  setIntoLocalStorage("Search", searchAllMovies);
+}
+
+function filteredMoviesByDuration() {
+  if (!checkBox) {
+    setFilterArray(searchByDurationMovies);
+    setIntoLocalStorage("Search By Duration", filterArray);
+  }
+}
+
+function getSearch() {
+  return setSearchArray(getFromLocalStorage("Search"));
+}
+function getFilterSearch() {
+  setFilterArray(getFromLocalStorage("Search By Duration"));
+}
+  */

@@ -106,6 +106,7 @@ function App() {
       .then((res) => {
         setCurrentUser(res);
         setUpdateSuccessMessage(true);
+        console.log(res);
       })
       .catch((err) => setError(err))
       .finally(() => {
@@ -129,6 +130,9 @@ function App() {
   React.useEffect(() => {
     checkToken();
     handleGetUser();
+    handleGetSavedMovies();
+  }, []);
+  React.useEffect(() => {
     handleGetSavedMovies();
   }, []);
 
@@ -177,6 +181,7 @@ function App() {
       .getSavedMovies()
       .then((res) => {
         setSavedMovie(res);
+        console.log(res);
       })
       .catch((err) => setError(err))
       .finally(() => {
@@ -201,6 +206,7 @@ function App() {
     return JSON.parse(localStorage.getItem(key));
   }
 
+  console.log("Приложение отобразилось");
   return (
     <div className='app'>
       <CurrentUserContext.Provider value={currentUser}>

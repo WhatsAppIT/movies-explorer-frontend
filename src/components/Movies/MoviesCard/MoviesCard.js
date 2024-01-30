@@ -59,31 +59,6 @@ function MoviesCard(props) {
       </li>
     );
   }
-
-  /*   if (location.pathname === "/saved-movies") {
-    return savedMovie ? (
-      ""
-    ) : (
-      <li className='card'>
-        <div className='card__image'>
-          <img
-            className='card__image_foto'
-            src={movie.image}
-            alt={movie.nameRU}
-          />
-          <button
-            type='button'
-            className={"card__image_save card__image_movies-save"}
-            onClick={handleSaveMovie}
-          ></button>
-        </div>
-        <div className='card__info'>
-          <h2 className='card__info_title'>{movie.nameRU}</h2>
-          <div className='card__info_time'>{durationMovie(movie.duration)}</div>
-        </div>
-      </li>
-    );
-  } */
 }
 
 export default MoviesCard;

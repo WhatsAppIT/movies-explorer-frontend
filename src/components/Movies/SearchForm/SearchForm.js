@@ -7,14 +7,9 @@ function SearchForm(props) {
   const {
     searchForm,
     setSearchForm,
-    searchMovies,
-    isLoading,
-    filteredMovies,
     handleSubmitSearchForm,
-    handleCheckBoxForm,
-    setFilterSearchMovies,
-    filterSearchMovies,
-    setChecksearh,
+    checkBox,
+    setCheckBox,
   } = props;
 
   return (
@@ -23,7 +18,8 @@ function SearchForm(props) {
         <div className='form__search'>
           <input
             className='form__search_input'
-            type='search'
+            type='text'
+            name='search'
             placeholder='Фильм'
             id='search'
             autoComplete='off'
@@ -31,15 +27,15 @@ function SearchForm(props) {
             value={searchForm}
             onChange={(e) => setSearchForm(e.target.value)}
           />
-          <button
-            type='submit'
-            className='form__search_submit'
-            onSubmit={handleSubmitSearchForm}
-          >
+          <button type='submit' className='form__search_submit'>
             <img src={search} className='form__search_submit_img' />
           </button>
         </div>
-        <FilterCheckbox />
+        <FilterCheckbox
+          isChecked={checkBox}
+          onChange={setCheckBox}
+          onSubmit={handleSubmitSearchForm}
+        />
       </form>
     </div>
   );
