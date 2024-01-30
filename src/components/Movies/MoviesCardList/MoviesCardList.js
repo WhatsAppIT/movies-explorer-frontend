@@ -15,6 +15,7 @@ function MoviesCardList(props) {
     visibleSearchMovies,
     addMoreMovies,
     searchArray,
+    searchFilms,
   } = props;
   console.log(searchArray);
   const location = useLocation();
@@ -22,17 +23,23 @@ function MoviesCardList(props) {
   return (
     <section className='cards'>
       <ul className='cards__list'>
-        {searchAllMovies.slice(0, visibleSearchMovies).map((movie) => (
-          <MoviesCard
-            key={movie.movieId}
-            movie={movie}
-            savedMovie={savedMovie}
-            handleSaveMovie={handleSaveMovie}
-            handleDeleteMovie={handleDeleteMovie}
-          />
-        ))}
+        {location.pathname === "/movies" && searchArray.length > 0 ? (
+          searchArray
+            .slice(0, visibleSearchMovies)
+            .map((movie) => (
+              <MoviesCard
+                key={movie.movieId}
+                movie={movie}
+                savedMovie={savedMovie}
+                handleSaveMovie={handleSaveMovie}
+                handleDeleteMovie={handleDeleteMovie}
+              />
+            ))
+        ) : (
+          <h2 className='movies__notFound'>Фильмы не найдены</h2>
+        )}
 
-        {location.pathname === "/saved-movies" && savedMovie
+        {/*         {location.pathname === "/saved-movies" && savedMovie
           ? []
           : buttonSubmit &&
             searchAllMovies
@@ -45,11 +52,11 @@ function MoviesCardList(props) {
                   handleSaveMovie={handleSaveMovie}
                   handleDeleteMovie={handleDeleteMovie}
                 />
-              ))}
+              ))} */}
       </ul>
       {searchAllMovies &&
-        visibleSearchMovies < searchAllMovies.length &&
-        buttonSubmit && <ButtonShowMoreMovies addMoreMovies={addMoreMovies} />}
+        visibleSearchMovies < searchArray.length &&
+        !buttonSubmit && <ButtonShowMoreMovies addMoreMovies={addMoreMovies} />}
     </section>
   );
 }

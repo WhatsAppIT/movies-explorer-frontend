@@ -18,6 +18,14 @@
   list-style-type: none;
 }
 
+.movies__notFound {
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 20px;
+  color: #ffffff;
+  text-align: center;
+}
+
 @media (min-width: 768px) {
   .cards {
     display: flex;

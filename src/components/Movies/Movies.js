@@ -57,21 +57,18 @@ function Movies(props) {
 
   //ПОИСК ФИЛЬМОВ
   const searchAllMovies = movies.filter((movie) => {
-    return movie.nameRU.toLowerCase().includes(searchForm);
+    return movie.nameRU.toLowerCase().includes(searchForm.toLowerCase());
   });
   const searchByDurationMovies = movies.filter((movie) => {
     return movie.duration < 40;
   });
 
-  /*   React.useEffect(() => {
+  /*  React.useEffect(() => {
     saveSearch();
-  }, []);
+  }, []); */
 
-  console.log(localStorage.getItem("Массив Найденых Фильмов"));
-
-  function saveSearch() {
-    const displaySearc = localStorage.getItem("Массив Найденых Фильмов");
-    if (displaySearc) {
+  /*   function handleSaveSearch() {
+    if (searchForm > 0) {
       setSearchArray(getFromLocalStorage("Массив Найденых Фильмов"));
     }
   } */
@@ -158,6 +155,7 @@ function Movies(props) {
             visibleSearchMovies={visibleSearchMovies}
             addMoreMovies={addMoreMovies}
             searchArray={searchArray}
+            searchFilms={searchFilms}
           />
         )}
       </main>
