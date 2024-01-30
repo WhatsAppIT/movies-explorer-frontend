@@ -22,21 +22,15 @@ function MoviesCardList(props) {
   return (
     <section className='cards'>
       <ul className='cards__list'>
-        {localStorage.setItem(
-          "Массив Найденых Фильмов",
-          JSON.stringify(searchArray)
-        ) ||
-          searchAllMovies
-            .slice(0, visibleSearchMovies)
-            .map((movie) => (
-              <MoviesCard
-                key={movie.movieId}
-                movie={movie}
-                savedMovie={savedMovie}
-                handleSaveMovie={handleSaveMovie}
-                handleDeleteMovie={handleDeleteMovie}
-              />
-            ))}
+        {searchAllMovies.slice(0, visibleSearchMovies).map((movie) => (
+          <MoviesCard
+            key={movie.movieId}
+            movie={movie}
+            savedMovie={savedMovie}
+            handleSaveMovie={handleSaveMovie}
+            handleDeleteMovie={handleDeleteMovie}
+          />
+        ))}
 
         {location.pathname === "/saved-movies" && savedMovie
           ? []

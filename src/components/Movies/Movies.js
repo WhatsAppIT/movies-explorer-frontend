@@ -30,24 +30,30 @@ function Movies(props) {
   //АКТИВНАЯ ИЛИ НЕАКТИВНАЯ КНОПКА ПОИСКА
   const [buttonSubmit, setButtonSubmit] = React.useState(false);
 
+  const textInInput = JSON.parse(localStorage.getItem("Текст Из Поиска"));
+  const checkBoxCondition = JSON.parse(
+    localStorage.getItem("Положение Чекбокса")
+  );
+  const searchFilms = JSON.parse(
+    localStorage.getItem("Массив Найденых Фильмов")
+  );
+  const searchByCheckBox = JSON.parse(
+    localStorage.getItem("Поиск По Чекбоксу")
+  );
+
   //"LOCALsTORAGE!!!!!" ПОСЛЕ ПОИСКА ФИЛЬМОВ - ТЕКСТ ЗАПРОСА, СОСТОЯНИЕ ЧЕКБОКСА, НАЙДЕННЫЕ ФИЛЬМЫ
-  const [searchForm, setSearchForm] = React.useState(""); //ТЕКСТ ЗАПРОСА
-  const [checkBox, setCheckBox] = React.useState(false); //СОСТОЯНИЕ ЧЕКБОКСА
-  const [searchArray, setSearchArray] = React.useState(
-    JSON.parse(localStorage.getItem("Массив Найденых Фильмов")) || []
-  ); //НАЙДЕННЫЕ ФИЛЬМЫ
+  const [searchForm, setSearchForm] = React.useState(textInInput || ""); //ТЕКСТ ЗАПРОСА
+  const [checkBox, setCheckBox] = React.useState(checkBoxCondition || false); //СОСТОЯНИЕ ЧЕКБОКСА
+  const [searchArray, setSearchArray] = React.useState(searchFilms || []); //НАЙДЕННЫЕ ФИЛЬМЫ
+  const [filterArray, setFilterArray] = React.useState(searchByCheckBox || []); //ПОКАЗЫВАЕТ МАССИВ КОРОТКОМЕТРАЖЕК ПРИ НАЖАТИИ НА ЧЕКБОКС
 
-  console.log(searchArray);
-
-  //ПОКАЗЫВАЕТ МАССИВ КОРОТКОМЕТРАЖЕК ПРИ НАЖАТИИ НА ЧЕКБОКС
-  const [filterArray, setFilterArray] = React.useState([]);
   //СОХРАНЕНИЕ ДАННЫХ В LOCALSTORAGE
-  /*   React.useEffect(() => {
+  React.useEffect(() => {
     setIntoLocalStorage("Текст Из Поиска", searchForm);
     setIntoLocalStorage("Положение Чекбокса", checkBox); //+
     setIntoLocalStorage("Массив Найденых Фильмов", searchArray);
     setIntoLocalStorage("Поиск По Чекбоксу", filterArray);
-  }, [checkBox, searchForm, searchArray, filterArray]); */
+  }, [checkBox, searchForm, searchArray, filterArray]);
 
   //ПОИСК ФИЛЬМОВ
   const searchAllMovies = movies.filter((movie) => {
