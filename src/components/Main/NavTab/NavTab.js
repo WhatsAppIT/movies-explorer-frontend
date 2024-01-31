@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 //import { Link } from 'react-router-dom';
-import { HashLink as Link } from 'react-router-hash-link';
-import './NavTab.css';
+import { HashLink as Link } from "react-router-hash-link";
+import "./NavTab.css";
 
 function NavTab() {
   return (
-    <nav class='promo__nav'>
+    <nav className='promo__nav'>
       <Link
         to='/#about-project'
         className='nav__title promo__nav_about-project'

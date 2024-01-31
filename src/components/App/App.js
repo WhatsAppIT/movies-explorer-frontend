@@ -1,7 +1,6 @@
 import React from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-//import CurrentUserContext from '../contexts/CurrentUserContext.js';
-
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.js";
 import Main from "../Main/Main.js";
 import Navigation from "../Navigation/Navigation.js";
 import Login from "../AuthComponents/Login/Login.js";
@@ -19,7 +18,6 @@ import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 function App() {
   const [IsRegistrate, setIsRegistrate] = React.useState(false);
-  const [userEmail, setUserEmail] = React.useState("");
   const [currentUser, setCurrentUser] = React.useState({});
   const [headerPopupOpen, setHeaderPopupOpen] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
@@ -27,12 +25,8 @@ function App() {
   const [savedMovie, setSavedMovie] = React.useState([]);
   const [movies, setMovies] = React.useState([]);
   const [error, setError] = React.useState("");
-  const [beatFilmMovies, setBeatFilmMovies] = React.useState([]);
   const [updateSuccessMessage, setUpdateSuccessMessage] = React.useState(false);
 
-  const [searchResultSavedMovies, setSearchResultSavedMovies] = React.useState(
-    []
-  );
   const navigate = useNavigate();
 
   const beatfilmUrl = "https://api.nomoreparties.co/beatfilm-movies";

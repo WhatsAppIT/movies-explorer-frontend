@@ -10,6 +10,7 @@ function SearchForm(props) {
     handleSubmitSearchForm,
     checkBox,
     setCheckBox,
+    filterMoviesInSearch,
   } = props;
 
   return (
@@ -31,12 +32,12 @@ function SearchForm(props) {
             <img src={search} className='form__search_submit_img' />
           </button>
         </div>
-        <FilterCheckbox
-          isChecked={checkBox}
-          onChange={setCheckBox}
-          onSubmit={handleSubmitSearchForm}
-        />
       </form>
+      <FilterCheckbox
+        checkBox={checkBox}
+        setCheckBox={setCheckBox}
+        filterMoviesInSearch={filterMoviesInSearch}
+      />
     </div>
   );
 }
