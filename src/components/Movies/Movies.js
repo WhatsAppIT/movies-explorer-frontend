@@ -72,7 +72,6 @@ function Movies(props) {
   const searchInSearchArray = searchArray.filter((movie) => {
     return movie.duration < 40;
   });
-  console.log(searchArray);
 
   //CHECKBOXXXXXXX
   function filterMoviesInSearch() {
@@ -90,7 +89,7 @@ function Movies(props) {
 
   React.useEffect(() => {
     filterMoviesInSearch();
-  }, [movies]);
+  }, []);
 
   //WINDOWWIDTH
   React.useEffect(() => {
@@ -134,14 +133,6 @@ function Movies(props) {
     console.log("addMoreMovies");
   }
 
-  //КНОПКА  САБМИТ
-  function handleSubmitSearchForm(e) {
-    e.preventDefault();
-
-    setSearchArray(searchAllMovies);
-    console.log("handleSubmitSearchForm");
-  }
-
   return (
     <>
       <Header loggedIn={loggedIn} isOpen={isOpen} />
@@ -149,10 +140,11 @@ function Movies(props) {
         <SearchForm
           searchForm={searchForm}
           setSearchForm={setSearchForm}
-          handleSubmitSearchForm={handleSubmitSearchForm}
           checkBox={checkBox}
           setCheckBox={setCheckBox}
           filterMoviesInSearch={filterMoviesInSearch}
+          setSearchArray={setSearchArray}
+          searchAllMovies={searchAllMovies}
         />
         {isLoading && loggedIn ? (
           <Preloader />

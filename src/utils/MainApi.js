@@ -74,8 +74,8 @@ class MyApi {
     }).then(this._handleResponse);
   }
 
-  deleteMovie(movieId) {
-    return fetch(`${this._url}/movies/${movieId}`, {
+  deleteMovie(id) {
+    return fetch(`${this._url}/movies/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("jwt")}`,
@@ -106,24 +106,6 @@ class MyApi {
       }),
     }).then(this._handleResponse);
   }
-  /* 
-    removeLike(cardId) {
-      return fetch(`${this._url}/cards/${cardId}/likes`, {
-        method: 'DELETE',
-  
-        headers: this._headers,
-      }).then(this._handleResponse);
-    }
-  
-    changeAvatar(url) {
-      return fetch(`${this._url}/users/me/avatar`, {
-        method: 'PATCH',
-        headers: this._headers,
-        body: JSON.stringify({
-          avatar: url,
-        }),
-      }).then(this._handleResponse);
-    } */
 
   _handleResponse(res) {
     if (res.ok) {
@@ -132,14 +114,6 @@ class MyApi {
       return Promise.reject(`Ошибка: ${res.status}`);
     }
   }
-
-  /*   changeLikeCardStatus(cardId, isLiked) {
-      if (isLiked) {
-        return this.like(cardId);
-      } else {
-        return this.removeLike(cardId);
-      }
-    } */
 }
 
 export const mainApi = new MyApi({

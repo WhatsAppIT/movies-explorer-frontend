@@ -16,12 +16,101 @@ function SavedMovies(props) {
     handleDeleteMovie,
   } = props;
 
+  const pageCheckBoxCondition = JSON.parse(
+    localStorage.getItem("save-movies CheckBox")
+  );
+
+  const [pageSaveMovies, setPageSaveMovies] = React.useState(savedMovie); //ФИЛЬМЫ
+  const [findMovies, setfindMovies] = React.useState([]); //РЕЗУЛЬТАТЫ ПОИСКА
+  const [pageCheckBox, setPageCheckBox] = React.useState(
+    pageCheckBoxCondition || false
+  );
+  const [pageShortSearchArray, setPageShortSearchArray] = React.useState([]); //КАРОТКОМЕТРАЖКИ
+  const [pageSearchForm, setPageSearchForm] = React.useState("");
+  const [pageSearchArray, setPageSearchArray] = React.useState([]); //КАРОТКОМЕТРАЖКИ ИЗ ПОИСКА
+  const [savedMovieActive, setSavedMovieActive] = React.useState(false);
+
+  //
+
+  const pageSearchAllMovies = savedMovie.filter((movie) => {
+    return movie.nameRU.toLowerCase().includes(pageSearchForm.toLowerCase());
+  }); //ПОИСК
+
+  const pageSearchByDurationMovies = savedMovie.filter((movie) => {
+    return movie.duration < 40;
+  }); //КАРОТКОМЕТРАЖКИ
+
+  const pageSearchAfterSearch = findMovies.filter((movie) => {
+    return movie.nameRU.toLowerCase().includes(pageSearchForm.toLowerCase());
+  }); //КАРОТКОМЕТРАЖКИ ИЗ ПОИСКА
+
+  //ПОИСК
+  function pageSearch() {
+    setPageSaveMovies(pageSearchAllMovies);
+  }
+
+  //КАРОТКОМЕТРАЖКИ
+  function pageShortSearch() {
+    if (pageCheckBox) {
+      return setPageShortSearchArray(pageSearchByDurationMovies);
+    }
+  }
+
+  React.useEffect(() => {
+    localStorage.setItem("save-movies CheckBox", JSON.stringify(pageCheckBox));
+  }, [pageCheckBox]);
+  //КАРОТКОМЕТРАЖКИ ИЗ ПОИСКА
+  function pageSearchAfterSearc() {
+    if (pageCheckBox) {
+      return setPageSearchArray(pageSearchAfterSearch);
+    }
+  }
+
+  //ПОИСК ПО ФИЛЬМАМ
+  React.useEffect(() => {
+    pageSearch();
+  }, [pageSearchArray]);
+
+  //КАРОТКОМЕТРАЖКИ +
+  React.useEffect(() => {
+    pageShortSearch();
+  }, [savedMovie]);
+
+  //КАРОТКОМЕТРАЖКИ ИЗ ПОИСКА
+  React.useEffect(() => {
+    pageSearchAfterSearc();
+  }, []);
+
+  console.log(pageShortSearchArray);
+
   return (
     <>
       <Header loggedIn={loggedIn} isOpen={isOpen} />
       <main className='movies'>
-        <SearchForm />
-        <MoviesCardList savedMovie={savedMovie} />
+        <SearchForm
+          pageCheckBox={pageCheckBox}
+          setPageCheckBox={setPageCheckBox}
+          savedMovieActive={savedMovieActive}
+          pageSearch={pageSearch}
+          pageSearchForm={pageSearchForm}
+          setPageSearchForm={setPageSearchForm}
+          pageSearchAllMovies={pageSearchAllMovies}
+          setPageSearchArray={setPageSearchArray}
+          pageShortSearchArray={pageShortSearchArray}
+          pageSearchArray={pageSearchArray}
+          pageShortSearch={pageShortSearch}
+          setPageSaveMovies={setPageSaveMovies}
+          setfindMovies={setfindMovies}
+        />
+        <MoviesCardList
+          findMovies={findMovies}
+          pageSearchForm={pageSearchForm}
+          pageCheckBox={pageCheckBox}
+          savedMovie={savedMovie}
+          handleDeleteMovie={handleDeleteMovie}
+          pageShortSearchArray={pageShortSearchArray}
+          pageSaveMovies={pageSaveMovies}
+        />
       </main>
       <Footer />
     </>

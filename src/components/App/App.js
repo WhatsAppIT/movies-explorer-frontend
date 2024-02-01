@@ -165,7 +165,6 @@ function App() {
       .saveMovie(movie)
       .then((res) => {
         setSavedMovie([res, ...savedMovie]);
-        console.log(res);
       })
       .catch((err) => setError(err));
   }
@@ -175,7 +174,6 @@ function App() {
       .getSavedMovies()
       .then((res) => {
         setSavedMovie(res);
-        console.log(res);
       })
       .catch((err) => setError(err))
       .finally(() => {
@@ -200,7 +198,6 @@ function App() {
     return JSON.parse(localStorage.getItem(key));
   }
 
-  console.log("Приложение отобразилось");
   return (
     <div className='app'>
       <CurrentUserContext.Provider value={currentUser}>
