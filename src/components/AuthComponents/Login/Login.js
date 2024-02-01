@@ -133,8 +133,8 @@ function Login(props) {
           {passwordError}
         </span>
       </form>
-
-      {/*       {error > 0 ? (
+      {/* 
+      {error > 0 ? (
         "profile__save_error"
       ) : (
         <p className='profile__save_error profile__save_error_active'>
