@@ -30,7 +30,7 @@ function SavedMovies(props) {
   const [pageSearchArray, setPageSearchArray] = React.useState([]); //КАРОТКОМЕТРАЖКИ ИЗ ПОИСКА
   const [savedMovieActive, setSavedMovieActive] = React.useState(false);
 
-  //
+  //pageSaveMovies
 
   const pageSearchAllMovies = savedMovie.filter((movie) => {
     return movie.nameRU.toLowerCase().includes(pageSearchForm.toLowerCase());
@@ -40,7 +40,7 @@ function SavedMovies(props) {
     return movie.duration < 40;
   }); //КАРОТКОМЕТРАЖКИ
 
-  const pageSearchAfterSearch = findMovies.filter((movie) => {
+  const pageSearchAfterSearch = pageShortSearchArray.filter((movie) => {
     return movie.nameRU.toLowerCase().includes(pageSearchForm.toLowerCase());
   }); //КАРОТКОМЕТРАЖКИ ИЗ ПОИСКА
 
@@ -56,15 +56,16 @@ function SavedMovies(props) {
     }
   }
 
-  React.useEffect(() => {
-    localStorage.setItem("save-movies CheckBox", JSON.stringify(pageCheckBox));
-  }, [pageCheckBox]);
-  //КАРОТКОМЕТРАЖКИ ИЗ ПОИСКА
+  //КАРОТКОМЕТРАЖКИ ИЗ ПОИСКА !!!!!!!!!!
   function pageSearchAfterSearc() {
     if (pageCheckBox) {
       return setPageSearchArray(pageSearchAfterSearch);
     }
   }
+
+  React.useEffect(() => {
+    localStorage.setItem("save-movies CheckBox", JSON.stringify(pageCheckBox));
+  }, [pageCheckBox]);
 
   //ПОИСК ПО ФИЛЬМАМ
   React.useEffect(() => {
@@ -79,9 +80,9 @@ function SavedMovies(props) {
   //КАРОТКОМЕТРАЖКИ ИЗ ПОИСКА
   React.useEffect(() => {
     pageSearchAfterSearc();
-  }, []);
+  }, [pageShortSearchArray]);
 
-  console.log(pageShortSearchArray);
+  console.log(pageSearchArray);
 
   return (
     <>
@@ -101,6 +102,7 @@ function SavedMovies(props) {
           pageShortSearch={pageShortSearch}
           setPageSaveMovies={setPageSaveMovies}
           setfindMovies={setfindMovies}
+          pageSearchAfterSearc={pageSearchAfterSearc}
         />
         <MoviesCardList
           findMovies={findMovies}
@@ -110,6 +112,7 @@ function SavedMovies(props) {
           handleDeleteMovie={handleDeleteMovie}
           pageShortSearchArray={pageShortSearchArray}
           pageSaveMovies={pageSaveMovies}
+          pageSearchArray={pageSearchArray}
         />
       </main>
       <Footer />

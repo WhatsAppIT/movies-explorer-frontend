@@ -190,14 +190,16 @@ function Register(props) {
         </span>
       </form>
 
-      {error > 0 ? (
-        "profile__save_error"
+      {/*       {error ? (
+        <p className='profile__save_error profile__save_error_active'>
+          {error}
+        </p>
       ) : (
         <p className='profile__save_error profile__save_error_active'>
           {error}
         </p>
       )}
-
+ */}
       <button
         type='submit'
         onClick={handleSubmitRegister}

@@ -24,10 +24,12 @@ function MoviesCardList(props) {
     searchForm, // СТРОКА ИНПУТА
     pageSearchForm,
     pageShortSearchArray,
-    pageSearchArray,
     pageCheckBox,
     findMovies,
     pageSaveMovies,
+    pageSearchArray,
+    setIsLoading,
+    isLoading,
   } = props;
 
   const location = useLocation();
@@ -50,7 +52,7 @@ function MoviesCardList(props) {
                   />
                 ))
             ) : (
-              <h2 className='movies__notFound'>Введите данные для поиска</h2>
+              <h2 className='movies__notFound'>Ничего не найдено</h2>
             )
           ) : (
             //ПУСТОЙ ИНПУТ - ПОКАЗЫВАЮТСЯ ВСЕ КОРОТКОМЕТРАЖКИ
@@ -94,13 +96,10 @@ function MoviesCardList(props) {
     return (
       <section className='cards'>
         <ul className='cards__list'>
-          {
-            (savedMovie &&
-              !pageCheckBox &&
-              savedMovie.map(
-                (
-                  movie // -
-                ) => (
+          {savedMovie && !pageCheckBox
+            ? pageSearchForm === ""
+              ? savedMovie.map((movie) => (
+                  //ВСЕ СОХРАНЕННЫЕ ФИЛЬМЫ <h2>Ничего не найдено</h2>
                   <MoviesCard
                     key={movie.movieId}
                     movie={movie}
@@ -108,75 +107,20 @@ function MoviesCardList(props) {
                     handleSaveMovie={handleSaveMovie}
                     handleDeleteMovie={handleDeleteMovie}
                   />
-                )
-              )) ||
-              (!pageCheckBox &&
-                pageSaveMovies.map(
-                  (
-                    movie // -
-                  ) => (
-                    <MoviesCard
-                      key={movie.movieId}
-                      movie={movie}
-                      savedMovie={savedMovie}
-                      handleSaveMovie={handleSaveMovie}
-                      handleDeleteMovie={handleDeleteMovie}
-                    />
-                  )
                 ))
-
-            /*            ||
-
-            //все фильмы с чекбоксом + поиск
-            (pageShortSearchArray && pageCheckBox &&
-              pageSearchForm !== "" && // -----
-              pageShortSearchArray.map((movie) => (
-                <MoviesCard
-                  key={movie.movieId}
-                  movie={movie}
-                  savedMovie={savedMovie}
-                  handleSaveMovie={handleSaveMovie}
-                  handleDeleteMovie={handleDeleteMovie}
-                />
-              ))) */
-          }
-        </ul>
-      </section>
-    );
-  }
-}
-export default MoviesCardList;
-
-/* savedMovie && !pageCheckBox
-            ? pageSearchForm === ""
-              ? savedMovie.map(
-                  (
-                    movie // -
-                  ) => (
-                    <MoviesCard
-                      key={movie.movieId}
-                      movie={movie}
-                      savedMovie={savedMovie}
-                      handleSaveMovie={handleSaveMovie}
-                      handleDeleteMovie={handleDeleteMovie}
-                    />
-                  )
-                )
-              : pageSaveMovies.map(
-                  (
-                    movie // -
-                  ) => (
-                    <MoviesCard
-                      key={movie.movieId}
-                      movie={movie}
-                      savedMovie={savedMovie}
-                      handleSaveMovie={handleSaveMovie}
-                      handleDeleteMovie={handleDeleteMovie}
-                    />
-                  )
-                )
-            : (pageSearchForm === "" && // +
+              : pageSaveMovies.map((movie) => (
+                  //ПОИСК ПО СОХРАНЕННЫМ ФИЛЬМАМ
+                  <MoviesCard
+                    key={movie.movieId}
+                    movie={movie}
+                    savedMovie={savedMovie}
+                    handleSaveMovie={handleSaveMovie}
+                    handleDeleteMovie={handleDeleteMovie}
+                  />
+                ))
+            : (pageSearchForm === "" &&
                 pageShortSearchArray.map((movie) => (
+                  //ВСЕ КОРОТКОМЕТРАЖКИ
                   <MoviesCard
                     key={movie.movieId}
                     movie={movie}
@@ -185,8 +129,8 @@ export default MoviesCardList;
                     handleDeleteMovie={handleDeleteMovie}
                   />
                 ))) ||
-              (pageSearchForm !== "" && // -----
-                pageShortSearchArray.map((movie) => (
+              (pageSearchForm !== "" &&
+                pageSearchArray.map((movie) => (
                   <MoviesCard
                     key={movie.movieId}
                     movie={movie}
@@ -194,4 +138,10 @@ export default MoviesCardList;
                     handleSaveMovie={handleSaveMovie}
                     handleDeleteMovie={handleDeleteMovie}
                   />
-                ))) */
+                )))}
+        </ul>
+      </section>
+    );
+  }
+}
+export default MoviesCardList;

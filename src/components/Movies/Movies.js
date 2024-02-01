@@ -19,6 +19,7 @@ function Movies(props) {
     handleSaveMovie,
     handleDeleteMovie,
     savedMovie,
+    setIsLoading,
   } = props;
 
   //ОТОБРАЖЕНИЕ ФИЛЬМОВ В ЗАВИСИМОСТИ ОТ РАЗРЕШЕНИЯ И КНОПКА "ЕЩЕ"
@@ -89,7 +90,7 @@ function Movies(props) {
 
   React.useEffect(() => {
     filterMoviesInSearch();
-  }, []);
+  }, [searchArray]);
 
   //WINDOWWIDTH
   React.useEffect(() => {
@@ -165,6 +166,8 @@ function Movies(props) {
             shortMovies={shortMovies}
             searchForm={searchForm}
             buttonElseActive={buttonElseActive}
+            setIsLoading={setIsLoading}
+            isLoading={isLoading}
           />
         )}
       </main>

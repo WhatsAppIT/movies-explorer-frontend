@@ -102,7 +102,7 @@ function App() {
         setUpdateSuccessMessage(true);
         console.log(res);
       })
-      .catch((err) => setError(err))
+      .catch((err) => setError("Такая почта занята"))
       .finally(() => {
         setIsLoading(false);
       });
@@ -234,6 +234,7 @@ function App() {
                 handleSaveMovie={handleSaveMovie}
                 handleDeleteMovie={handleDeleteMovie}
                 savedMovie={savedMovie}
+                setIsLoading={setIsLoading}
               />
             }
           />

@@ -24,6 +24,7 @@ function SearchForm(props) {
     pageShortSearch,
     setfindMovies,
     setPageSaveMovies,
+    pageSearchAfterSearc,
   } = props;
 
   const location = useLocation();
@@ -38,6 +39,7 @@ function SearchForm(props) {
   //SAVE-MOVIES SUBMIT
   function handlePageSubmitSearchForm(e) {
     e.preventDefault();
+    pageSearchAfterSearc();
     setPageSaveMovies(pageSearchAllMovies);
     console.log("handlePageSubmitSearchForm");
   }
