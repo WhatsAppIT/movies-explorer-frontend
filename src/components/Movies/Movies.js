@@ -20,6 +20,7 @@ function Movies(props) {
     handleDeleteMovie,
     savedMovie,
     setIsLoading,
+    handleGetMoviesFromApi,
   } = props;
 
   //ОТОБРАЖЕНИЕ ФИЛЬМОВ В ЗАВИСИМОСТИ ОТ РАЗРЕШЕНИЯ И КНОПКА "ЕЩЕ"
@@ -77,10 +78,12 @@ function Movies(props) {
   //CHECKBOXXXXXXX
   function filterMoviesInSearch() {
     if (checkBox) {
+      handleGetMoviesFromApi();
       return setFilterArray(searchInSearchArray);
     }
   }
   function findAllShortMovies() {
+    handleGetMoviesFromApi();
     setShortMovies(searchByDurationMovies);
   }
 

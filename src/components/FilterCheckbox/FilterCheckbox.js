@@ -10,6 +10,7 @@ function FilterCheckbox(props) {
     pageCheckBox,
     setPageCheckBox,
     pageShortSearch,
+    handleGetMoviesFromApi,
   } = props;
   const location = useLocation();
 
@@ -22,7 +23,7 @@ function FilterCheckbox(props) {
             type='checkbox'
             checked={checkBox}
             onClick={filterMoviesInSearch}
-            onChange={() => setCheckBox((prev) => !prev)}
+            onChange={() => setCheckBox((res) => !res)}
           ></input>
         </div>
         <label className='form__filter_title'>Короткометражки</label>

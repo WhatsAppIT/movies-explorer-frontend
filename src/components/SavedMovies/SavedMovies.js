@@ -14,6 +14,8 @@ function SavedMovies(props) {
     savedMovie,
     handleGetSavedMovies,
     handleDeleteMovie,
+    setIsLoading,
+    handleGetMoviesFromApi,
   } = props;
 
   const pageCheckBoxCondition = JSON.parse(
@@ -52,6 +54,7 @@ function SavedMovies(props) {
   //КАРОТКОМЕТРАЖКИ
   function pageShortSearch() {
     if (pageCheckBox) {
+      handleGetMoviesFromApi();
       return setPageShortSearchArray(pageSearchByDurationMovies);
     }
   }
@@ -103,6 +106,8 @@ function SavedMovies(props) {
           setPageSaveMovies={setPageSaveMovies}
           setfindMovies={setfindMovies}
           pageSearchAfterSearc={pageSearchAfterSearc}
+          setIsLoading={setIsLoading}
+          handleGetMoviesFromApi={handleGetMoviesFromApi}
         />
         <MoviesCardList
           findMovies={findMovies}

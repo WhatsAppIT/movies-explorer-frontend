@@ -25,6 +25,8 @@ function SearchForm(props) {
     setfindMovies,
     setPageSaveMovies,
     pageSearchAfterSearc,
+    setIsLoading,
+    handleGetMoviesFromApi,
   } = props;
 
   const location = useLocation();
@@ -32,6 +34,8 @@ function SearchForm(props) {
   //MOVIES SUBMIT
   function handleSubmitSearchForm(e) {
     e.preventDefault();
+    setIsLoading(true);
+    handleGetMoviesFromApi();
     setSearchArray(searchAllMovies);
     console.log("handleSubmitSearchForm");
   }
@@ -39,6 +43,8 @@ function SearchForm(props) {
   //SAVE-MOVIES SUBMIT
   function handlePageSubmitSearchForm(e) {
     e.preventDefault();
+    setIsLoading(true);
+    handleGetMoviesFromApi();
     pageSearchAfterSearc();
     setPageSaveMovies(pageSearchAllMovies);
     console.log("handlePageSubmitSearchForm");

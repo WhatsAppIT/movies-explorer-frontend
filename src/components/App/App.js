@@ -235,6 +235,7 @@ function App() {
                 handleDeleteMovie={handleDeleteMovie}
                 savedMovie={savedMovie}
                 setIsLoading={setIsLoading}
+                handleGetMoviesFromApi={handleGetMoviesFromApi}
               />
             }
           />
@@ -247,6 +248,8 @@ function App() {
                 isOpen={handleHeaderPopupOpen}
                 handleGetSavedMovies={handleGetSavedMovies}
                 handleDeleteMovie={handleDeleteMovie}
+                setIsLoading={setIsLoading}
+                handleGetMoviesFromApi={handleGetMoviesFromApi}
               />
             }
           />

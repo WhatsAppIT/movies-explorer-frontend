@@ -45,7 +45,9 @@ function MoviesCard(props) {
               isSaved ? "card__image_save_true" : "card__image_save_false"
             }`}
             onClick={() => {
-              isSaved ? handleDeleteMovie(movie._id) : handleSaveMovie(movie);
+              isSaved
+                ? handleDeleteMovie(movie._id ? movie._id : savedId)
+                : handleSaveMovie(movie);
             }}
           ></button>
         </div>
