@@ -78,12 +78,10 @@ function Movies(props) {
   //CHECKBOXXXXXXX
   function filterMoviesInSearch() {
     if (checkBox) {
-      handleGetMoviesFromApi();
       return setFilterArray(searchInSearchArray);
     }
   }
   function findAllShortMovies() {
-    handleGetMoviesFromApi();
     setShortMovies(searchByDurationMovies);
   }
 

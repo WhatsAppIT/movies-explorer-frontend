@@ -50,7 +50,7 @@ function SavedMovies(props) {
   function pageSearch() {
     setPageSaveMovies(pageSearchAllMovies);
   }
-
+  console.log(savedMovie);
   //КАРОТКОМЕТРАЖКИ
   function pageShortSearch() {
     if (pageCheckBox) {
