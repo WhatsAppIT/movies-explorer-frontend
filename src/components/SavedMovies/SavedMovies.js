@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import SearchForm from "../Movies/SearchForm/SearchForm";
-//import Preloader from './Preloader/Preloader';
+import Preloader from "../Movies/Preloader/Preloader";
 import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
 //import MoviesCard from './MoviesCard/MoviesCard';
 import "./SavedMovies.css";
@@ -16,77 +16,85 @@ function SavedMovies(props) {
     handleDeleteMovie,
     setIsLoading,
     handleGetMoviesFromApi,
+    setIntoLocalStorage,
+    isLoading,
   } = props;
 
   const pageCheckBoxCondition = JSON.parse(
-    localStorage.getItem("save-movies CheckBox")
+    localStorage.getItem("CheckBox Save-Movies")
   );
 
   const [pageSaveMovies, setPageSaveMovies] = React.useState(savedMovie); //ФИЛЬМЫ
-  const [findMovies, setfindMovies] = React.useState([]); //РЕЗУЛЬТАТЫ ПОИСКА
+  const [pageShortMovies, setPageShortMovies] = React.useState([]); //КОРОТКОМЕТРАЖКИ
+  const [pageSearchForm, setPageSearchForm] = React.useState(""); //ТЕКСТ ЗАПРОСА
   const [pageCheckBox, setPageCheckBox] = React.useState(
     pageCheckBoxCondition || false
   );
-  const [pageShortSearchArray, setPageShortSearchArray] = React.useState([]); //КАРОТКОМЕТРАЖКИ
-  const [pageSearchForm, setPageSearchForm] = React.useState("");
-  const [pageSearchArray, setPageSearchArray] = React.useState([]); //КАРОТКОМЕТРАЖКИ ИЗ ПОИСКА
-  const [savedMovieActive, setSavedMovieActive] = React.useState(false);
-
-  //pageSaveMovies
+  const [pageSearchArray, setPageSearchArray] = React.useState([]); //ПОИСК ФИЛЬМЫ
+  const [pageFilterArray, setPageFilterArray] = React.useState([]); //ПОИСК КОРОТКОМЕТРАЖКИ
+  const [submit, setSubmit] = React.useState(false); //ПОИСК КОРОТКОМЕТРАЖКИ
 
   const pageSearchAllMovies = savedMovie.filter((movie) => {
     return movie.nameRU.toLowerCase().includes(pageSearchForm.toLowerCase());
   }); //ПОИСК
-
   const pageSearchByDurationMovies = savedMovie.filter((movie) => {
     return movie.duration < 40;
   }); //КАРОТКОМЕТРАЖКИ
-
-  const pageSearchAfterSearch = pageShortSearchArray.filter((movie) => {
+  const pageSearchAfterSearch = pageShortMovies.filter((movie) => {
     return movie.nameRU.toLowerCase().includes(pageSearchForm.toLowerCase());
   }); //КАРОТКОМЕТРАЖКИ ИЗ ПОИСКА
 
-  //ПОИСК
-  function pageSearch() {
-    setPageSaveMovies(pageSearchAllMovies);
-  }
-  console.log(savedMovie);
-  //КАРОТКОМЕТРАЖКИ
-  function pageShortSearch() {
-    if (pageCheckBox) {
-      handleGetMoviesFromApi();
-      return setPageShortSearchArray(pageSearchByDurationMovies);
-    }
-  }
-
-  //КАРОТКОМЕТРАЖКИ ИЗ ПОИСКА !!!!!!!!!!
-  function pageSearchAfterSearc() {
-    if (pageCheckBox) {
-      return setPageSearchArray(pageSearchAfterSearch);
-    }
-  }
-
   React.useEffect(() => {
-    localStorage.setItem("save-movies CheckBox", JSON.stringify(pageCheckBox));
+    setIntoLocalStorage("CheckBox Save-Movies", pageCheckBox);
   }, [pageCheckBox]);
 
-  //ПОИСК ПО ФИЛЬМАМ
+  //ФУНКЦИЯ ПОИСК КОРОТКОМЕТРАЖЕК
   React.useEffect(() => {
-    pageSearch();
-  }, [pageSearchArray]);
+    pageFilterMoviesInSearch();
+  }, [pageSearchAfterSearch]);
+  React.useEffect(() => {
+    setPageFilterArray(pageSearchAfterSearch);
+  }, [pageShortMovies]);
 
-  //КАРОТКОМЕТРАЖКИ +
+  //ФУНКЦИЯ КОРОТКОМЕТРАЖКИ
   React.useEffect(() => {
-    pageShortSearch();
+    pageShowShortMovies();
   }, [savedMovie]);
 
-  //КАРОТКОМЕТРАЖКИ ИЗ ПОИСКА
+  //ФУНКЦИЯ ФИЛЬМЫ
   React.useEffect(() => {
-    pageSearchAfterSearc();
-  }, [pageShortSearchArray]);
+    showLikedMovies();
+  }, [savedMovie]);
 
-  console.log(pageSearchArray);
+  React.useEffect(() => {
+    renderMoviesInSubmit();
+  }, [submit]);
 
+  function renderMoviesInSubmit() {
+    setSubmit(true);
+  }
+
+  //ФУНКЦИЯ ФИЛЬМЫ
+  function showLikedMovies() {
+    setPageSaveMovies(savedMovie);
+  }
+  //ФУНКЦИЯ КОРОТКОМЕТРАЖКИ
+  function pageShowShortMovies() {
+    setPageShortMovies(pageSearchByDurationMovies);
+  }
+
+  //SAVE-MOVIES SUBMIT ПОИСК ФИЛЬМОВ
+  function handlePageSubmitSearchForm(e) {
+    e.preventDefault();
+    setPageSearchArray(pageSearchAllMovies);
+  }
+  //ПОИСК КОРОТКОМЕТРАЖЕК
+  function pageFilterMoviesInSearch() {
+    if (!submit) {
+      setPageFilterArray(pageSearchAfterSearch);
+    }
+  }
+  console.log(pageSearchAfterSearch);
   return (
     <>
       <Header loggedIn={loggedIn} isOpen={isOpen} />
@@ -94,31 +102,33 @@ function SavedMovies(props) {
         <SearchForm
           pageCheckBox={pageCheckBox}
           setPageCheckBox={setPageCheckBox}
-          savedMovieActive={savedMovieActive}
-          pageSearch={pageSearch}
           pageSearchForm={pageSearchForm}
           setPageSearchForm={setPageSearchForm}
           pageSearchAllMovies={pageSearchAllMovies}
           setPageSearchArray={setPageSearchArray}
-          pageShortSearchArray={pageShortSearchArray}
           pageSearchArray={pageSearchArray}
-          pageShortSearch={pageShortSearch}
           setPageSaveMovies={setPageSaveMovies}
-          setfindMovies={setfindMovies}
-          pageSearchAfterSearc={pageSearchAfterSearc}
           setIsLoading={setIsLoading}
           handleGetMoviesFromApi={handleGetMoviesFromApi}
+          handlePageSubmitSearchForm={handlePageSubmitSearchForm}
+          pageFilterMoviesInSearch={pageFilterMoviesInSearch}
+          pageFilterArray={pageFilterArray}
         />
-        <MoviesCardList
-          findMovies={findMovies}
-          pageSearchForm={pageSearchForm}
-          pageCheckBox={pageCheckBox}
-          savedMovie={savedMovie}
-          handleDeleteMovie={handleDeleteMovie}
-          pageShortSearchArray={pageShortSearchArray}
-          pageSaveMovies={pageSaveMovies}
-          pageSearchArray={pageSearchArray}
-        />
+        {isLoading ? (
+          <Preloader />
+        ) : (
+          <MoviesCardList
+            pageSearchForm={pageSearchForm}
+            pageCheckBox={pageCheckBox}
+            savedMovie={savedMovie}
+            handleDeleteMovie={handleDeleteMovie}
+            pageSaveMovies={pageSaveMovies}
+            pageSearchArray={pageSearchArray}
+            pageShortMovies={pageShortMovies}
+            pageSearchAfterSearch={pageSearchAfterSearch}
+            submit={submit}
+          />
+        )}
       </main>
       <Footer />
     </>

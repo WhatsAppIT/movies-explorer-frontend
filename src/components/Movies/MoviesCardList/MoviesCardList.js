@@ -3,10 +3,12 @@ import { useLocation } from "react-router-dom";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import ButtonShowMoreMovies from "../ButtonShowMoreMovies/ButtonShowMoreMovies.js";
 import "./MoviesCardList.css";
-//import Preloader from "../Preloader/Preloader";
+import Preloader from "../Preloader/Preloader";
 
 function MoviesCardList(props) {
   const {
+    searchMessage,
+    error,
     searchAllMovies,
     buttonSubmit,
     buttonElseActive,
@@ -25,11 +27,15 @@ function MoviesCardList(props) {
     pageSearchForm,
     pageShortSearchArray,
     pageCheckBox,
-    findMovies,
-    pageSaveMovies,
     pageSearchArray,
+    pageSaveMovies,
     setIsLoading,
     isLoading,
+    pageFilterArray,
+    pageShortMovies,
+    pageSearchAfterSearch,
+    submit,
+    searchComplete,
   } = props;
 
   const location = useLocation();
@@ -40,7 +46,7 @@ function MoviesCardList(props) {
         <ul className='cards__list'>
           {!checkBox ? (
             searchArray.length > 0 ? (
-              searchArray
+              searchArray //ПОИСК ФИЛЬМОВ
                 .slice(0, visibleSearchMovies)
                 .map((movie) => (
                   <MoviesCard
@@ -52,39 +58,25 @@ function MoviesCardList(props) {
                   />
                 ))
             ) : (
-              <h2 className='movies__notFound'>Ничего не найдено</h2>
+              <h2 className='movies__notFound'>{searchMessage}</h2>
             )
+          ) : filterArray.length > 0 ? (
+            filterArray //ПОИСК КОРОТКОМЕТРАЖЕК
+              .slice(0, visibleSearchMovies)
+              .map((movie) => (
+                <MoviesCard
+                  key={movie.movieId}
+                  movie={movie}
+                  savedMovie={savedMovie}
+                  handleSaveMovie={handleSaveMovie}
+                  handleDeleteMovie={handleDeleteMovie}
+                />
+              ))
           ) : (
-            //ПУСТОЙ ИНПУТ - ПОКАЗЫВАЮТСЯ ВСЕ КОРОТКОМЕТРАЖКИ
-            (checkBox &&
-              searchForm === "" &&
-              shortMovies
-                .slice(0, visibleSearchMovies)
-                .map((movie) => (
-                  <MoviesCard
-                    key={movie.movieId}
-                    movie={movie}
-                    savedMovie={savedMovie}
-                    handleSaveMovie={handleSaveMovie}
-                    handleDeleteMovie={handleDeleteMovie}
-                  />
-                ))) || //ПОИСК КОРОТКОМЕТРАЖЕК ИЗ ПОИСКА
-            (checkBox &&
-              searchForm !== "" &&
-              filterArray
-                .slice(0, visibleSearchMovies)
-                .map((movie) => (
-                  <MoviesCard
-                    key={movie.movieId}
-                    movie={movie}
-                    savedMovie={savedMovie}
-                    handleSaveMovie={handleSaveMovie}
-                    handleDeleteMovie={handleDeleteMovie}
-                  />
-                )))
+            <h2 className='movies__notFound'>{searchMessage}</h2>
           )}
         </ul>
-        {visibleSearchMovies < (searchArray.length || shortMovies.length) &&
+        {visibleSearchMovies < (searchArray.length || filterArray.length) &&
           !buttonSubmit && (
             <ButtonShowMoreMovies addMoreMovies={addMoreMovies} />
           )}
@@ -96,10 +88,9 @@ function MoviesCardList(props) {
     return (
       <section className='cards'>
         <ul className='cards__list'>
-          {savedMovie && !pageCheckBox
-            ? pageSearchForm === ""
-              ? savedMovie.map((movie) => (
-                  //ВСЕ СОХРАНЕННЫЕ ФИЛЬМЫ <h2>Ничего не найдено</h2>
+          {!pageCheckBox
+            ? pageSearchArray.length > 0 //ПОИСК ФИЛЬМЫ
+              ? pageSearchArray.map((movie) => (
                   <MoviesCard
                     key={movie.movieId}
                     movie={movie}
@@ -109,7 +100,7 @@ function MoviesCardList(props) {
                   />
                 ))
               : pageSaveMovies.map((movie) => (
-                  //ПОИСК ПО СОХРАНЕННЫМ ФИЛЬМАМ
+                  //ВСЕ СОХРАНЕННЫЕ ФИЛЬМЫ ++
                   <MoviesCard
                     key={movie.movieId}
                     movie={movie}
@@ -118,9 +109,9 @@ function MoviesCardList(props) {
                     handleDeleteMovie={handleDeleteMovie}
                   />
                 ))
-            : (pageSearchForm === "" &&
-                pageShortSearchArray.map((movie) => (
-                  //ВСЕ КОРОТКОМЕТРАЖКИ
+            : //КОРОТКОМЕТРАЖКИ ++
+              (pageSearchForm === "" &&
+                pageShortMovies.map((movie) => (
                   <MoviesCard
                     key={movie.movieId}
                     movie={movie}
@@ -128,9 +119,9 @@ function MoviesCardList(props) {
                     handleSaveMovie={handleSaveMovie}
                     handleDeleteMovie={handleDeleteMovie}
                   />
-                ))) ||
+                ))) || //ПОИСК КОРОТКОМЕТРАЖКИ ----
               (pageSearchForm !== "" &&
-                pageSearchArray.map((movie) => (
+                pageSearchAfterSearch.map((movie) => (
                   <MoviesCard
                     key={movie.movieId}
                     movie={movie}

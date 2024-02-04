@@ -6,11 +6,13 @@ function FilterCheckbox(props) {
   const {
     checkBox,
     setCheckBox,
-    filterMoviesInSearch,
+    handleSubmitSearchForm,
     pageCheckBox,
     setPageCheckBox,
-    pageShortSearch,
-    handleGetMoviesFromApi,
+    handlePageSubmitSearchForm,
+    pageSearchAfterSearc,
+    filterMoviesInSearch,
+    pageFilterMoviesInSearch,
   } = props;
   const location = useLocation();
 
@@ -39,7 +41,7 @@ function FilterCheckbox(props) {
             className='form__checkbox_input'
             type='checkbox'
             checked={pageCheckBox}
-            onClick={pageShortSearch}
+            onClick={pageFilterMoviesInSearch}
             onChange={() => setPageCheckBox((res) => !res)}
           ></input>
         </div>

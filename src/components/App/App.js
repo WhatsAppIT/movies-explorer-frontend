@@ -47,6 +47,7 @@ function App() {
         handleGetUser();
         navigate("/movies", { replace: true });
         console.log(res);
+        handleGetMoviesFromApi();
       })
       .catch((err) => {
         console.log(err);
@@ -102,7 +103,7 @@ function App() {
         setUpdateSuccessMessage(true);
         console.log(res);
       })
-      .catch((err) => setError("Такая почта занята"))
+      .catch(() => setError("Такая почта занята"))
       .finally(() => {
         setIsLoading(false);
       });
@@ -170,10 +171,11 @@ function App() {
   }
 
   function handleGetSavedMovies() {
+    setIsLoading(true);
     mainApi
       .getSavedMovies()
       .then((res) => {
-        setSavedMovie(res);
+        setSavedMovie(res.slice().reverse());
       })
       .catch((err) => setError(err))
       .finally(() => {
@@ -224,6 +226,7 @@ function App() {
             path='/movies'
             element={
               <Movies
+                setError={setError}
                 loggedIn={loggedIn}
                 isOpen={handleHeaderPopupOpen}
                 movies={movies}
@@ -250,6 +253,7 @@ function App() {
                 handleDeleteMovie={handleDeleteMovie}
                 setIsLoading={setIsLoading}
                 handleGetMoviesFromApi={handleGetMoviesFromApi}
+                setIntoLocalStorage={setIntoLocalStorage}
               />
             }
           />

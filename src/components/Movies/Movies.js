@@ -32,66 +32,61 @@ function Movies(props) {
   const [buttonSubmit, setButtonSubmit] = React.useState(false);
   const [buttonElseActive, setbuttonElseActive] = React.useState(false);
 
-  const textInInput = JSON.parse(localStorage.getItem("Текст Из Поиска"));
-  const checkBoxCondition = JSON.parse(
-    localStorage.getItem("Положение Чекбокса")
-  );
-  const searchFilms = JSON.parse(
-    localStorage.getItem("Массив Найденых Фильмов")
-  );
-  const searchByCheckBox = JSON.parse(
-    localStorage.getItem("Поиск По Чекбоксу")
-  );
+  const textInInput = JSON.parse(localStorage.getItem("Input"));
+  const checkBoxCondition = JSON.parse(localStorage.getItem("Condition"));
+  const searchFilms = JSON.parse(localStorage.getItem("Search"));
+  const searchByCheckBox = JSON.parse(localStorage.getItem("Search ChecBox"));
   const searchAllShortMovies = JSON.parse(
-    localStorage.getItem("Поиск Короткометражек Из АПИ")
+    localStorage.getItem("All Shot Movies")
   );
 
   //"LOCALsTORAGE!!!!!" ПОСЛЕ ПОИСКА ФИЛЬМОВ - ТЕКСТ ЗАПРОСА, СОСТОЯНИЕ ЧЕКБОКСА, НАЙДЕННЫЕ ФИЛЬМЫ
   const [searchForm, setSearchForm] = React.useState(textInInput || ""); //ТЕКСТ ЗАПРОСА
   const [checkBox, setCheckBox] = React.useState(checkBoxCondition || false); //СОСТОЯНИЕ ЧЕКБОКСА
   const [searchArray, setSearchArray] = React.useState(searchFilms || []); //НАЙДЕННЫЕ ФИЛЬМЫ
-  const [filterArray, setFilterArray] = React.useState(searchByCheckBox || []); //ПОКАЗЫВАЕТ МАССИВ КОРОТКОМЕТРАЖЕК ПРИ НАЖАТИИ НА ЧЕКБОКС
+  const [filterArray, setFilterArray] = React.useState(searchByCheckBox || []); //НАЙДЕНЫЕ КОРОТКОМЕТРАЖКИ
   const [shortMovies, setShortMovies] = React.useState(
     searchAllShortMovies || []
   ); //ПОИСК КОРОТКОМЕТРАЖЕК ИЗ ГЛАВНОГО АПИ
-
-  //СОХРАНЕНИЕ ДАННЫХ В LOCALSTORAGE
-  React.useEffect(() => {
-    setIntoLocalStorage("Текст Из Поиска", searchForm);
-    setIntoLocalStorage("Положение Чекбокса", checkBox); //+
-    setIntoLocalStorage("Массив Найденых Фильмов", searchArray);
-    setIntoLocalStorage("Поиск По Чекбоксу", filterArray);
-    setIntoLocalStorage("Поиск Короткометражек Из АПИ", shortMovies);
-  }, [checkBox, searchForm, searchArray, filterArray, shortMovies]);
+  const [searchMessage, setSearchMessage] = React.useState("");
 
   //ПОИСК ФИЛЬМОВ
   const searchAllMovies = movies.filter((movie) => {
     return movie.nameRU.toLowerCase().includes(searchForm.toLowerCase());
-  });
+  }); //ПОИСК
   const searchByDurationMovies = movies.filter((movie) => {
-    return movie.duration < 40;
+    return movie.duration < 40; //КОРОТКОМЕТРАЖКИ
   });
-  const searchInSearchArray = searchArray.filter((movie) => {
-    return movie.duration < 40;
-  });
+  const searchInSearchArray = shortMovies.filter((movie) => {
+    return movie.nameRU.toLowerCase().includes(searchForm.toLowerCase());
+  }); //КОРОТКОМЕТРАЖКИ ИЗ ПОИСКА
+
+  //СОХРАНЕНИЕ ДАННЫХ В LOCALSTORAGE
+  React.useEffect(() => {
+    setIntoLocalStorage("Input", searchForm);
+    setIntoLocalStorage("Condition", checkBox); //+
+    setIntoLocalStorage("Search", searchArray);
+    setIntoLocalStorage("Search ChecBox", filterArray);
+    setIntoLocalStorage("All Shot Movies", shortMovies);
+  }, [checkBox, searchForm, searchArray, filterArray, shortMovies]);
+
+  React.useEffect(() => {
+    setIntoLocalStorage("Search ChecBox", searchInSearchArray);
+  }, [searchInSearchArray]);
 
   //CHECKBOXXXXXXX
-  function filterMoviesInSearch() {
-    if (checkBox) {
-      return setFilterArray(searchInSearchArray);
-    }
-  }
+
   function findAllShortMovies() {
     setShortMovies(searchByDurationMovies);
   }
-
+  //console.log(searchByDurationMovies);
   React.useEffect(() => {
     findAllShortMovies();
   }, [movies]);
 
   React.useEffect(() => {
     filterMoviesInSearch();
-  }, [searchArray]);
+  }, []);
 
   //WINDOWWIDTH
   React.useEffect(() => {
@@ -132,8 +127,34 @@ function Movies(props) {
   //КНОПКА "ЕЩЕ"
   function addMoreMovies() {
     setVisibleSearchMovies(visibleSearchMovies + addMovies);
-    console.log("addMoreMovies");
   }
+
+  //MOVIES SUBMIT && CLICK CHECKBOX
+  function handleSubmitSearchForm(e) {
+    e.preventDefault();
+    if (searchArray.length === 0 || filterArray.length === 0) {
+      setSearchMessage("Ничего не найдено");
+    }
+    if (searchForm !== 0) {
+      setSearchArray(searchAllMovies);
+    }
+    if (searchForm !== 0) {
+      setFilterArray(searchInSearchArray);
+    }
+  }
+
+  function filterMoviesInSearch() {
+    if (filterArray.length === 0) {
+      setSearchMessage("Ничего не найдено");
+    }
+    if (searchForm !== 0) {
+      setFilterArray(searchInSearchArray);
+    } else {
+      setShortMovies(searchAllShortMovies);
+    }
+  }
+
+  console.log(filterArray);
 
   return (
     <>
@@ -147,11 +168,13 @@ function Movies(props) {
           filterMoviesInSearch={filterMoviesInSearch}
           setSearchArray={setSearchArray}
           searchAllMovies={searchAllMovies}
+          handleSubmitSearchForm={handleSubmitSearchForm}
         />
-        {isLoading && loggedIn ? (
+        {isLoading ? (
           <Preloader />
         ) : (
           <MoviesCardList
+            searchMessage={searchMessage}
             searchAllMovies={searchAllMovies}
             buttonSubmit={buttonSubmit}
             savedMovie={savedMovie}

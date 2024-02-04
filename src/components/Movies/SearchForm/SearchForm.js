@@ -11,42 +11,16 @@ function SearchForm(props) {
     checkBox,
     setCheckBox,
     filterMoviesInSearch,
-    savedMovieActive,
-    pageSearch,
-    setSearchArray,
-    searchAllMovies,
     pageSearchForm,
     setPageSearchForm,
-    pageSearchAllMovies,
-    setPageSearchArray,
     setPageCheckBox,
     pageCheckBox,
-    pageShortSearch,
-    setfindMovies,
-    setPageSaveMovies,
-    pageSearchAfterSearc,
-    setIsLoading,
-    handleGetMoviesFromApi,
+    handleSubmitSearchForm,
+    handlePageSubmitSearchForm,
+    pageFilterMoviesInSearch,
   } = props;
 
   const location = useLocation();
-
-  //MOVIES SUBMIT
-  function handleSubmitSearchForm(e) {
-    e.preventDefault();
-
-    setSearchArray(searchAllMovies);
-    console.log("handleSubmitSearchForm");
-  }
-
-  //SAVE-MOVIES SUBMIT
-  function handlePageSubmitSearchForm(e) {
-    e.preventDefault();
-
-    pageSearchAfterSearc();
-    setPageSaveMovies(pageSearchAllMovies);
-    console.log("handlePageSubmitSearchForm");
-  }
 
   if (location.pathname === "/movies") {
     return (
@@ -102,7 +76,7 @@ function SearchForm(props) {
         <FilterCheckbox
           setPageCheckBox={setPageCheckBox}
           pageCheckBox={pageCheckBox}
-          pageShortSearch={pageShortSearch}
+          pageFilterMoviesInSearch={pageFilterMoviesInSearch}
         />
       </div>
     );
