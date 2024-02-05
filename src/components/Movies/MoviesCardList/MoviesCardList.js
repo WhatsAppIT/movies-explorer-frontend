@@ -8,34 +8,27 @@ import Preloader from "../Preloader/Preloader";
 function MoviesCardList(props) {
   const {
     searchMessage,
-    error,
-    searchAllMovies,
     buttonSubmit,
-    buttonElseActive,
     savedMovie,
     handleSaveMovie,
     handleDeleteMovie,
     visibleSearchMovies,
     addMoreMovies,
     searchArray, //ФИЛЬМЫ ПОСЛЕ ПОИСКА
-    searchFilms,
     filterArray, //КОРОТКОМЕТРАЖКИ ИЗ ПОИСКА ПРИ ВКЛ ЧЕКБОКСЕ
     checkBox,
-    searchByDurationMovies,
-    shortMovies, // ВСЕ КОРОТКОМЕТРАЖКИ ИЗ АПИ
-    searchForm, // СТРОКА ИНПУТА
     pageSearchForm,
-    pageShortSearchArray,
     pageCheckBox,
     pageSearchArray,
     pageSaveMovies,
-    setIsLoading,
-    isLoading,
-    pageFilterArray,
     pageShortMovies,
-    pageSearchAfterSearch,
-    submit,
-    searchComplete,
+    pageSearchInSearchArray,
+    searchForm,
+    pageInfoMessage,
+    setPageInfoMessage,
+    pageFilterArray,
+    pageSearchByDurationMovies,
+    isLoading,
   } = props;
 
   const location = useLocation();
@@ -76,10 +69,15 @@ function MoviesCardList(props) {
             <h2 className='movies__notFound'>{searchMessage}</h2>
           )}
         </ul>
-        {visibleSearchMovies < (searchArray.length || filterArray.length) &&
-          !buttonSubmit && (
-            <ButtonShowMoreMovies addMoreMovies={addMoreMovies} />
-          )}
+        {!checkBox
+          ? visibleSearchMovies < searchArray.length &&
+            !buttonSubmit && (
+              <ButtonShowMoreMovies addMoreMovies={addMoreMovies} />
+            )
+          : visibleSearchMovies < filterArray.length &&
+            !buttonSubmit && (
+              <ButtonShowMoreMovies addMoreMovies={addMoreMovies} />
+            )}
       </section>
     );
   }
@@ -88,9 +86,10 @@ function MoviesCardList(props) {
     return (
       <section className='cards'>
         <ul className='cards__list'>
-          {!pageCheckBox
-            ? pageSearchArray.length > 0 //ПОИСК ФИЛЬМЫ
-              ? pageSearchArray.map((movie) => (
+          {!pageCheckBox ? (
+            pageSearchArray.length > 0 ? (
+              pageSearchArray //ФИЛЬМЫ ПОИСК
+                .map((movie) => (
                   <MoviesCard
                     key={movie.movieId}
                     movie={movie}
@@ -99,8 +98,9 @@ function MoviesCardList(props) {
                     handleDeleteMovie={handleDeleteMovie}
                   />
                 ))
-              : pageSaveMovies.map((movie) => (
-                  //ВСЕ СОХРАНЕННЫЕ ФИЛЬМЫ ++
+            ) : (
+              pageSaveMovies //ФИЛЬМЫ
+                .map((movie) => (
                   <MoviesCard
                     key={movie.movieId}
                     movie={movie}
@@ -109,28 +109,23 @@ function MoviesCardList(props) {
                     handleDeleteMovie={handleDeleteMovie}
                   />
                 ))
-            : //КОРОТКОМЕТРАЖКИ ++
-              (pageSearchForm === "" &&
-                pageShortMovies.map((movie) => (
-                  <MoviesCard
-                    key={movie.movieId}
-                    movie={movie}
-                    savedMovie={savedMovie}
-                    handleSaveMovie={handleSaveMovie}
-                    handleDeleteMovie={handleDeleteMovie}
-                  />
-                ))) || //ПОИСК КОРОТКОМЕТРАЖКИ ----
-              (pageSearchForm !== "" &&
-                pageSearchAfterSearch.map((movie) => (
-                  <MoviesCard
-                    key={movie.movieId}
-                    movie={movie}
-                    savedMovie={savedMovie}
-                    handleSaveMovie={handleSaveMovie}
-                    handleDeleteMovie={handleDeleteMovie}
-                  />
-                )))}
+            )
+          ) : pageSearchInSearchArray.length > 0 ? (
+            pageSearchInSearchArray //КОРОТКОМЕТРАЖКИ
+              .map((movie) => (
+                <MoviesCard
+                  key={movie.movieId}
+                  movie={movie}
+                  savedMovie={savedMovie}
+                  handleSaveMovie={handleSaveMovie}
+                  handleDeleteMovie={handleDeleteMovie}
+                />
+              ))
+          ) : (
+            <h2 className='movies__notFound'>Ничего не найдено</h2>
+          )}
         </ul>
+        <h3>{pageSearchArray === 0 ? "ничего не найдено" : ""}</h3>
       </section>
     );
   }

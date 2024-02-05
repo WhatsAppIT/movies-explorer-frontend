@@ -33,6 +33,7 @@ function SavedMovies(props) {
   const [pageSearchArray, setPageSearchArray] = React.useState([]); //ПОИСК ФИЛЬМЫ
   const [pageFilterArray, setPageFilterArray] = React.useState([]); //ПОИСК КОРОТКОМЕТРАЖКИ
   const [submit, setSubmit] = React.useState(false); //ПОИСК КОРОТКОМЕТРАЖКИ
+  const [pageInfoMessage, setPageInfoMessage] = React.useState("");
 
   const pageSearchAllMovies = savedMovie.filter((movie) => {
     return movie.nameRU.toLowerCase().includes(pageSearchForm.toLowerCase());
@@ -40,7 +41,7 @@ function SavedMovies(props) {
   const pageSearchByDurationMovies = savedMovie.filter((movie) => {
     return movie.duration < 40;
   }); //КАРОТКОМЕТРАЖКИ
-  const pageSearchAfterSearch = pageShortMovies.filter((movie) => {
+  const pageSearchInSearchArray = pageShortMovies.filter((movie) => {
     return movie.nameRU.toLowerCase().includes(pageSearchForm.toLowerCase());
   }); //КАРОТКОМЕТРАЖКИ ИЗ ПОИСКА
 
@@ -51,9 +52,9 @@ function SavedMovies(props) {
   //ФУНКЦИЯ ПОИСК КОРОТКОМЕТРАЖЕК
   React.useEffect(() => {
     pageFilterMoviesInSearch();
-  }, [pageSearchAfterSearch]);
+  }, []);
   React.useEffect(() => {
-    setPageFilterArray(pageSearchAfterSearch);
+    setPageFilterArray(pageSearchInSearchArray);
   }, [pageShortMovies]);
 
   //ФУНКЦИЯ КОРОТКОМЕТРАЖКИ
@@ -83,18 +84,35 @@ function SavedMovies(props) {
     setPageShortMovies(pageSearchByDurationMovies);
   }
 
-  //SAVE-MOVIES SUBMIT ПОИСК ФИЛЬМОВ
+  //SAVE-MOVIES ----SUBMIT---- ПОИСК ФИЛЬМОВ
   function handlePageSubmitSearchForm(e) {
     e.preventDefault();
-    setPageSearchArray(pageSearchAllMovies);
-  }
-  //ПОИСК КОРОТКОМЕТРАЖЕК
-  function pageFilterMoviesInSearch() {
-    if (!submit) {
-      setPageFilterArray(pageSearchAfterSearch);
+    if (pageSearchForm !== 0) {
+      setPageSearchArray(pageSearchAllMovies);
+    }
+    if (pageSearchForm !== 0) {
+      setPageFilterArray(pageSearchInSearchArray);
+    }
+    if (pageSearchArray.length === 0) {
+      setPageSaveMovies([]);
     }
   }
-  console.log(pageSearchAfterSearch);
+
+  //ПОИСК КОРОТКОМЕТРАЖЕК
+  function pageFilterMoviesInSearch() {
+    if (pageSearchForm !== 0) {
+      setPageFilterArray(pageSearchInSearchArray);
+    }
+    if (pageSearchForm === 0) {
+      setPageShortMovies(pageSearchAllMovies);
+    }
+    if (pageFilterArray.length === 0) {
+      setPageSaveMovies([]);
+    }
+  }
+
+  console.log(pageSearchArray);
+
   return (
     <>
       <Header loggedIn={loggedIn} isOpen={isOpen} />
@@ -125,8 +143,12 @@ function SavedMovies(props) {
             pageSaveMovies={pageSaveMovies}
             pageSearchArray={pageSearchArray}
             pageShortMovies={pageShortMovies}
-            pageSearchAfterSearch={pageSearchAfterSearch}
+            pageSearchInSearchArray={pageSearchInSearchArray}
             submit={submit}
+            pageInfoMessage={pageInfoMessage}
+            setPageInfoMessage={setPageInfoMessage}
+            isLoading={isLoading}
+            pageSearchAllMovies={pageSearchAllMovies}
           />
         )}
       </main>

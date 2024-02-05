@@ -10,17 +10,14 @@ import "./Movies.css";
 function Movies(props) {
   const {
     movies,
-    setMovies,
     loggedIn,
     isLoading,
     isOpen,
-    getFromLocalStorage,
     setIntoLocalStorage,
     handleSaveMovie,
     handleDeleteMovie,
     savedMovie,
     setIsLoading,
-    handleGetMoviesFromApi,
   } = props;
 
   //ОТОБРАЖЕНИЕ ФИЛЬМОВ В ЗАВИСИМОСТИ ОТ РАЗРЕШЕНИЯ И КНОПКА "ЕЩЕ"
@@ -132,8 +129,8 @@ function Movies(props) {
   //MOVIES SUBMIT && CLICK CHECKBOX
   function handleSubmitSearchForm(e) {
     e.preventDefault();
-    if (searchArray.length === 0 || filterArray.length === 0) {
-      setSearchMessage("Ничего не найдено");
+    if (searchArray.length === 0) {
+      setSearchMessage("Ничего не найдeноS");
     }
     if (searchForm !== 0) {
       setSearchArray(searchAllMovies);
@@ -144,8 +141,8 @@ function Movies(props) {
   }
 
   function filterMoviesInSearch() {
-    if (filterArray.length === 0) {
-      setSearchMessage("Ничего не найдено");
+    if (checkBox && searchForm !== 0) {
+      setSearchMessage("Ничего не найденоCb");
     }
     if (searchForm !== 0) {
       setFilterArray(searchInSearchArray);

@@ -103,7 +103,7 @@ function App() {
         setUpdateSuccessMessage(true);
         console.log(res);
       })
-      .catch(() => setError("Такая почта занята"))
+      .catch((err) => setError("Такая почта занята"))
       .finally(() => {
         setIsLoading(false);
       });
@@ -226,7 +226,6 @@ function App() {
             path='/movies'
             element={
               <Movies
-                setError={setError}
                 loggedIn={loggedIn}
                 isOpen={handleHeaderPopupOpen}
                 movies={movies}
