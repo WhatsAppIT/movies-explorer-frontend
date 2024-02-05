@@ -111,8 +111,6 @@ function SavedMovies(props) {
     }
   }
 
-  console.log(pageSearchArray);
-
   return (
     <>
       <Header loggedIn={loggedIn} isOpen={isOpen} />

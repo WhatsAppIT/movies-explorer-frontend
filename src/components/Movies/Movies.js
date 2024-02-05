@@ -130,7 +130,7 @@ function Movies(props) {
   function handleSubmitSearchForm(e) {
     e.preventDefault();
     if (searchArray.length === 0) {
-      setSearchMessage("Ничего не найдeноS");
+      setSearchMessage("Ничего не найдeно");
     }
     if (searchForm !== 0) {
       setSearchArray(searchAllMovies);
@@ -142,7 +142,7 @@ function Movies(props) {
 
   function filterMoviesInSearch() {
     if (checkBox && searchForm !== 0) {
-      setSearchMessage("Ничего не найденоCb");
+      setSearchMessage("Ничего не найдено");
     }
     if (searchForm !== 0) {
       setFilterArray(searchInSearchArray);
@@ -150,8 +150,6 @@ function Movies(props) {
       setShortMovies(searchAllShortMovies);
     }
   }
-
-  console.log(filterArray);
 
   return (
     <>
