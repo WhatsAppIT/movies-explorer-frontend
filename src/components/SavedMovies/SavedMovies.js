@@ -32,8 +32,7 @@ function SavedMovies(props) {
   );
   const [pageSearchArray, setPageSearchArray] = React.useState([]); //ПОИСК ФИЛЬМЫ
   const [pageFilterArray, setPageFilterArray] = React.useState([]); //ПОИСК КОРОТКОМЕТРАЖКИ
-  const [submit, setSubmit] = React.useState(false); //ПОИСК КОРОТКОМЕТРАЖКИ
-  const [pageInfoMessage, setPageInfoMessage] = React.useState("");
+  const [pageSearchMessage, setPageSearchMessage] = React.useState("");
 
   const pageSearchAllMovies = savedMovie.filter((movie) => {
     return movie.nameRU.toLowerCase().includes(pageSearchForm.toLowerCase());
@@ -49,14 +48,14 @@ function SavedMovies(props) {
     setIntoLocalStorage("CheckBox Save-Movies", pageCheckBox);
   }, [pageCheckBox]);
 
-  //ФУНКЦИЯ ПОИСК КОРОТКОМЕТРАЖЕК
+  /*   //ФУНКЦИЯ ПОИСК КОРОТКОМЕТРАЖЕК
   React.useEffect(() => {
     pageFilterMoviesInSearch();
   }, []);
   React.useEffect(() => {
     setPageFilterArray(pageSearchInSearchArray);
   }, [pageShortMovies]);
-
+ */
   //ФУНКЦИЯ КОРОТКОМЕТРАЖКИ
   React.useEffect(() => {
     pageShowShortMovies();
@@ -66,14 +65,6 @@ function SavedMovies(props) {
   React.useEffect(() => {
     showLikedMovies();
   }, [savedMovie]);
-
-  React.useEffect(() => {
-    renderMoviesInSubmit();
-  }, [submit]);
-
-  function renderMoviesInSubmit() {
-    setSubmit(true);
-  }
 
   //ФУНКЦИЯ ФИЛЬМЫ
   function showLikedMovies() {
@@ -89,12 +80,11 @@ function SavedMovies(props) {
     e.preventDefault();
     if (pageSearchForm !== 0) {
       setPageSearchArray(pageSearchAllMovies);
-    }
-    if (pageSearchForm !== 0) {
       setPageFilterArray(pageSearchInSearchArray);
     }
-    if (pageSearchArray.length === 0) {
+    if (!pageCheckBox && pageSearchArray.length === 0) {
       setPageSaveMovies([]);
+      setPageSearchMessage("Ничего не найдено");
     }
   }
 
@@ -102,15 +92,14 @@ function SavedMovies(props) {
   function pageFilterMoviesInSearch() {
     if (pageSearchForm !== 0) {
       setPageFilterArray(pageSearchInSearchArray);
-    }
-    if (pageSearchForm === 0) {
+    } else {
       setPageShortMovies(pageSearchAllMovies);
     }
-    if (pageFilterArray.length === 0) {
-      setPageSaveMovies([]);
+    if (pageFilterArray.length === 0 || pageSearchForm === "") {
+      setPageSearchMessage("");
     }
   }
-
+  console.log(pageFilterArray);
   return (
     <>
       <Header loggedIn={loggedIn} isOpen={isOpen} />
@@ -129,6 +118,7 @@ function SavedMovies(props) {
           handlePageSubmitSearchForm={handlePageSubmitSearchForm}
           pageFilterMoviesInSearch={pageFilterMoviesInSearch}
           pageFilterArray={pageFilterArray}
+          pageSearchMessage={pageSearchMessage}
         />
         {isLoading ? (
           <Preloader />
@@ -142,9 +132,6 @@ function SavedMovies(props) {
             pageSearchArray={pageSearchArray}
             pageShortMovies={pageShortMovies}
             pageSearchInSearchArray={pageSearchInSearchArray}
-            submit={submit}
-            pageInfoMessage={pageInfoMessage}
-            setPageInfoMessage={setPageInfoMessage}
             isLoading={isLoading}
             pageSearchAllMovies={pageSearchAllMovies}
           />

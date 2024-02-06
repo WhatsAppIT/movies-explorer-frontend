@@ -24,6 +24,23 @@
   line-height: 20px;
   color: #ffffff;
   text-align: center;
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+.movies__notFound_active {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(150px);
+}
+
+.movies__notFound-into {
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 20px;
+  color: #ffffff;
+  text-align: center;
 }
 
 @media (min-width: 768px) {

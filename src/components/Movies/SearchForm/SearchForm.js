@@ -18,6 +18,12 @@ function SearchForm(props) {
     handleSubmitSearchForm,
     handlePageSubmitSearchForm,
     pageFilterMoviesInSearch,
+    searchMessage,
+    searchArray,
+    filterArray,
+    pageSearchArray,
+    pageFilterArray,
+    pageSearchMessage,
   } = props;
 
   const location = useLocation();
@@ -42,6 +48,15 @@ function SearchForm(props) {
               <img src={search} className='form__search_submit_img' />
             </button>
           </div>
+          <span
+            className={`movies__notFound ${
+              searchArray.length === 0 || filterArray.length === 0
+                ? "movies__notFound_active"
+                : ""
+            }`}
+          >
+            {searchMessage}
+          </span>
         </form>
         <FilterCheckbox
           checkBox={checkBox}
@@ -72,6 +87,15 @@ function SearchForm(props) {
               <img src={search} className='form__search_submit_img' />
             </button>
           </div>
+          <span
+            className={`movies__notFound ${
+              pageSearchArray.length === 0 || pageFilterArray.length === 0
+                ? "movies__notFound_active"
+                : ""
+            }`}
+          >
+            {pageSearchMessage}
+          </span>
         </form>
         <FilterCheckbox
           setPageCheckBox={setPageCheckBox}

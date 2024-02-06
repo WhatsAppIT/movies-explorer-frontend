@@ -37,8 +37,8 @@ function MoviesCardList(props) {
     return (
       <section className='cards'>
         <ul className='cards__list'>
-          {!checkBox ? (
-            searchArray.length > 0 ? (
+          {!checkBox
+            ? searchArray.length > 0 &&
               searchArray //ПОИСК ФИЛЬМОВ
                 .slice(0, visibleSearchMovies)
                 .map((movie) => (
@@ -50,24 +50,21 @@ function MoviesCardList(props) {
                     handleDeleteMovie={handleDeleteMovie}
                   />
                 ))
-            ) : (
-              <h2 className='movies__notFound'>{searchMessage}</h2>
-            )
-          ) : filterArray.length > 0 ? (
-            filterArray //ПОИСК КОРОТКОМЕТРАЖЕК
-              .slice(0, visibleSearchMovies)
-              .map((movie) => (
-                <MoviesCard
-                  key={movie.movieId}
-                  movie={movie}
-                  savedMovie={savedMovie}
-                  handleSaveMovie={handleSaveMovie}
-                  handleDeleteMovie={handleDeleteMovie}
-                />
-              ))
-          ) : (
-            <h2 className='movies__notFound'>{searchMessage}</h2>
-          )}
+            : filterArray.length > 0
+            ? filterArray //ПОИСК КОРОТКОМЕТРАЖЕК
+                .slice(0, visibleSearchMovies)
+                .map((movie) => (
+                  <MoviesCard
+                    key={movie.movieId}
+                    movie={movie}
+                    savedMovie={savedMovie}
+                    handleSaveMovie={handleSaveMovie}
+                    handleDeleteMovie={handleDeleteMovie}
+                  />
+                ))
+            : searchMessage || (
+                <h2 className='movies__notFound-into'>Ничего не найдeно</h2>
+              )}
         </ul>
         {!checkBox
           ? visibleSearchMovies < searchArray.length &&
@@ -122,10 +119,9 @@ function MoviesCardList(props) {
                 />
               ))
           ) : (
-            <h2 className='movies__notFound'>Ничего не найдено</h2>
+            <h2 className='movies__notFound-into'>Ничего не найдeно</h2>
           )}
         </ul>
-        <h3>{pageSearchArray === 0 ? "ничего не найдено" : ""}</h3>
       </section>
     );
   }
