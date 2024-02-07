@@ -94,9 +94,9 @@ function Movies(props) {
     filterMoviesInSearch();
   }, []);
 
-  /*   React.useEffect(() => {
+  React.useEffect(() => {
     setFilterArray(searchInSearchArray);
-  }, []); */
+  }, []);
 
   React.useEffect(() => {
     clearInput();
@@ -173,7 +173,7 @@ function Movies(props) {
       setShortMovies(searchAllShortMovies);
     }
   }
-  console.log(filterArray);
+
   return (
     <>
       <Header loggedIn={loggedIn} isOpen={isOpen} />
@@ -213,6 +213,7 @@ function Movies(props) {
             buttonElseActive={buttonElseActive}
             setIsLoading={setIsLoading}
             isLoading={isLoading}
+            searchInSearchArray={searchInSearchArray}
           />
         )}
       </main>

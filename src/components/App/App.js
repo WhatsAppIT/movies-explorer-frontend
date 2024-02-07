@@ -157,6 +157,7 @@ function App() {
         });
         setIntoLocalStorage("movies from BeatFilm API", movies);
         setMovies(movies);
+        console.log(res);
       })
       .catch((err) => setError(err));
   }

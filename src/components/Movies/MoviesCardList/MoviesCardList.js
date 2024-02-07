@@ -29,6 +29,7 @@ function MoviesCardList(props) {
     pageFilterArray,
     pageSearchByDurationMovies,
     isLoading,
+    searchInSearchArray,
   } = props;
 
   const location = useLocation();
@@ -50,8 +51,8 @@ function MoviesCardList(props) {
                     handleDeleteMovie={handleDeleteMovie}
                   />
                 ))
-            : filterArray.length > 0
-            ? filterArray //ПОИСК КОРОТКОМЕТРАЖЕК
+            : searchInSearchArray.length > 0
+            ? searchInSearchArray //ПОИСК КОРОТКОМЕТРАЖЕК
                 .slice(0, visibleSearchMovies)
                 .map((movie) => (
                   <MoviesCard
