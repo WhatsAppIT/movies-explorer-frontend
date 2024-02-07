@@ -151,6 +151,7 @@ function Movies(props) {
 
   function handleSubmitSearchForm(e) {
     e.preventDefault();
+    visibleMovies();
     if (searchArray.length === 0) {
       setSearchMessage("Ничего не найдeно");
     } else {
@@ -164,6 +165,7 @@ function Movies(props) {
   //MOVIES SUBMIT && CLICK CHECKBOX
 
   function filterMoviesInSearch() {
+    visibleMovies();
     if (filterArray.length === 0) {
       setSearchMessage("");
     }
