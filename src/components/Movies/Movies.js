@@ -151,26 +151,22 @@ function Movies(props) {
 
   function handleSubmitSearchForm(e) {
     e.preventDefault();
-    visibleMovies();
     if (searchArray.length === 0) {
-      setSearchMessage("Ничего не найдeно");
+      setSearchMessage("iiiiiiiiiiii");
     } else {
       setSearchMessage("");
     }
     if (searchForm !== 0) {
       setSearchArray(searchAllMovies);
       setFilterArray(searchInSearchArray);
-    } else {
-      setSearchMessage("Ничего не найдeноwerwr");
     }
   }
   //MOVIES SUBMIT && CLICK CHECKBOX
 
   function filterMoviesInSearch() {
-    visibleMovies();
-    /*     if (searchInSearchArray.length === 0) {
+    if (filterArray.length === 0) {
       setSearchMessage("");
-    } */
+    }
     if (searchForm !== 0) {
       setFilterArray(searchInSearchArray);
     } else {
