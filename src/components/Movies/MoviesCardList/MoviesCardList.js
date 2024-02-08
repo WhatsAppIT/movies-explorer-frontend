@@ -72,7 +72,7 @@ function MoviesCardList(props) {
             !buttonSubmit && (
               <ButtonShowMoreMovies addMoreMovies={addMoreMovies} />
             )
-          : visibleSearchMovies < filterArray.length &&
+          : visibleSearchMovies < searchInSearchArray.length &&
             !buttonSubmit && (
               <ButtonShowMoreMovies addMoreMovies={addMoreMovies} />
             )}
