@@ -46,7 +46,6 @@ function App() {
         setLoggedIn(true);
         handleGetUser();
         navigate("/movies", { replace: true });
-        console.log(res);
         handleGetMoviesFromApi();
       })
       .catch((err) => {
@@ -125,11 +124,11 @@ function App() {
   React.useEffect(() => {
     checkToken();
     handleGetUser();
-    handleGetSavedMovies();
   }, []);
+
   React.useEffect(() => {
     handleGetSavedMovies();
-  }, []);
+  }, [movies]);
 
   function handleGetMoviesFromApi() {
     fetch(beatfilmUrl)
@@ -157,7 +156,6 @@ function App() {
         });
         setIntoLocalStorage("movies from BeatFilm API", movies);
         setMovies(movies);
-        console.log(res);
       })
       .catch((err) => setError(err));
   }
@@ -183,7 +181,6 @@ function App() {
         setIsLoading(false);
       });
   }
-
   function handleDeleteMovie(_id) {
     mainApi
       .deleteMovie(_id)
@@ -254,6 +251,7 @@ function App() {
                 setIsLoading={setIsLoading}
                 handleGetMoviesFromApi={handleGetMoviesFromApi}
                 setIntoLocalStorage={setIntoLocalStorage}
+                handleLogOut={handleLogOut}
               />
             }
           />

@@ -18,6 +18,7 @@ function SavedMovies(props) {
     handleGetMoviesFromApi,
     setIntoLocalStorage,
     isLoading,
+    handleLogOut,
   } = props;
 
   const pageCheckBoxCondition = JSON.parse(
@@ -99,7 +100,7 @@ function SavedMovies(props) {
       setPageSearchMessage("");
     }
   }
-  console.log(pageFilterArray);
+
   return (
     <>
       <Header loggedIn={loggedIn} isOpen={isOpen} />
