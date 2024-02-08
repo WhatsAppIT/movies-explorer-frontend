@@ -38,22 +38,9 @@ function MoviesCardList(props) {
     return (
       <section className='cards'>
         <ul className='cards__list'>
-          {!checkBox
-            ? searchArray.length > 0
-              ? searchArray //ПОИСК ФИЛЬМОВ
-                  .slice(0, visibleSearchMovies)
-                  .map((movie) => (
-                    <MoviesCard
-                      key={movie.movieId}
-                      movie={movie}
-                      savedMovie={savedMovie}
-                      handleSaveMovie={handleSaveMovie}
-                      handleDeleteMovie={handleDeleteMovie}
-                    />
-                  ))
-              : searchMessage
-            : searchInSearchArray.length > 0
-            ? searchInSearchArray //ПОИСК КОРОТКОМЕТРАЖЕК
+          {!checkBox ? (
+            searchArray.length > 0 ? (
+              searchArray
                 .slice(0, visibleSearchMovies)
                 .map((movie) => (
                   <MoviesCard
@@ -64,9 +51,26 @@ function MoviesCardList(props) {
                     handleDeleteMovie={handleDeleteMovie}
                   />
                 ))
-            : searchMessage || (
-                <h2 className='movies__notFound-into'>Ничего не найдeно</h2>
-              )}
+            ) : (
+              <h2 className='movies__notFound'>Ничего не найдено</h2>
+            )
+          ) : searchInSearchArray.length > 0 ? (
+            searchInSearchArray //ПОИСК КОРОТКОМЕТРАЖЕК
+              .slice(0, visibleSearchMovies)
+              .map((movie) => (
+                <MoviesCard
+                  key={movie.movieId}
+                  movie={movie}
+                  savedMovie={savedMovie}
+                  handleSaveMovie={handleSaveMovie}
+                  handleDeleteMovie={handleDeleteMovie}
+                />
+              ))
+          ) : (
+            searchMessage || (
+              <h2 className='movies__notFound-into'>Ничего не найдeно</h2>
+            )
+          )}
         </ul>
         {!checkBox
           ? visibleSearchMovies < searchArray.length &&

@@ -59,6 +59,47 @@ function Movies(props) {
     return movie.nameRU.toLowerCase().includes(searchForm.toLowerCase());
   }); //КОРОТКОМЕТРАЖКИ ИЗ ПОИСКА
 
+  //WINDOWWIDTH
+  React.useEffect(() => {
+    function handleWindowResize() {
+      setWindowWidth(window.innerWidth);
+    }
+    visibleMovies();
+    addSearchMovies();
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, [windowWidth]);
+
+  function visibleMovies() {
+    if (windowWidth < 635) {
+      setVisibleSearchMovies(5);
+    }
+    if (windowWidth >= 635) {
+      setVisibleSearchMovies(8);
+    }
+    if (windowWidth >= 1077) {
+      setVisibleSearchMovies(12);
+    }
+  }
+
+  function addSearchMovies() {
+    if (windowWidth < 635) {
+      setAddMovies(2);
+    }
+    if (windowWidth >= 635) {
+      setAddMovies(2);
+    }
+    if (windowWidth >= 1077) {
+      setAddMovies(3);
+    }
+  }
+  //КНОПКА "ЕЩЕ"
+  function addMoreMovies() {
+    setVisibleSearchMovies(visibleSearchMovies + addMovies);
+  }
+
   //СОХРАНЕНИЕ ДАННЫХ В LOCALSTORAGE
   React.useEffect(() => {
     setIntoLocalStorage("Input", searchForm);
@@ -108,51 +149,11 @@ function Movies(props) {
     }
   }
 
-  //WINDOWWIDTH
-  React.useEffect(() => {
-    function handleWindowResize() {
-      setWindowWidth(window.innerWidth);
-    }
-    visibleMovies();
-    addSearchMovies();
-    window.addEventListener("resize", handleWindowResize);
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, [windowWidth]);
-
-  function visibleMovies() {
-    if (windowWidth < 635) {
-      setVisibleSearchMovies(5);
-    }
-    if (windowWidth >= 635) {
-      setVisibleSearchMovies(8);
-    }
-    if (windowWidth >= 1077) {
-      setVisibleSearchMovies(12);
-    }
-  }
-
-  function addSearchMovies() {
-    if (windowWidth < 635) {
-      setAddMovies(2);
-    }
-    if (windowWidth >= 635) {
-      setAddMovies(2);
-    }
-    if (windowWidth >= 1077) {
-      setAddMovies(3);
-    }
-  }
-  //КНОПКА "ЕЩЕ"
-  function addMoreMovies() {
-    setVisibleSearchMovies(visibleSearchMovies + addMovies);
-  }
-
   function handleSubmitSearchForm(e) {
     e.preventDefault();
+    visibleMovies();
     if (searchArray.length === 0) {
-      setSearchMessage("iiiiiiiiiiii");
+      setSearchMessage("Ничего не найдено");
     } else {
       setSearchMessage("");
     }
@@ -161,9 +162,9 @@ function Movies(props) {
       setFilterArray(searchInSearchArray);
     }
   }
-  //MOVIES SUBMIT && CLICK CHECKBOX
 
   function filterMoviesInSearch() {
+    visibleMovies();
     if (filterArray.length === 0) {
       setSearchMessage("");
     }
