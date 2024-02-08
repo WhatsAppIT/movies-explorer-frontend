@@ -39,18 +39,19 @@ function MoviesCardList(props) {
       <section className='cards'>
         <ul className='cards__list'>
           {!checkBox
-            ? searchArray.length > 0 &&
-              searchArray //ПОИСК ФИЛЬМОВ
-                .slice(0, visibleSearchMovies)
-                .map((movie) => (
-                  <MoviesCard
-                    key={movie.movieId}
-                    movie={movie}
-                    savedMovie={savedMovie}
-                    handleSaveMovie={handleSaveMovie}
-                    handleDeleteMovie={handleDeleteMovie}
-                  />
-                ))
+            ? searchArray.length > 0
+              ? searchArray //ПОИСК ФИЛЬМОВ
+                  .slice(0, visibleSearchMovies)
+                  .map((movie) => (
+                    <MoviesCard
+                      key={movie.movieId}
+                      movie={movie}
+                      savedMovie={savedMovie}
+                      handleSaveMovie={handleSaveMovie}
+                      handleDeleteMovie={handleDeleteMovie}
+                    />
+                  ))
+              : searchMessage
             : searchInSearchArray.length > 0
             ? searchInSearchArray //ПОИСК КОРОТКОМЕТРАЖЕК
                 .slice(0, visibleSearchMovies)

@@ -160,15 +160,17 @@ function Movies(props) {
     if (searchForm !== 0) {
       setSearchArray(searchAllMovies);
       setFilterArray(searchInSearchArray);
+    } else {
+      setSearchMessage("Ничего не найдeноwerwr");
     }
   }
   //MOVIES SUBMIT && CLICK CHECKBOX
 
   function filterMoviesInSearch() {
     visibleMovies();
-    if (filterArray.length === 0) {
+    /*     if (searchInSearchArray.length === 0) {
       setSearchMessage("");
-    }
+    } */
     if (searchForm !== 0) {
       setFilterArray(searchInSearchArray);
     } else {
@@ -192,6 +194,8 @@ function Movies(props) {
           searchMessage={searchMessage}
           searchArray={searchArray}
           filterArray={filterArray}
+          searchInSearchArray={searchInSearchArray}
+          buttonSubmit={buttonSubmit}
         />
         {isLoading ? (
           <Preloader />
