@@ -152,7 +152,7 @@ function Movies(props) {
   function handleSubmitSearchForm(e) {
     e.preventDefault();
     visibleMovies();
-    if (searchArray.length === 0) {
+    if (filterArray.length === 0 || searchArray.length === 0) {
       setSearchMessage("Ничего не найдено");
     } else {
       setSearchMessage("");
@@ -165,16 +165,19 @@ function Movies(props) {
 
   function filterMoviesInSearch() {
     visibleMovies();
-    if (filterArray.length === 0) {
+    if (filterArray.length === 0 || searchArray.length === 0) {
+      setSearchMessage("Ничего не найдено");
+    }  else {
       setSearchMessage("");
     }
-    if (searchForm !== 0) {
+    if (searchForm !== 0) { 
+      setFilterArray(searchInSearchArray); 
       setSearchArray(searchAllMovies);
-      setFilterArray(searchInSearchArray);
-    } else {
-      setShortMovies(searchAllShortMovies);
-    }
+    } else { 
+      setShortMovies(searchAllShortMovies); 
+    } 
   }
+
 
   return (
     <>

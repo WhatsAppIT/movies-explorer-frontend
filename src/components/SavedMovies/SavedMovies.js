@@ -75,6 +75,22 @@ function SavedMovies(props) {
   function pageShowShortMovies() {
     setPageShortMovies(pageSearchByDurationMovies);
   }
+  function pageSearch() { 
+    setPageSaveMovies(pageSearchAllMovies); 
+  } 
+
+
+   //ПОИСК ПО ФИЛЬМАМ 
+   React.useEffect(() => { 
+    pageSearch(); 
+  }, [pageSearchArray]); 
+ 
+  //КАРОТКОМЕТРАЖКИ + 
+  React.useEffect(() => { 
+    pageFilterMoviesInSearch(); 
+  }, [savedMovie]); 
+ 
+
 
   //SAVE-MOVIES ----SUBMIT---- ПОИСК ФИЛЬМОВ
   function handlePageSubmitSearchForm(e) {
@@ -83,7 +99,7 @@ function SavedMovies(props) {
       setPageSearchArray(pageSearchAllMovies);
       setPageFilterArray(pageSearchInSearchArray);
     }
-    if (!pageCheckBox && pageSearchArray.length === 0) {
+    if (pageSearchArray.length === 0) {
       setPageSaveMovies([]);
       setPageSearchMessage("Ничего не найдено");
     }
@@ -92,6 +108,7 @@ function SavedMovies(props) {
   //ПОИСК КОРОТКОМЕТРАЖЕК
   function pageFilterMoviesInSearch() {
     if (pageSearchForm !== 0) {
+      setPageSearchArray(pageSearchAllMovies);
       setPageFilterArray(pageSearchInSearchArray);
     } else {
       setPageShortMovies(pageSearchAllMovies);
@@ -100,6 +117,7 @@ function SavedMovies(props) {
       setPageSearchMessage("");
     }
   }
+
 
   return (
     <>

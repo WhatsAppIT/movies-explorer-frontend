@@ -51,7 +51,7 @@ function SearchForm(props) {
           </div>
           <span
             className={`movies__notFound ${
-              searchArray.length === 0 || searchInSearchArray.length === 0
+              searchArray.length === 0 || filterArray.length === 0
                 ? "movies__notFound_active"
                 : ""
             }`}
