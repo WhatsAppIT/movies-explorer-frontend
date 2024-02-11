@@ -1,0 +1,201 @@
+.about {
+  background-color: #202020;
+}
+
+.about__title {
+  padding: 70px 0 28px;
+  margin: 0 14px 0;
+  min-width: 292px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 21.78px;
+  text-align: left;
+  color: #ffffff;
+  border-bottom: 1px solid #dadada;
+  letter-spacing: -0.04em;
+}
+
+.about__info {
+  padding: 60px 0 0;
+  margin: 0;
+  text-align: center;
+}
+
+.about__info_image {
+  padding: 0;
+  margin: 0;
+  width: 292px;
+  height: 352px;
+}
+
+.about__info_user_name {
+  padding: 35px 0 20px;
+  margin: 0 14px 0;
+  font-size: 30px;
+  font-weight: 400;
+  line-height: 36.31px;
+  text-align: left;
+  color: #ffffff;
+  letter-spacing: -0.04em;
+}
+
+.about__info_user_job {
+  padding: 0 0 20px;
+  margin: 0 14px 0;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: left;
+  color: #ffffff;
+}
+
+.about__info_user_about {
+  padding: 0 0 40px;
+  margin: 0 14px 0;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+  color: #ffffff;
+}
+
+.about__info_user_git {
+  padding: 0;
+  margin: 0 14px 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.94px;
+  text-align: left;
+  color: #ffffff;
+}
+
+.about__info_user_git:hover {
+  opacity: 0.7;
+}
+
+.about__info_user_git_link {
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  .about {
+    background-color: #202020;
+  }
+  .about__title {
+    padding: 90px 0 23px;
+    margin: 0 50px 0;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 26.63px;
+  }
+  .about__info {
+    padding: 66px 0 0;
+    margin: 0 50px 0;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    gap: 49px;
+  }
+
+  .about__info_user {
+    margin: 0;
+  }
+
+  .about__info_image {
+    height: 307px;
+    width: 255px;
+  }
+
+  .about__info_user_name {
+    padding: 0 0 16px;
+    margin: 0;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 40px;
+  }
+
+  .about__info_user_job {
+    padding: 0 0 20px;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+
+  .about__info_user_about {
+    padding: 0 0 87px;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+  }
+  .about__info_user_git {
+    margin: 0;
+  }
+}
+
+@media (min-width: 1280px) {
+  .about__title {
+    padding: 112px 0 23px;
+    margin: 0 70px 0;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 26.63px;
+  }
+  .about__info {
+    padding: 66px 0 101px;
+    margin: 0 70px 0;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    gap: 55px;
+  }
+
+  .about__info_user {
+    margin: 0 270px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .about__info_user_image {
+    padding: 0;
+    width: 270px;
+    height: 327px;
+    border-radius: 10px;
+    background-size: cover;
+  }
+
+  .about__info_image {
+    height: 327px;
+    width: 270px;
+  }
+
+  .about__info_user_name {
+    padding: 0 0 18px;
+    margin: 0;
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 58px;
+  }
+
+  .about__info_user_job {
+    padding: 0 0 26px;
+    margin: 0;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  .about__info_user_about {
+    padding: 0 0 78px;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+  }
+  .about__info_user_git {
+    margin: 0;
+  }
+}
