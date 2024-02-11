@@ -49,7 +49,8 @@ function SavedMovies(props) {
     setIntoLocalStorage("CheckBox Save-Movies", pageCheckBox); 
   }, [pageCheckBox]); 
  
-  /*   //ФУНКЦИЯ ПОИСК КОРОТКОМЕТРАЖЕК 
+ //ФУНКЦИЯ ПОИСК КОРОТКОМЕТРАЖЕК 
+   /*  
   React.useEffect(() => { 
     pageFilterMoviesInSearch(); 
   }, []); 
