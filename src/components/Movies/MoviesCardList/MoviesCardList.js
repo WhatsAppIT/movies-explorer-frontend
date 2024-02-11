@@ -54,8 +54,8 @@ function MoviesCardList(props) {
             ) : (
               <h2 className='movies__notFound'>Ничего не найдено</h2>
             )
-          ) : searchInSearchArray.length > 0 ? (
-            searchInSearchArray //ПОИСК КОРОТКОМЕТРАЖЕК
+          ) : filterArray.length > 0 ? (
+            filterArray //ПОИСК КОРОТКОМЕТРАЖЕК
               .slice(0, visibleSearchMovies)
               .map((movie) => (
                 <MoviesCard
@@ -77,7 +77,7 @@ function MoviesCardList(props) {
             !buttonSubmit && (
               <ButtonShowMoreMovies addMoreMovies={addMoreMovies} />
             )
-          : visibleSearchMovies < searchInSearchArray.length &&
+          : visibleSearchMovies < filterArray.length &&
             !buttonSubmit && (
               <ButtonShowMoreMovies addMoreMovies={addMoreMovies} />
             )}

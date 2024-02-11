@@ -169,6 +169,7 @@ function Movies(props) {
       setSearchMessage("");
     }
     if (searchForm !== 0) {
+      setSearchArray(searchAllMovies);
       setFilterArray(searchInSearchArray);
     } else {
       setShortMovies(searchAllShortMovies);
